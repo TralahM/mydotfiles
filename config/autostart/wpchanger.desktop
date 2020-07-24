@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=wpchanger
+Exec=~/bin/wpchanger.sh
+Comment=Changes the WallPaper
+Icon=/usr/share/icons/breeze/apps/48/inkscape-logo.svg
+NoDisplay=false
+Type=Application
+Categories=Graphics;

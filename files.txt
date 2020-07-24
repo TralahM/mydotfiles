@@ -1,0 +1,15 @@
+~/.Xresources
+~/.Xmodmap
+~/.xinitrc
+~/.config/i3/config
+~/.config/i3bar/config
+~/.config/i3status.conf
+~/.config/nvim/init.vim
+~/.layouts
+~/i3-layout-manager
+~/.bashrc
+~/.zshrc
+~/.termux.conf
+~/nerd-fonts-setup
+~/.gitconfig
+~/aliases
