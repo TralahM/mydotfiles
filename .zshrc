@@ -1,5 +1,4 @@
 ## Options section
-setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob                                               # Case insensitive globbing
 setopt rcexpandparam                                            # Array expension with parameters
@@ -19,9 +18,9 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 HISTFILE=~/.zhistory
 HISTSIZE=1000
-SAVEHIST=500
-#export EDITOR=/usr/bin/nano
-#export VISUAL=/usr/bin/nano
+SAVEHIST=5000
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
 
@@ -53,7 +52,6 @@ bindkey '^H' backward-kill-word                                 # delete previou
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
 ## Alias section
-alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
 alias gitu='git add . && git commit && git push'
@@ -206,7 +204,7 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export DEFAULT_USER="$(whoami)"
 export GREP_COLORS='ms=01;32;49'
-# export GREP_OPTIONS='--color=always'
+
 # Vulkan Graphics Library setup
 export VULKAN_SDK=~/vulkan/1.2.135.0/x86_64
 export PATH=$PATH:$VULKAN_SDK/bin
@@ -341,7 +339,7 @@ export POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
 export POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
 export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 typeset -g POWERLEVEL9K_VCS_GIT_ICON=$'\uF113 '
-# export POWERLEVEL9K_VCS_GIT_ICON='  '
+export POWERLEVEL9K_VCS_GIT_ICON='  '
 # add shellcheck config
 # For a full list of errors, refer to
 # https://github.com/koalaman/shellcheck/wiki
@@ -350,9 +348,9 @@ typeset -g POWERLEVEL9K_VCS_GIT_ICON=$'\uF113 '
 alias grep="egrep --color "
 alias norg="gron --ungron"
 alias ungron="gron --ungron"
-alias gadd="git add"
+alias gad="git add ."
 alias gap="git add -p"
-alias gap="git add -p"
+alias gaci="git add .;git commit "
 alias gp="git push "
 alias gpom="git push origin master"
 alias pythonx="python"
@@ -365,10 +363,10 @@ alias cls="clear"
 alias pubip="curl icanhazip.com"
 alias vim="nvim "
 alias vf="vifm"
-alias herokuli="heroku login -i"
-alias herokulogs="heroku logs -t"
-alias herokupyshell="heroku run python manage.py shell_plus"
-alias herokubash="heroku run bash"
+alias hrkli="heroku login -i"
+alias hrklgs="heroku logs -t"
+alias hrkpyshl="heroku run python manage.py shell_plus"
+alias hrkbsh="heroku run bash"
 alias djsp="django-admin startproject "
 alias djsa="django-admin startapp "
 alias ghrc="gcli repo create "
@@ -385,22 +383,21 @@ alias sv="sudo nvim"
 alias p="sudo pacman"
 alias vbsh="nvim ~/.bashrc"
 alias vzsh="nvim ~/.zshrc"
-alias ka="killall"
+alias ka="kill -9"
 
 
 # export PYTHONHOME="/usr/bin/python3"
 # export ANDROIDSDK="/home/african/Android/Sdk"
 # export ANDROIDNDK="/home/african/android-ndk-r18b"
-
-export PATH=~/anaconda3/bin:$PATH
+if [[ -d ~/anaconda3/bin ]];then
+    export PATH=~/anaconda3/bin:$PATH
+fi
 # export PATH=/home/african/Android/Sdk/tools/bin:/home/african/android-studio/bin:$PATH
 
 # # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 # export PYTHONPATH=/home/anaconda3/lib/python3.6:/home/anaconda3/lib/python3.7:/usr/lib/python3.7:/usr/lib/python3.6:/usr/lib/python3.6:
-export G_ML_API=AIzaSyDrAjzK8u-_Y0_YJmY7Yk1K6N_q1p8Bd8w
-alias ls="ls --color=auto -t "
 #
 # start a tmux session
 
@@ -487,3 +484,4 @@ PERL_MM_OPT="INSTALL_BASE=/home/african/perl5"; export PERL_MM_OPT;
 ### End of Zinit's installer chunk
 ### End of Zinit's installer chunk
 ### End of Zinit's installer chunk
+bindkey -v

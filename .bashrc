@@ -35,7 +35,6 @@ export PATH=~/anaconda3/bin:$PATH
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 # export PYTHONPATH=/home/anaconda3/lib/python3.6:/home/anaconda3/lib/python3.7:/usr/lib/python3.7:/usr/lib/python3.6:/usr/lib/python3.6:
-export G_ML_API=AIzaSyDrAjzK8u-_Y0_YJmY7Yk1K6N_q1p8Bd8w
 #
 # start a tmux session
 
@@ -141,7 +140,7 @@ colors() {
 
 # Change the window title of X terminals
 case ${TERM} in
-	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
+	xterm*|urxvt*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
 		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
 		;;
 	screen*)
@@ -196,11 +195,9 @@ fi
 
 unset use_color safe_term match_lhs sh
 
-alias cp="cp -i"                          # confirm before overwriting something
+alias cp="cp -r"
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
-alias more=less
 
 xhost +local:root > /dev/null 2>&1
 
@@ -247,9 +244,9 @@ ex ()
 alias grep="egrep --color "
 alias norg="gron --ungron"
 alias ungron="gron --ungron"
-alias gadd="git add"
+alias gad="git add ."
 alias gap="git add -p"
-alias gap="git add -p"
+alias gaci="git add .;git commit "
 alias gp="git push "
 alias gpom="git push origin master"
 alias pythonx="python"
@@ -262,10 +259,10 @@ alias cls="clear"
 alias pubip="curl icanhazip.com"
 alias vim="nvim "
 alias vf="vifm"
-alias herokuli="heroku login -i"
-alias herokulogs="heroku logs -t"
-alias herokupyshell="heroku run python manage.py shell_plus"
-alias herokubash="heroku run bash"
+alias hrkli="heroku login -i"
+alias hrklgs="heroku logs -t"
+alias hrkpyshl="heroku run python manage.py shell_plus"
+alias hrkbsh="heroku run bash"
 alias djsp="django-admin startproject "
 alias djsa="django-admin startapp "
 alias ghrpc="hub create "
@@ -283,7 +280,7 @@ alias sv="sudo nvim"
 alias p="sudo pacman"
 alias vbsh="nvim ~/.bashrc"
 alias vzsh="nvim ~/.zshrc"
-alias ka="killall"
+alias ka="kill -9"
 
 md(){
     mkdir -p $1;
