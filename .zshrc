@@ -264,16 +264,6 @@ if [[ -d ~/code ]]; then
     export CODE_DIR=~/code
 fi
 
-# source all .zsh files inside of the zsh/ directory
-source "$ZSH/config.zsh"
-source "$ZSH/utils.zsh"
-source "$ZSH/aliases.zsh"
-source "$ZSH/colors.zsh"
-source "$ZSH/completion.zsh"
-source "$ZSH/git.zsh"
-source "$ZSH/git_prompt.zsh"
-source "$ZSH/functions.zsh"
-source "$ZSH/tmux.zsh"
 
 
 if [[ -a ~/.localrc ]]; then
@@ -383,7 +373,9 @@ alias sv="sudo nvim"
 alias p="sudo pacman"
 alias vbsh="nvim ~/.bashrc"
 alias vzsh="nvim ~/.zshrc"
+alias vimrc="nvim ~/.vimrc"
 alias ka="kill -9"
+alias cp="cp -r"
 
 
 # export PYTHONHOME="/usr/bin/python3"
@@ -433,9 +425,10 @@ export RUST_SRC_PATH=/home/african/.rustup/toolchains/stable-x86_64-unknown-linu
 
 bindkey -v
 
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zprofile
+source ~/.profile
+
+
+
 ### Added by Zplugin's installer
 #
 source "$HOME/.zinit/bin/zplugin.zsh"

@@ -280,6 +280,7 @@ alias sv="sudo nvim"
 alias p="sudo pacman"
 alias vbsh="nvim ~/.bashrc"
 alias vzsh="nvim ~/.zshrc"
+alias vimrc="nvim ~/.vimrc"
 alias ka="kill -9"
 
 md(){
