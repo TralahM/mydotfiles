@@ -211,7 +211,8 @@ bar {
 # Please remove the following exec line:
 #######################################################################
 # exec i3-config-wizard
-exec --no-startup-id picom -b
-bindsym $mod_next+l exec i3exit lock
-
+exec --no-startup-id picom -bc
+exec --no-startup-id wpchanger.sh
+exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+bindsym Mod4+l exec i3exit lock
 
