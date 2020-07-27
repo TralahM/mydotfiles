@@ -58,13 +58,17 @@ XTerm*selectToClipboard: true
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
-URxvt.font:                      xft:TerminessTTF\ Nerd\ Font\ Mono:style=Medium
-URxvt.bold.font:                      xft:TerminessTTF\ Nerd\ Font\ Mono:style=Bold
+/* URxvt.font:                      xft:Source\ Code\ Pro\ for\ Powerline:style=Regular */
+/* URxvt.bold.font:                      xft:Source\ Code\ Pro\ for\ Powerline:style=Bold */
+/* URxvt.font: xft:TerminessTTF\ Nerd\ Font\ Mono:style=Medium */
+URxvt.font:                              xft:TerminessTTF\ Nerd\ Font\ Mono:style=BlackRegular
+URxvt.bold.font:                              xft:TerminessTTF\ Nerd\ Font\ Mono:style=Bold
+/* URxvt.bold.font:                      xft:TerminessTTF\ Nerd\ Font\ Mono:style=Bold */
 ! alternative font settings with 'terminus':
 ! URxvt.bold.font: -xos4-terminess-bold-r-normal--16-160-72-72-c-80-iso10646-1
 !! terminus names see end of file!
 
-URxvt.depth:                      32
+URxvt.depth:                      96
 URxvt.background:                 [100]#111D21
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false
