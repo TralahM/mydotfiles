@@ -17,6 +17,15 @@ filetype on
 filetype indent plugin on    " required
 syn on
 
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release --locked
+    else
+      !cargo build --release --locked --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
 " PLUGIN INSTALL USING VIM-PLUG (https://github.com/junegunn/vim-plug)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically download and install vim-plug if it's not installed
@@ -34,7 +43,6 @@ Plug 'Inazuma110/deoplete-greek'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'poppyschmo/deoplete-latex'
 Plug 'pearofducks/ansible-vim'
-Plug 'vimwiki/vimwiki'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Konfekt/FastFold'
 Plug 'vim-latex/vim-latex'
@@ -69,7 +77,7 @@ Plug 'ehamberg/vim-cute-python',{'for':'python','branch':'moresymbols'}
 Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
 Plug 'enricobacis/vim-airline-clock'
 Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
-Plug 'euclio/vim-markdown-composer',{'for':'markdown'}
+Plug 'euclio/vim-markdown-composer',{'for':'markdown', 'do': function('BuildComposer') }
 Plug 'fszymanski/deoplete-emoji'
 Plug 'garbas/vim-snipmate'
 Plug 'gcorne/vim-sass-lint',{'for':['css', 'sass', 'scss', 'less']}
@@ -95,13 +103,14 @@ Plug 'leafoftree/vim-vue-plugin', {'for':'vue'}
 Plug 'lervag/vimtex',{'for':['tex', 'markdown']}
 Plug 'lighttiger2505/deoplete-vim-lsp'
 Plug 'luochen1990/rainbow'
+Plug 'vimwiki/vimwiki'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'mileszs/ack.vim'
-Plug 'mjbrownie/django-template-textobjects',{'for':['html', 'htmldjango']}
+Plug 'mjbrownie/django-template-textobjects',{'for':['html', 'htmldjango', 'Jinja2']}
 Plug 'mxw/vim-jsx',{'for':'javascript'}
 " Plug 'nanotech/jellybeans.vim'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -210,11 +219,13 @@ set wildignore+=*/coverage/*
 autocmd! bufwritepost .vimrc source %
 autocmd! bufwritepre hosts setl filetype=dosini
 autocmd! bufread hosts setl filetype=dosini
+autocmd! bufread config setl filetype=dosini
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
 set autoindent
 if has('nvim')
     set clipboard+=unnamed
+    set clipboard+=unnamedplus
 else
     set clipboard+=unnamed
 endif
@@ -271,7 +282,7 @@ autocmd! BufNewFile,BufRead *.pyx set filetype=python
 autocmd! BufWritePre *.py execute ':Black'
 autocmd! BufNewFile,BufRead SConstruct set filetype=python
 autocmd! BufNewFile,BufRead *.py,*.pyx,SConstruct UltiSnipsAddFiletypes python
-autocmd! BufNewFile,BufRead,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal filetype=markdown
+autocmd! BufNewFile,BufReadPost,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=markdown
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal foldmethod=syntax
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
 autocmd! BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
@@ -451,7 +462,7 @@ let g:vim_markdown_frontmatter=1
 let g:vim_markdown_toml_frontmatter=1
 let g:vim_markdown_json_frontmatter=1
 let g:vim_markdown_strikethrough=1
-let g:vim_markdown_no_extensions_in_markdown=1
+let g:vim_markdown_no_extensions_in_markdown=0
 let g:vim_markdown_autowrite=1
 let g:vim_markdown_edit_url_in="hsplit"
 let g:vim_markdown_new_list_item_indent=1
@@ -496,7 +507,7 @@ let g:airline#extensions#branch#enabled = 1
 let g:vimtex_enabled=1
 let g:vimtex_complete_enabled=1
 let g:vimtex_complete_close_braces=1
-let g:vimtex_compiler_progname='pdflatex'
+let g:vimtex_compiler_progname='nvr'
 
 " BRACELESS.VIM
 " autocmd filetype python :BracelessEnable +indent +highlight
@@ -589,12 +600,18 @@ autocmd! bufwritepost *.c *.cpp *.hpp *.h *.rs *.py  MakeTags
 
 " Markdown Composer options
 " Do not attempt to open the browser automatically i'll do it manually
-let g:markdown_composer_open_browser=0
+let g:markdown_composer_autostart=0
+
+let g:markdown_composer_browser="chromium"
+
+let g:markdown_composer_external_renderer='pandoc -t html -f markdown '
+
+
 " Latex Live Preview conf
 autocmd Filetype tex setl updatetime=5
-let g:livepreview_previewer='Okular'
+let g:livepreview_previewer='zathura'
 let g:livepreview_use_biber = 1
-let g:livepreview_cursorhold_recompile = 0
+let g:livepreview_cursorhold_recompile = 1
 
 " Neosnippets
 " Enable snipMate compatibility feature.
@@ -603,7 +620,7 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 " VIM TEX CONF
 let g:tex_flavor='latex'
 let g:matchup_override_vimtex = 1
-let g:vimtex_fold_enabled =1
+let g:vimtex_fold_enabled =0
 
 
 " Rust Config
@@ -617,6 +634,7 @@ let g:user_emmet_leader_key='<tab>'
 let g:user_emmet_settings={
             \'php':{'extends':'html','filters':'c'},
             \'xml':{'extends':'html'},
+            \'jinja2':{'extends':'xml'},
             \'haml':{'extends':'html'},
                 \}
 
@@ -830,6 +848,5 @@ if has('nvim')
     tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
     packadd termdebug
     set pumblend=15
-    hi PmenuSel blend=0
     set shada='20,<50,s10,h
 endif

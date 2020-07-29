@@ -28,6 +28,7 @@
     co = checkout
     cob = checkout -b
     lg = log --all --abbrev-commit --decorate --graph --oneline
+    ls = ls-files
     st = status
     mt = mergetool
     shw = show
@@ -47,7 +48,7 @@
     rebase = true
 
 [push]
-    default = tracking
+    default = upstream
 [rebase]
     autosquash = true
 [web]
