@@ -1,0 +1,3 @@
+[submodule "mutt-wizard"]
+	path = mutt-wizard
+	url = https://github.com/LukeSmithxyz/mutt-wizard
