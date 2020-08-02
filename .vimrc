@@ -10,7 +10,7 @@ set dictionary+=/usr/share/dict/american-english
 set dictionary+=/usr/share/dict/british-english
 set dictionary+=/usr/share/dict/words
 set dictionary+=/usr/share/dict/cracklib-small
-" set complete+=k
+set complete+=.,w,b,u,t,i
 let uname = substitute(system('uname'), '\n', '', '')
 syntax on
 filetype on
@@ -48,7 +48,6 @@ Plug 'Konfekt/FastFold'
 Plug 'vim-latex/vim-latex'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'SevereOverfl0w/deoplete-github'
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
@@ -61,10 +60,8 @@ Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlig
 Plug 'Raku/vim-raku' " For raku vim 6 support
 Plug 'bfrg/vim-jq',{'for':'json'}
 Plug 'bfrg/vim-jqplay',{'for':'json'}
-Plug 'bps/vim-textobj-python',{'for':'python'}
 Plug 'chrisbra/csv.vim',{'for':'csv'}
 Plug 'cloudhead/neovim-fuzzy'
-Plug 'coachshea/vim-textobj-markdown',{'for':'markdown'}
 Plug 'deoplete-plugins/deoplete-asm'
 Plug 'deoplete-plugins/deoplete-dictionary'
 Plug 'machakann/vim-highlightedyank' " Temporary highlight yanked txt
@@ -94,29 +91,17 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-emoji'
 Plug 'justinmk/vim-sneak'
 Plug 'kalekundert/vim-coiled-snake'
-Plug 'kana/vim-textobj-datetime'
-Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-textobj-function'
-Plug 'kana/vim-textobj-lastpat'
-Plug 'kana/vim-textobj-user'
-Plug 'leafoftree/vim-vue-plugin', {'for':'vue'}
 Plug 'lervag/vimtex',{'for':['tex', 'markdown']}
 Plug 'lighttiger2505/deoplete-vim-lsp'
 Plug 'luochen1990/rainbow'
-Plug 'vimwiki/vimwiki'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'mileszs/ack.vim'
-Plug 'mjbrownie/django-template-textobjects',{'for':['html', 'htmldjango', 'Jinja2']}
-Plug 'mxw/vim-jsx',{'for':'javascript'}
-" Plug 'nanotech/jellybeans.vim'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'nelstrom/vim-markdown-folding',{'for':'markdown'}
 Plug 'neomake/neomake'
-Plug 'pangloss/vim-javascript',{'for':'javascript'}
 Plug 'pbrisbin/vim-mkdir'
 Plug 'plasticboy/vim-markdown',{'for':'markdown'}
 Plug 'prabirshrestha/async.vim'
@@ -134,7 +119,6 @@ Plug 'slashmili/alchemist.vim',{'for':'elixir'}
 Plug 'tell-k/vim-autopep8',{'for':'python'}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-smooth-scroll'
-Plug 'thaerkh/vim-workspace'
 Plug 'tomtom/tlib_vim'
 Plug 'tounaishouta/coq.vim', {'for':'coq'}
 Plug 'tpope/vim-abolish'
@@ -157,10 +141,10 @@ Plug 'vim-pandoc/vim-pandoc-syntax',{'for':['pandoc', 'markdown']}
 Plug 'vim-ruby/vim-ruby',{'for':'ruby'}
 Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-syntastic/syntastic'
-" Plug 'wellle/tmux-complete.vim'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'yegappan/mru' "most recently used
 Plug 'zchee/deoplete-clang'
+Plug 'xavierd/clang_complete'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -189,6 +173,8 @@ endif
 
 call plug#end()
 
+
+
 " BEGIN CONFIGURATIONS HERE
 "
 " Load my custom functions and keymappings
@@ -214,6 +200,16 @@ set directory=~/.vim/backup
 set wildignore+=*_build/*
 set wildignore+=*.pyc,*.so,*.swp,*.zip,*.un~,.*.*~
 set wildignore+=*/coverage/*
+
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
 
 " autoreloading of the vimrc file.
 autocmd! bufwritepost .vimrc source %
@@ -255,24 +251,31 @@ set ruler
 set undofile
 set ignorecase
 set smartcase
-au FocusLost * :wa
+au FocusLost,WinLeave * :silent! wa
+au FocusGained,BufEnter * :silent! !
+set title
+set splitbelow
 
 set showmatch
 set hlsearch
+set incsearch
 set t_Co=256
-set ttimeoutlen=50
+set sidescroll=5
+set ttyfast
+set wildmode=list:longest,full
+" set ttimeoutlen=50
 set noswapfile
 " Set identation to 4 spaces
 set noai ts=4 sw=4 expandtab
 " Set an 80 char column
-set textwidth=90
-set wrapmargin=90
+set textwidth=80
+set wrapmargin=80
 " read and write changes automatically
 set autoread
 set autowrite
-set colorcolumn=91
+set colorcolumn=81
 " Line numbers
-set number
+set number relativenumber
 " Rule for Makefiles to use tab
 autocmd BufEnter ?akefile* set noet ts=4 sw=4
 " Syntax highlighting
@@ -289,7 +292,7 @@ autocmd! BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
 " Color scheme
 syntax enable
 let g:solarized_termcolors=256
-let g:gitgutter_max_signs=1000
+let g:gitgutter_max_signs=4000
 if emoji#available()
     let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
     let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
@@ -297,20 +300,18 @@ if emoji#available()
     let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
 
-let g:UltiSnipsSnippetDirectories=['~/.vim/plugged/vim-snippets/UltiSnips/', '~/.vim/Ultisnips/','~/.vim/snippets/']
-let g:UltiSnipsEditSplit="horizontal"
-" set background=dark
+let g:UltiSnipsSnippetDirectories=['~/.vim/plugged/vim-snippets/UltiSnips/', '~/.vim/plugged/vim-snippets/snippets/','~/.vim/snippets/']
+let g:UltiSnipsEditSplit="vertical"
 colorscheme delek
 let g:solarized_contrast="high"
 highlight clear SpellBad
-highlight SpellBad cterm=underline,bold ctermbg=white ctermfg=red
+highlight SpellBad cterm=underline,bold ctermbg=white ctermfg=blue
 " Remove trailing spaces on save
 autocmd! BufWritePre * :%s/\s\+$//e
 " Git commits
 autocmd! Filetype gitcommit setlocal spell textwidth=80
 set pastetoggle=<M-v>
 " Disable folding. It's really annoying and I never remeber the commands.
-set nofoldenable
 set laststatus=2
 set number relativenumber
 set smartindent
@@ -321,7 +322,7 @@ set path+=**
 set wildmenu
 
 "" Better navigation through omnicomplete option list
-set completeopt=longest,menuone,menu
+set completeopt=longest,menuone,menu,preview
 function! OmniPopup(action)
     if pumvisible()
         if a:action=='j'
@@ -356,12 +357,10 @@ endfunction
 " Spelling always on for some files
 autocmd! BufNewFile,BufRead *.ipy,*.py,*.md,*.tex,*.rst,*.c,*.h,Makefile setlocal nospell
 
+autocmd! BufRead *.rst,*.md,*.tex,*.bib,*.markdown,*.txt setlocal complete+=kspell
+
 " Run 'make' on save
-function! EnableRunMakeOnSave()
-    autocmd BufWritePost * silent! execute "!make >/dev/null 2>&1" | redraw! | echo "Done: make finished."
-    echo "Running 'make' on save enabled."
-endfunction
-" map <leader>m :call EnableRunMakeOnSave()<cr>
+autocmd BufWritePost Makefile* silent! execute "!make >/dev/null 2>&1" | redraw! | echo "Done: make finished."
 
 
 " PLUGIN CONFIGURATION
@@ -383,10 +382,10 @@ call deoplete#custom#source( 'dictionary', 'matchers', ['matcher_head'])
 " If dictionary is already sorted, no need to sort it again.
 call deoplete#custom#source('dictionary', 'sorters', [])
 " Do not complete too short words
-call deoplete#custom#source( 'dictionary', 'min_pattern_length', 4)
+call deoplete#custom#source( 'dictionary', 'min_pattern_length', 3)
 let g:deoplete#enable_at_startup=1
-let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-6.0/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header='/usr/include/clang/6.0/include/'
+let g:deoplete#sources#clang#libclang_path='/usr/lib/clang/10.0.0/lib/linux/libclang_rt.scudo-x86_64.so'
+let g:deoplete#sources#clang#clang_header='/usr/include/clang/'
 let g:deoplete#sources#clang#sort_algo='priority'
 let g:deoplete#sources#clang#std={'cpp': 'c++17', 'c': 'c11'}
 call deoplete#custom#var('keyword_patterns',{'gitcommit': '.+'})
@@ -397,6 +396,8 @@ let g:deoplete#sources#jedi#enable_typeinfo = 0
 let g:deoplete#sources#jedi#ignore_errors=1
 call deoplete#custom#var('max_list',1000)
 let g:deoplete#enable_ignore_case=1
+let g:jedi#completions_enabled=1
+let g:jedi#force_py_version=3
 
 
 " Vim-SCala Conf
@@ -414,10 +415,11 @@ let g:neomake_sbt_maker = {
             \ '%-C%.%#,' .
             \ '%-G%.%#'
      \ }
+
 let g:neomake_enabled_makers = ['sbt', 'make', 'cmake', 'qmake', 'python']
 let g:neomake_verbose=3
 " Neomake on text change
-autocmd! InsertLeave,TextChanged *.scala update | Neomake! sbt
+autocmd! BufWritePost *.scala update | Neomake! sbt
 
 "yankstack config
 call yankstack#setup()
@@ -435,8 +437,6 @@ let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_autoimport = 1
 " let g:pymode_rope_autoimport_modules = ['os', 'datetime']
-" let g:pymode_rope_goto_definition_cmd="gd"
-
 let g:pymode_rope_organize_imports_bind = '<leader>ri'
 let g:pymode_rope_autoimport_bind = '<leader>ra'
 
@@ -472,10 +472,15 @@ let g:vim_markdown_new_list_item_indent=1
 filetype plugin indent on
 " NerdTree
 let g:NERDTreeShowLineNumbers=1
-autocmd Filetype nerdtree setlocal relativenumber number
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeAutoDeleteBuffer=1
+let g:NERDTreeMinimalUI=1
+autocmd! Filetype nerdtree setlocal relativenumber number
 autocmd! WinEnter __Tagbar__* setlocal relativenumber number
 autocmd! WinLeave __Tagbar__* setlocal relativenumber number
 autocmd! WinNew __Tagbar__* setlocal relativenumber number
+autocmd! StdinReadPre * let s:std_in=1
+autocmd! VimEnter * if argc()==0 && !exists("s:std_in") | NERDTree | endif
 
 
 "
@@ -503,37 +508,24 @@ let g:airline#extensions#branch#enabled = 1
 
 
 
-" VIMTEX
-let g:vimtex_enabled=1
-let g:vimtex_complete_enabled=1
-let g:vimtex_complete_close_braces=1
-let g:vimtex_compiler_progname='nvr'
 
 " BRACELESS.VIM
 " autocmd filetype python :BracelessEnable +indent +highlight
 " autocmd BufRead,BufNewFile *.py :BracelessEnable +indent +highlight
 
+
 " SYNTASTIC SETTING
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_loc_list_height = 7
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_loc_list_height = 5
 let g:syntastic_aggregate_errors = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_rst_checkers = ['text/language_check']
-let g:syntastic_tex_checkers = []
+let g:syntastic_tex_checkers = ["lacheck"]
 let g:syntastic_python_checkers = ['flake8', 'pyflakes']
 
 
-" VIM-TEXTOBJ-MARKDOWN BUFFER CONFIGS
-" To resolve possible conflict with vim-textobj-function
-augroup markdown_textobjs
-    au!
-    au filetype markdown omap <buffer> af <plug>(textobj-markdown-chunk-a)
-    au filetype markdown omap <buffer> if <plug>(textobj-markdown-chunk-i)
-    au filetype markdown omap <buffer> aF <plug>(textobj-markdown-Bchunk-a)
-    au filetype markdown omap <buffer> iF <plug>(textobj-markdown-Bchunk-i)
-augroup END
 
 
 "JS SYNTAX FOLDING
@@ -557,7 +549,14 @@ set conceallevel =2
 
 
 " VIMTEX CONFIG FOR TEX FILES
+" VIMTEX
 let g:tex_flavour='latex'
+" let g:matchup_override_vimtex = 1
+let g:vimtex_fold_enabled =0
+let g:vimtex_enabled=1
+let g:vimtex_complete_enabled=1
+let g:vimtex_complete_close_braces=1
+let g:vimtex_compiler_progname='nvr'
 
 
 " FILENAMES LIKE *.XML, *.HTML, *.XHTML, ...
@@ -617,11 +616,17 @@ let g:livepreview_cursorhold_recompile = 1
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 
-" VIM TEX CONF
-let g:tex_flavor='latex'
-let g:matchup_override_vimtex = 1
-let g:vimtex_fold_enabled =0
 
+" Clang Stuff
+let g:clang_complete_auto=1
+let g:clang_complete_macros=1
+let g:clang_debug=1
+let g:clang_library_path='/usr/lib/'
+let g:clang_user_options='|| exit 0'
+let g:clang_snippets=1
+let g:clang_use_library=1
+let g:clang_auto_select=1
+let g:clang_complete_optional_args_in_snippets=1
 
 " Rust Config
 let g:rustfmt_autosave=1
@@ -666,18 +671,18 @@ nmap <leader><leader>z <Plug>ZVKeyDocset
 nnoremap <leader>] :TagbarToggle<CR>
 nnoremap <leader>[ :NERDTreeToggle<CR>
 
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <expr><TAB>
-\ pumvisible() ? "\<C-n>" :
-\ neosnippet#expandable_or_jumpable() ?
-\    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" " SuperTab like snippets behavior.
+" " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+" imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+  set conceallevel=2 concealcursor=vin
 endif
 
 let g:multi_cursor_quit_key='<esc>'
@@ -713,7 +718,7 @@ nnoremap <leader>3 :InsPydoc <cr>
 " Taking a modularized approach
 " Quickly Edit My VIMRC
 " VIM8
-nnoremap <leader>sd :tabedit ~/.vimrc <CR>
+nnoremap <leader>v :tabedit ~/.vimrc <CR>
 
 "Neovim
 nnoremap <leader>sv :tabedit $MYVIMRC <CR>
@@ -726,6 +731,8 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gl :Glog<CR>
 nnoremap <leader>gp :Git push<CR>
 nnoremap <leader>gw :Gwrite<CR>
+
+
 " Tabularize shortcuts
 noremap <leader>a= :Tabularize /=<CR>
 noremap <leader>a: :Tabularize /:<CR>
@@ -733,7 +740,7 @@ noremap <leader>a:: :Tabularize /:\zs<CR>
 noremap <leader>a, :Tabularize /,<CR>
 noremap <leader>a<Bar> :Tabularize /<Bar><CR>
 " Enforcing Purity
-noremap <Up> <Nop>
+noremap <Up> <tabcloseNop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
@@ -768,7 +775,7 @@ vmap Q gq
 nmap Q gqap
 "yankstack config
 nmap Y y$
-nmap <leader>z <Plug>yankstack_substitute_older_paste
+map <leader>a <Plug>yankstack_substitute_older_paste
 nmap <leader>c <Plug>yankstack_substitute_newer_paste
 
 " easier better ident in visual
@@ -791,20 +798,17 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 map <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>t <esc>:tabnew<CR>
-nnoremap <leader>x <esc>:tabclose<CR>
+nnoremap <leader>x <esc>:bd<CR>
+nnoremap <leader>tx <esc>:tabclose<CR>
 nnoremap <leader>f :MRU<CR>
-nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>e :NERDTreeFind<CR>
 nnoremap <space> /\v
 nnoremap <c-space> ?
 nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <leader>cwd :cd %:p:h<CR>:pwd<CR>
 nnoremap ; :
 nnoremap : ;
 
-" map <leader>sa zg
-" nnoremap <leader>sa za
-" Substitution option for marked word
 "python-mode config
 au Filetype python map <leader>d :call RopeGotoDefinition()<CR>
 au Filetype python nnoremap <leader>d :call RopeGotoDefinition()<CR>
@@ -850,3 +854,9 @@ if has('nvim')
     set pumblend=15
     set shada='20,<50,s10,h
 endif
+autocmd! BufWritePost ~/.Xresources,~/.Xdefaults  !xrdb %
+command! -nargs=* -complete=shellcmd R tabe | setlocal buftype=nofile bufhidden=hide noswapfile | 0r !<args>
+command! -nargs=* -complete=shellcmd Rc 1,$d | 0r !<args>
+
+nnoremap <leader>rr :R
+nnoremap <leader>rc :Rc

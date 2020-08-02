@@ -24,7 +24,7 @@ font pango: Source Code Pro for Powerline 9
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock  -l ~/bin/custom_i3lock
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -52,6 +52,9 @@ bindsym Mod1+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym Mod1+Shift+q kill
+bindsym Mod4+q kill
+bindsym Mod4+l exec custom_i3lock
+
 
 # start dmenu (a program launcher)
 # bindsym Mod4+d exec dmenu_run
@@ -112,10 +115,10 @@ bindsym Mod1+space focus mode_toggle
 bindsym Mod1+a focus parent
 
 # focus the child container
-#bindsym Mod1+d focus child
+bindsym Mod1+d focus child
 
 # move the currently focused window to the scratchpad
-bindsym Mod1+Shift+minus move scratchpad
+bindsym Mod4+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
@@ -157,6 +160,16 @@ bindsym Mod1+Shift+7 move container to workspace number $ws7
 bindsym Mod1+Shift+8 move container to workspace number $ws8
 bindsym Mod1+Shift+9 move container to workspace number $ws9
 bindsym Mod1+Shift+0 move container to workspace number $ws10
+bindsym Mod4+1 move container to workspace number $ws1
+bindsym Mod4+2 move container to workspace number $ws2
+bindsym Mod4+3 move container to workspace number $ws3
+bindsym Mod4+4 move container to workspace number $ws4
+bindsym Mod4+5 move container to workspace number $ws5
+bindsym Mod4+6 move container to workspace number $ws6
+bindsym Mod4+7 move container to workspace number $ws7
+bindsym Mod4+8 move container to workspace number $ws8
+bindsym Mod4+9 move container to workspace number $ws9
+bindsym Mod4+0 move container to workspace number $ws10
 
 # reload the configuration file
 bindsym Mod1+Shift+c reload
@@ -212,7 +225,22 @@ bar {
 # exec i3-config-wizard
 exec --no-startup-id picom -bc
 exec --no-startup-id wpchanger.sh
-exec --no-startup-id conky --daemonize --pause=5
+exec --no-startup-id xcfe4-power-manager
+exec --no-startup-id volumeicon
 exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-bindsym Mod4+l exec i3exit lock
+bindsym Mod4+Shift+l mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot,  (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 

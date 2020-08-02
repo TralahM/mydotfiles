@@ -219,7 +219,7 @@ shopt -s histappend
 #
 # # ex - archive extractor
 # # usage: ex <file>
-ex ()
+exarch ()
 {
   if [ -f $1 ] ; then
     case $1 in
@@ -288,3 +288,5 @@ md(){
     cd $1;
     pwd;
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
