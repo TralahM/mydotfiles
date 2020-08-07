@@ -45,6 +45,7 @@ Plug 'poppyschmo/deoplete-latex'
 Plug 'pearofducks/ansible-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Konfekt/FastFold'
+Plug 'vimwiki/vimwiki'
 Plug 'vim-latex/vim-latex'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
@@ -198,8 +199,11 @@ set undoreload=10000 "number of lines to save for undo"
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 set wildignore+=*_build/*
-set wildignore+=*.pyc,*.so,*.swp,*.zip,*.un~,.*.*~
+set wildignore+=*.pyc,*.so,*.swp,*.zip,*.un~,.*.*~,*.o,*.obj
 set wildignore+=*/coverage/*
+set viminfo='20,\"500
+set lazyredraw
+set history=100
 
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")
@@ -285,7 +289,7 @@ autocmd! BufNewFile,BufRead *.pyx set filetype=python
 autocmd! BufWritePre *.py execute ':Black'
 autocmd! BufNewFile,BufRead SConstruct set filetype=python
 autocmd! BufNewFile,BufRead *.py,*.pyx,SConstruct UltiSnipsAddFiletypes python
-autocmd! BufNewFile,BufReadPost,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=markdown
+autocmd! BufNewFile,BufReadPost,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=vimwiki
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal foldmethod=syntax
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
 autocmd! BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
@@ -573,6 +577,7 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 " " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
+au FileType xml,html,xhtml,jinja,phtml,jsx,markdown,pandoc,vimwiki setlocal matchpairs+=<:>
 
 
 " Autopep8 conf
@@ -727,6 +732,7 @@ nnoremap <leader>sv :tabedit $MYVIMRC <CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>ga :G add %<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gl :Glog<CR>
 nnoremap <leader>gp :Git push<CR>
@@ -787,7 +793,6 @@ vnoremap <leader>s :sort <CR>
 map <leader>ss :call ToggleSpell()<cr>
 "easier movement between tabs
 map <leader>t <esc>:tabnew<CR>
-map <leader>x <esc>:tabclose<CR>
 map <leader>f :MRU<CR>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
@@ -860,3 +865,34 @@ command! -nargs=* -complete=shellcmd Rc 1,$d | 0r !<args>
 
 nnoremap <leader>rr :R
 nnoremap <leader>rc :Rc
+
+function! GenWikiIndex()
+    let files=split(system("ls *.md"),"\n")
+    normal! gg
+    normal! dG
+    for i in files
+        let lna= "[".i."](".i.")"
+        let @l=lna
+        normal! gg
+        execute "put l"
+    endfor
+    silent! execute "1,$ g/^$/d"
+endfunction
+
+function! GenImgIndex()
+    let files=split(system("ls *.png"),"\n")
+    normal! G
+    for i in files
+        let lna= "![".i."](".i.")"
+        let @l=lna
+        normal! gg
+        execute "put l"
+    endfor
+endfunction
+" Always jump to the last known cursor position.
+" Don't do ot when position is invalid or when inside an
+" event handler (happens when dropping a file on gvim)
+autocmd! BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif

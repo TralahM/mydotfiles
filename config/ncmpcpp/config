@@ -11,7 +11,7 @@
 ## ncmpcpp.
 ##
 #
-#ncmpcpp_directory = ~/.ncmpcpp
+ncmpcpp_directory = ~/.ncmpcpp
 #
 ##
 ## Directory for storing downloaded lyrics. It defaults to ~/.lyrics since other
@@ -30,7 +30,7 @@
 #
 ## Needed for tag editor and file operations to work.
 ##
-#mpd_music_dir = ~/music
+mpd_music_dir = /home/african/Music
 #
 #mpd_crossfade_time = 5
 #
@@ -280,12 +280,11 @@
 #
 #execute_on_player_state_change = ""
 #
-#playlist_show_mpd_host = no
+playlist_show_mpd_host = yes
 #
-#playlist_show_remaining_time = no
+playlist_show_remaining_time = yes
 #
-#playlist_shorten_total_times = no
-#
+playlist_shorten_total_times = yes
 #playlist_separate_albums = no
 #
 ##
@@ -303,7 +302,7 @@
 #
 #show_duplicate_tags = yes
 #
-#incremental_seeking = yes
+incremental_seeking = yes
 #
 #seek_time = 1
 #
@@ -325,7 +324,7 @@
 #
 ## Available values: classic, alternative.
 ##
-#user_interface = classic
+user_interface = alternative
 #
 #data_fetching_delay = yes
 #
@@ -337,7 +336,7 @@
 #
 ## Available values: wrapped, normal.
 ##
-#default_find_mode = wrapped
+default_find_mode = normal
 #
 #default_tag_editor_pattern = %n - %t
 #
@@ -349,7 +348,7 @@
 #
 #header_text_scrolling = yes
 #
-#cyclic_scrolling = no
+cyclic_scrolling = yes
 #
 #lines_scrolled = 2
 #
@@ -357,7 +356,7 @@
 #
 #follow_now_playing_lyrics = no
 #
-#fetch_lyrics_for_current_song_in_background = no
+fetch_lyrics_for_current_song_in_background = yes
 #
 #store_lyrics_in_song_dir = no
 #
@@ -393,13 +392,13 @@
 ##
 ## Note: You can define startup screen by choosing screen from the list above.
 ##
-#startup_screen = playlist
+startup_screen = playlist
 #
 ##
 ## Note: You can define startup slave screen by choosing screen from the list
 ## above or an empty value for no slave screen.
 ##
-#startup_slave_screen = ""
+# startup_slave_screen = browser
 #
 #startup_slave_screen_focus = no
 #
@@ -415,13 +414,13 @@
 #
 #ask_before_clearing_playlists = yes
 #
-#clock_display_seconds = no
+clock_display_seconds = yes
 #
 #display_volume_level = yes
 #
-#display_bitrate = no
+display_bitrate = yes
 #
-#display_remaining_time = no
+display_remaining_time = yes
 #
 ## Available values: none, basic, extended, perl.
 ##
@@ -472,11 +471,11 @@
 #
 #search_engine_default_search_mode = 1
 #
-#external_editor = nano
+external_editor = nvim
 #
 ## Note: set to yes if external editor is a console application.
 ##
-#use_console_editor = yes
+use_console_editor = yes
 #
 ##### colors definitions #####
 ##
@@ -508,37 +507,37 @@
 ## are used there is a possibility that you'll be able to use only colors with
 ## transparent background.
 #
-#colors_enabled = yes
+colors_enabled = yes
 #
-#empty_tag_color = cyan
+empty_tag_color = cyan
 #
-#header_window_color = default
+header_window_color = default
 #
-#volume_color = default
+volume_color = default
 #
-#state_line_color = default
+state_line_color = default
 #
 #state_flags_color = default:b
 #
-#main_window_color = yellow
+main_window_color = yellow
 #
-#color1 = white
+color1 = white
 #
-#color2 = green
+color2 = green
 #
-#progressbar_color = black:b
+progressbar_color = black:b
 #
-#progressbar_elapsed_color = green:b
+progressbar_elapsed_color = green:b
 #
-#statusbar_color = default
+statusbar_color = default
 #
-#statusbar_time_color = default:b
+statusbar_time_color = default:b
 #
-#player_state_color = default:b
+player_state_color = default:b
 #
-#alternative_ui_separator_color = black:b
+alternative_ui_separator_color = black:b
 #
-#window_border_color = green
+window_border_color = green
 #
-#active_window_border = red
+active_window_border = red
 #
