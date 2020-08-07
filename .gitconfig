@@ -27,10 +27,13 @@
     ci = commit
     co = checkout
     cob = checkout -b
+    issues = !hub issue -o updated -f '%sC%>(8)%i%Creset | %>(15)%ur | %NC | %sC%<(56)%U%Creset | %t  %l %n'
+    issues-all = !hub issue -s all -o updated -f '%sC%>(8)%i%Creset | %>(15)%ur | %NC | %sC%<(56)%U%Creset | %t  %l %n'
     lg = log --all --abbrev-commit --decorate --graph --oneline
     ls = ls-files
     st = status
     mt = mergetool
+    prs = !hub pr list -f '%sC%>(8)%i%Creset | %>(15)%ur | %NC | %sC%<(56)%U%Creset | %t  %l %n'
     shw = show
     sm = submodule
     sma = submodule add
