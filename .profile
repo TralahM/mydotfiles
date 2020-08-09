@@ -18,3 +18,4 @@ hubissues(){
     hub api "repos/$owner/$repo/issues"
 }
 
+alias gad="git add ."
