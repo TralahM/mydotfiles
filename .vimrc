@@ -898,7 +898,7 @@ autocmd! BufReadPost *
     \ endif
 
 
-function! Line2Link() abort
+function! Line2Link()
     normal! g@$]
     normal! yi[
     normal! $
@@ -906,5 +906,4 @@ function! Line2Link() abort
     normal! F]
     normal! l
     normal! g@$)
-    normal! 0
 endfunction
