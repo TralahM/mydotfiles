@@ -896,3 +896,15 @@ autocmd! BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
+
+
+function! Line2Link() abort
+    normal! g@$]
+    normal! yi[
+    normal! $
+    normal! p
+    normal! F]
+    normal! l
+    normal! g@$)
+    normal! 0
+endfunction
