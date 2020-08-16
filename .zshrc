@@ -477,6 +477,7 @@ zplugin light "momo-lab/zsh-abbrev-alias"
 zplugin light mtxr/zsh-change-case
 zplugin light "changyuheng/fz"
 zplugin light "rupa/z"
+zplugin light "softmoth/zsh-vim-mode"
 zplugin ice depth=1; zplugin light romkatv/powerlevel10k
 
 fpath=(~/.zsh/completions $fpath)
@@ -506,4 +507,5 @@ PERL_MM_OPT="INSTALL_BASE=/home/african/perl5"; export PERL_MM_OPT;
 ### End of Zinit's installer chunk
 ### End of Zinit's installer chunk
 ### End of Zinit's installer chunk
+# Put this in .zshrc, after this plugin is loaded
 bindkey -v

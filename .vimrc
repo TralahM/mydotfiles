@@ -5,6 +5,7 @@ if has('nvim')
     set inccommand=nosplit
     set incsearch
 endif
+set incsearch
 set dictionary+=~/words
 set dictionary+=/usr/share/dict/american-english
 set dictionary+=/usr/share/dict/british-english
@@ -26,6 +27,8 @@ function! BuildComposer(info)
     endif
   endif
 endfunction
+
+
 " PLUGIN INSTALL USING VIM-PLUG (https://github.com/junegunn/vim-plug)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically download and install vim-plug if it's not installed
@@ -39,79 +42,80 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Leader tt toggles checkbox
-Plug 'Inazuma110/deoplete-greek'
-Plug 'KabbAmine/zeavim.vim'
-Plug 'poppyschmo/deoplete-latex'
-Plug 'pearofducks/ansible-vim'
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'Konfekt/FastFold'
-Plug 'vimwiki/vimwiki'
-Plug 'vim-latex/vim-latex'
+Plug 'Glench/Vim-Jinja2-Syntax' " Jinja Filetype syntax hl
+Plug 'Inazuma110/deoplete-greek' "Greek letter completion
+Plug 'KabbAmine/zeavim.vim' " Zea Documentation Tool
+Plug 'Konfekt/FastFold' "Required by vim-coiled-snake
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'Shougo/context_filetype.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/neosnippet.vim'
-Plug 'SirVer/ultisnips'
-Plug 'TralahM/Efficient-python-folding',{'for':'python'}
-Plug 'airblade/vim-gitgutter'
-Plug 'alvan/vim-closetag'
-Plug 'ap/vim-css-color'
-Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plug 'Raku/vim-raku' " For raku vim 6 support
-Plug 'bfrg/vim-jq',{'for':'json'}
-Plug 'bfrg/vim-jqplay',{'for':'json'}
-Plug 'chrisbra/csv.vim',{'for':'csv'}
+Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/neosnippet-snippets' " Snippets
+Plug 'Shougo/neosnippet.vim' " Snippets
+Plug 'SirVer/ultisnips' " Snippets
+Plug 'airblade/vim-gitgutter' "Git Status
+Plug 'alvan/vim-closetag' "autoclose html,xml,j2 files
+Plug 'ap/vim-css-color' "show colors of hex,name colors
+Plug 'bfrg/vim-jq',{'for':'json'} "json query parser
+Plug 'bfrg/vim-jqplay',{'for':'json'} "json query parser
+Plug 'chrisbra/csv.vim',{'for':'csv'} "csv pretty display
 Plug 'cloudhead/neovim-fuzzy'
-Plug 'deoplete-plugins/deoplete-asm'
-Plug 'deoplete-plugins/deoplete-dictionary'
-Plug 'machakann/vim-highlightedyank' " Temporary highlight yanked txt
-Plug 'deoplete-plugins/deoplete-docker'
-Plug 'deoplete-plugins/deoplete-go'
-Plug 'deoplete-plugins/deoplete-tag'
-Plug 'deoplete-plugins/deoplete-zsh',{'for':'zsh'}
-Plug 'derekwyatt/vim-scala',{'for': ['scala','sbt']}
-Plug 'ehamberg/vim-cute-python',{'for':'python','branch':'moresymbols'}
+Plug 'deoplete-plugins/deoplete-asm' "assembly completions
+Plug 'deoplete-plugins/deoplete-dictionary' "dictionary completions
+Plug 'deoplete-plugins/deoplete-docker' "dockerfile completions
+Plug 'deoplete-plugins/deoplete-go' "go completions
+Plug 'deoplete-plugins/deoplete-tag' "tag completions
+Plug 'deoplete-plugins/deoplete-zsh',{'for':'zsh'} "zsh completions
+Plug 'derekwyatt/vim-scala',{'for': ['scala','sbt']} "scala syntax
+Plug 'dhruvasagar/vim-table-mode' "easy markdown tables
+Plug 'ehamberg/vim-cute-python',{'for':'python','branch':'moresymbols'} "pretty math symbols
 Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
 Plug 'enricobacis/vim-airline-clock'
-Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' } "Scala ide features for vim
 Plug 'euclio/vim-markdown-composer',{'for':'markdown', 'do': function('BuildComposer') }
-Plug 'fszymanski/deoplete-emoji'
-Plug 'garbas/vim-snipmate'
+Plug 'fszymanski/deoplete-emoji' " Emoji completions
+Plug 'garbas/vim-snipmate' "snipmate snippets
 Plug 'gcorne/vim-sass-lint',{'for':['css', 'sass', 'scss', 'less']}
 Plug 'glts/vim-magnum' "required by radical
 Plug 'glts/vim-radical' "crx,crd,cro,crb gA covert w under cursor to hex,dec,oct,bin
 Plug 'godlygeek/tabular' "Tabularize /,  /,/r0c1l1
-Plug 'honza/vim-snippets'
-Plug 'jceb/vim-orgmode',{'for':'org'}
-Plug 'jiangmiao/auto-pairs'
+Plug 'honza/vim-snippets' "snippets
+Plug 'jceb/vim-orgmode',{'for':'org'} "orgmode files
+Plug 'jiangmiao/auto-pairs' "autopair []''(){}
 Plug 'jkramer/vim-checkbox',{'for':'markdown'} "insert checkbox or toggle tt
-Plug 'jmcantrell/vim-virtualenv',{'for':'python'}
-Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'}
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-emoji'
-Plug 'justinmk/vim-sneak'
-Plug 'kalekundert/vim-coiled-snake'
-Plug 'lervag/vimtex',{'for':['tex', 'markdown']}
-Plug 'lighttiger2505/deoplete-vim-lsp'
-Plug 'luochen1990/rainbow'
-Plug 'majutsushi/tagbar'
-Plug 'mattn/emmet-vim'
-Plug 'mattn/vim-lsp-settings'
-Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'michaeljsmith/vim-indent-object'
+Plug 'jmcantrell/vim-virtualenv',{'for':'python'} "virtualenv py
+Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'} "Fzf
+Plug 'junegunn/fzf.vim' "Fzf
+Plug 'junegunn/vim-emoji' "emojis
+Plug 'justinmk/vim-sneak' "The missing motion for vim
+Plug 'kalekundert/vim-coiled-snake' "Python Folding
+Plug 'kana/vim-textobj-entire' "text objects for entire buffer
+Plug 'kana/vim-textobj-user' "text objects for entire buffer
+Plug 'kana/vim-arpeggio' "Key mapping for simultaneously pressed keys
+Plug 'lervag/vimtex',{'for':['tex', 'markdown','pandoc']}
+Plug 'lighttiger2505/deoplete-vim-lsp' "Language Server completion
+Plug 'luochen1990/rainbow' "Per Depth html,xml hl colors
+Plug 'machakann/vim-highlightedyank' " Temporary highlight yanked txt
+Plug 'majutsushi/tagbar' "TagBar
+Plug 'mattn/emmet-vim' "abbreviation expanding html similar to emmet
+Plug 'mattn/webapi-vim' "emmet plugin for web apis
+Plug 'mattn/vim-lsp-settings' "lsp settings
+Plug 'maxbrunsfeld/vim-yankstack' "cycle between prev yanks
+Plug 'michaeljsmith/vim-indent-object' "indent text objects"
 Plug 'mileszs/ack.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
 Plug 'pbrisbin/vim-mkdir'
+Plug 'pearofducks/ansible-vim'
 Plug 'plasticboy/vim-markdown',{'for':'markdown'}
+Plug 'poppyschmo/deoplete-latex'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'python-mode/python-mode',{'for':'python', 'branch':'develop'}
+Plug 'racer-rust/vim-racer',{'for':'rust'}
 Plug 'rstacruz/sparkup', {'rtp': '~/.vim/'}
 Plug 'rust-lang/rust.vim', {'for':'rust'}
-Plug 'racer-rust/vim-racer',{'for':'rust'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -137,15 +141,19 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tweekmonster/braceless.vim', {'for': ['python']}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-latex/vim-latex'
 Plug 'vim-pandoc/vim-pandoc',{'for':['pandoc', 'markdown']}
 Plug 'vim-pandoc/vim-pandoc-syntax',{'for':['pandoc', 'markdown']}
+Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plug 'vim-ruby/vim-ruby',{'for':'ruby'}
 Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-syntastic/syntastic'
+Plug 'vimwiki/vimwiki'
+Plug 'wlemuel/vim-tldr'
+Plug 'xavierd/clang_complete'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'yegappan/mru' "most recently used
 Plug 'zchee/deoplete-clang'
-Plug 'xavierd/clang_complete'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -640,7 +648,11 @@ let g:racer_experimental_completer=1
 
 
 " EMMET CONFIG
-let g:user_emmet_leader_key='<tab>'
+" Note that the trailing , still needs to be entered, so the new keymap would be <Tab>,.
+"you can also add your own snippets using a custom snippets.json file.
+"let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.snippets_custom.json')), "\n"))
+"
+let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings={
             \'php':{'extends':'html','filters':'c'},
             \'xml':{'extends':'html'},
@@ -775,10 +787,12 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+"Vim Sneak
+map s <Plug>Sneak_s
+map S <Plug>Sneak_S
+
 " Paste Line with Y
 nmap Y y$
-vmap Q gq
-nmap Q gqap
 "yankstack config
 nmap Y y$
 map <leader>a <Plug>yankstack_substitute_older_paste
@@ -822,6 +836,7 @@ au Filetype python nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT
 au Filetype markdown map <leader>[ :HeaderDecrease <cr>
 au Filetype markdown map <leader>] :HeaderIncrease <cr>
 au Filetype markdown map <leader>/ :TableFormat <cr>
+au Filetype markdown set textwidth=80
 nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
 "Escape: exit autocompletion, go to Normal mode
 inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
@@ -859,7 +874,7 @@ if has('nvim')
     set pumblend=15
     set shada='20,<50,s10,h
 endif
-autocmd! BufWritePost ~/.Xresources,~/.Xdefaults  !xrdb %
+autocmd! BufWritePost ~/.Xresources,~/.Xdefaults  !xrdb % <CR>
 command! -nargs=* -complete=shellcmd R tabe | setlocal buftype=nofile bufhidden=hide noswapfile | 0r !<args>
 command! -nargs=* -complete=shellcmd Rc 1,$d | 0r !<args>
 
@@ -899,11 +914,24 @@ autocmd! BufReadPost *
 
 
 function! Line2Link()
+    set operatorfunc=<SNR>135_opfunc
     normal! g@$]
     normal! yi[
-    normal! $
+    normal! f]
     normal! p
+    normal! $
     normal! F]
     normal! l
     normal! g@$)
+    normal! 0
 endfunction
+
+command! Line2Link call Line2Link()
+command! GenImgIndex call GenImgIndex()
+command! GenWikiIndex call GenWikiIndex()
+
+au Filetype markdown,vimwiki,pandoc  set textwidth=80
+
+nnoremap <leader>\l :Line2Link <CR>
+nnoremap <leader>wx :GenWikiIndex <CR>
+nnoremap <leader>ix :GenImgIndex <CR>
