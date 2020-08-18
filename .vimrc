@@ -875,7 +875,11 @@ if has('nvim')
     set pumblend=15
     set shada='20,<50,s10,h
 endif
+
+
 autocmd! BufWritePost ~/.Xresources,~/.Xdefaults  !xrdb % <CR>
+
+
 command! -nargs=* -complete=shellcmd R tabe | setlocal buftype=nofile bufhidden=hide noswapfile | 0r !<args>
 command! -nargs=* -complete=shellcmd Rc 1,$d | 0r !<args>
 
