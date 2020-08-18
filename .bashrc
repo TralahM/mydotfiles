@@ -1,6 +1,4 @@
 #
-# ~/.bashrc
-#
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export DEFAULT_USER="$(whoami)"
@@ -9,7 +7,6 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ];then
     clear;ls
 fi
 
-shopt -s autocd
 export HADOOP_HOME=/home/hadoop/hadoop-2.7.7
 export HADOOP_INSTALL=$HADOOP_HOME
 export HADOOP_MAPRED_HOME=$HADOOP_HOME
@@ -36,7 +33,6 @@ export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 # export PYTHONPATH=/home/anaconda3/lib/python3.6:/home/anaconda3/lib/python3.7:/usr/lib/python3.7:/usr/lib/python3.6:/usr/lib/python3.6:
 #
-# start a tmux session
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -54,9 +50,6 @@ unset __conda_setup
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
-# unset PYTHONPATH
-# export PYTHONHOME=/home/african/anaconda/lib/python3.7:/home/african/anaconda3/bin/python
-# export PYTHONPATH=$PYTHONPATH:$PYTHONHOME:/home/anaconda/lib/python3.7
 # Golang home config
 export GOHOME=~/gocode
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -166,7 +159,7 @@ match_lhs=""
 
 if ${use_color} ; then
 	# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
-	if type -P dircolors >/dev/null ; then
+	if type -p dircolors >/dev/null ; then
 		if [[ -f ~/.dir_colors ]] ; then
 			eval $(dircolors -b ~/.dir_colors)
 		elif [[ -f /etc/DIR_COLORS ]] ; then
@@ -199,22 +192,8 @@ alias cp="cp -r"
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 
-xhost +local:root > /dev/null 2>&1
 
-complete -cf sudo
 
-# Bash won't get SIGWINCH if another process is in the foreground.
-# Enable checkwinsize so that bash will check the terminal size when
-# it regains control.  #65623
-# http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
-shopt -s checkwinsize
-
-shopt -s expand_aliases
-
-# export QT_SELECT=4
-
-# Enable history appending instead of overwriting.  #139609
-shopt -s histappend
 
 #
 # # ex - archive extractor
@@ -273,6 +252,7 @@ alias scrapy="~/anaconda3/bin/scrapy"
 alias ipy="ipython"
 alias jpynb="jupyter-notebook . &"
 alias ls="ls -hN --color=auto -t "
+alias la="ls -hN --color=auto -ta "
 alias v="nvim"
 alias ccat="highlight --out-format=ansi"
 alias psaux="ps -aux"
@@ -282,6 +262,7 @@ alias vbsh="nvim ~/.bashrc"
 alias vzsh="nvim ~/.zshrc"
 alias vimrc="nvim ~/.vimrc"
 alias ka="kill -9"
+alias tmux="tmux -u"
 
 md(){
     mkdir -p $1;
@@ -289,7 +270,7 @@ md(){
     pwd;
 }
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
