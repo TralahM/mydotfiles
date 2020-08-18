@@ -19,6 +19,9 @@ hubissues(){
 }
 
 alias gad="git add ."
+alias ga="git add "
+alias hrkrun="heroku run"
+alias hrkpyman="heroku run python manage.py "
 
 alias pandocx="pandoc -f markdown -t docx --filter=pandoc-docx-pagebreakpy"
 export PIPENV_INSTALL_TIMEOUT=90000
