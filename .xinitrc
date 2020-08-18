@@ -5,12 +5,15 @@
 # Executed by startx (run your window manager from here)
 setxkbmap -option caps:escape
 
-userresources=$HOME/.Xresources
+userresources=~/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
 DEFAULT_SESSION='i3 --shmlog-size 0'
+
+[ -f /etc/xprofile ] && . /etc/xprofile
+[ -f ~/.xprofile ] && . ~/.xprofile
 
 # merge in defaults and keymaps
 
