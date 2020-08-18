@@ -73,7 +73,7 @@ Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
 Plug 'enricobacis/vim-airline-clock'
 Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' } "Scala ide features for vim
 Plug 'euclio/vim-markdown-composer',{'for':'markdown', 'do': function('BuildComposer') }
-Plug 'fszymanski/deoplete-emoji' " Emoji completions
+" Plug 'fszymanski/deoplete-emoji' " Emoji completions
 Plug 'garbas/vim-snipmate' "snipmate snippets
 Plug 'gcorne/vim-sass-lint',{'for':['css', 'sass', 'scss', 'less']}
 Plug 'glts/vim-magnum' "required by radical
@@ -458,7 +458,7 @@ let g:pymode_syntax=1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_builtin_objs=1
 let g:pymode_syntax_builtin_funcs=1
-let g:pymode_lint_checkers = ['flake8', 'pyflakes' ]
+let g:pymode_lint_checkers = ['flake8', 'pyflakes', 'pydocstyle', 'pylint' ]
 
 
 
@@ -535,7 +535,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_rst_checkers = ['text/language_check']
 let g:syntastic_tex_checkers = ["lacheck"]
-let g:syntastic_python_checkers = ['flake8', 'pyflakes']
+let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pydocstyle', 'pylint']
 
 
 
@@ -557,7 +557,7 @@ let g:javascript_conceal_super = "Ω"
 let g:javascript_conceal_arrow_function = "⇒"
 let g:javascript_conceal_noarg_arrow_function = "⇒"
 let g:javascript_conceal_underscore_arrow_function = "⇒"
-set conceallevel =2
+set conceallevel =1
 
 
 " VIMTEX CONFIG FOR TEX FILES
@@ -656,8 +656,10 @@ let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings={
             \'php':{'extends':'html','filters':'c'},
             \'xml':{'extends':'html'},
-            \'jinja2':{'extends':'xml'},
+            \'jinja':{'extends':'xml'},
+            \'jinja.html':{'extends':'xml'},
             \'haml':{'extends':'html'},
+            \'htmldjango':{'extends':'html'},
                 \}
 
 " RAINBOW PARENTHESES
@@ -794,7 +796,6 @@ map S <Plug>Sneak_S
 " Paste Line with Y
 nmap Y y$
 "yankstack config
-nmap Y y$
 map <leader>a <Plug>yankstack_substitute_older_paste
 nmap <leader>c <Plug>yankstack_substitute_newer_paste
 
