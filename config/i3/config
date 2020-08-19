@@ -222,7 +222,10 @@ bar {
 exec --no-startup-id xcfe4-power-manager
 exec --no-startup-id volumeicon
 exec --no-startup-id kdeconnect-indicator
+exec --no-startup-id i3-msg 'workspace 2; exec chromium; workspace 1'
+exec --no-startup-id i3-msg 'workspace 3; exec pcmanfm; workspace 1'
 exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+exec --no-startup-id urxvt
 
 exec --no-startup-id picom -bc
 exec --no-startup-id wpchanger.sh

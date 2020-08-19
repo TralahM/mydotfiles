@@ -69,4 +69,3 @@ get_session(){
 
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 exec $(get_session)
-exec bspwm
