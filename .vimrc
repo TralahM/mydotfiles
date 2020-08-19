@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja Filetype syntax hl
 Plug 'Inazuma110/deoplete-greek' "Greek letter completion
 Plug 'KabbAmine/zeavim.vim' " Zea Documentation Tool
+Plug 'mboughaba/i3config.vim'
 Plug 'Konfekt/FastFold' "Required by vim-coiled-snake
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
