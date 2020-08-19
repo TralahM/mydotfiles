@@ -877,7 +877,7 @@ if has('nvim')
 endif
 
 
-autocmd! BufWritePost ~/.Xresources,~/.Xdefaults  !xrdb % <CR>
+autocmd! BufWritePost ~/.Xresources,~/.Xdefaults  !xrdb %
 
 
 command! -nargs=* -complete=shellcmd R tabe | setlocal buftype=nofile bufhidden=hide noswapfile | 0r !<args>

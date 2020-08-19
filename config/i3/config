@@ -1,8 +1,4 @@
-# i3 config file (v4)
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
-#
-# This config file uses keycodes (bindsym) and was written for the QWERTY
+# i3 config file (v4) # # Please see https://i3wm.org/docs/userguide.html for a complete reference!  # # This config file uses keycodes (bindsym) and was written for the QWERTY
 # layout.
 #
 # To get a config file with the same key positions, but for your current
@@ -14,7 +10,7 @@
 set $mod=Mod1
 # set $mod_next=Mod4
 
-font pango: Source Code Pro for Powerline 9
+font pango: Hack\ Nerd\ Font\ Mono 10
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -228,6 +224,8 @@ exec --no-startup-id volumeicon
 exec --no-startup-id kdeconnect-indicator
 exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
+exec --no-startup-id picom -bc
+exec --no-startup-id wpchanger.sh
 
 bindsym Mod4+Shift+l mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot,  (Shift+s)hutdown
@@ -245,5 +243,3 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-exec --no-startup-id picom -bc
-exec --no-startup-id wpchanger.sh

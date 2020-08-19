@@ -58,20 +58,23 @@ XTerm*selectToClipboard: true
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
-/* URxvt.font:                      xft:Source\ Code\ Pro\ for\ Powerline:style=Regular */
-/* URxvt.bold.font:                      xft:Source\ Code\ Pro\ for\ Powerline:style=Bold */
-/* URxvt.font: xft:TerminessTTF\ Nerd\ Font\ Mono:style=Medium */
-URxvt.font:                              xft:TerminessTTF\ Nerd\ Font\ Mono:style=BlackRegular
-URxvt.bold.font:                              xft:TerminessTTF\ Nerd\ Font\ Mono:style=Bold
-/* URxvt.bold.font:                      xft:TerminessTTF\ Nerd\ Font\ Mono:style=Bold */
+/* URxvt.font:                      xft:Source\ Code\ Pro\ for\ Powerline:style      = Regular */
+/* URxvt.bold.font:                      xft:Source\ Code\ Pro\ for\ Powerline:style = Bold */
+/* URxvt.font: xft:TerminessTTF\ Nerd\ Font\ Mono:style                              = Medium */
+URxvt.font:                              xft:Hack\ Nerd\ Font\ Mono:style            = Regular
+URxvt.bold.font:                              xft:Hack\ Nerd\ Font\ Mono:style       = Bold
+URxvt*italicFont:                 xft:Hack\ Nerd\ Font\ Mono:style                   = Italic
+URxvt*boldItalicFont:             xft:Hack\ Nerd\ Font\ Mono:style                   = Bold Italic
+! URxvt*boldFont:                   xft:Hack\ Nerd\ Font\ Mono:style                 = Regular
+/* URxvt.bold.font:                      xft:TerminessTTF\ Nerd\ Font\ Mono:style = Bold */
 ! alternative font settings with 'terminus':
 ! URxvt.bold.font: -xos4-terminess-bold-r-normal--16-160-72-72-c-80-iso10646-1
 !! terminus names see end of file!
 
 URxvt.depth:                      96
-URxvt.background:                 [100]#111D21
+URxvt.background:                 #111D21
 URxvt*scrollBar:                  false
-URxvt*mouseWheelScrollPage:       false
+URxvt*mouseWheelScrollPage:       true
 URxvt*cursorBlink:                true
 URxvt*background:                 black
 URxvt*foreground:                 grey
@@ -85,6 +88,7 @@ URxvt*saveLines:                  5000
 ! Normal copy-paste keybindings without perls
 URxvt.iso14755:                   false
 URxvt.keysym.Shift-Control-V:     eval:paste_clipboard
+URxvt.keysym.Control-Y:           eval:paste_clipboard
 URxvt.keysym.Shift-Control-C:     eval:selection_to_clipboard
 !Xterm escape codes, word by word movement
 URxvt.keysym.Control-Left:        \033[1;5D
@@ -128,33 +132,6 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 ! URxvt*insecure:                   boolean
 ! URxvt*cursorUnderline:            boolean
 ! URxvt*pointerBlank:               boolean
-! URxvt*color0:                     color
-! URxvt*color1:                     color
-! URxvt*color2:                     color
-! URxvt*color3:                     color
-! URxvt*color4:                     color
-! URxvt*color5:                     color
-! URxvt*color6:                     color
-! URxvt*color7:                     color
-! URxvt*color8:                     color
-! URxvt*color9:                     color
-! URxvt*color10:                    color
-! URxvt*color11:                    color
-! URxvt*color12:                    color
-! URxvt*color13:                    color
-! URxvt*color14:                    color
-! URxvt*color15:                    color
-! URxvt*colorBD:                    color
-! URxvt*colorIT:                    color
-! URxvt*colorUL:                    color
-! URxvt*colorRV:                    color
-! URxvt*underlineColor:             color
-! URxvt*scrollColor:                color
-! URxvt*troughColor:                color
-! URxvt*highlightColor:             color
-! URxvt*highlightTextColor:         color
-! URxvt*cursorColor:                color
-! URxvt*cursorColor2:               color
 ! URxvt*pointerColor:               color
 ! URxvt*pointerColor2:              color
 ! URxvt*borderColor:                color
@@ -194,7 +171,7 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 ! URxvt*perl-lib:                   string
 ! URxvt*perl-eval:                  perl-eval
 URxvt*perl-ext-common:            default,matcher,url-select
-URxvt*perl-ext:            default,matcher,url-select
+URxvt*perl-ext:                   default,matcher,url-select
 ! URxvt*perl-ext:                   string
 ! URxvt*iso14755:                   boolean
 ! URxvt*iso14755_52:                boolean
@@ -225,19 +202,3 @@ URxvt*url-launcher:               /usr/bin/xdg-open
 URxvt*url-select.launcher:               /usr/bin/xdg-open
 URxvt*url-select.underline:               true
 
-! The Terminus font uses the following X-names:
-! -xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso10646-1
-! -xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso10646-1
-! -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
-! -xos4-terminus-medium-r-normal--20-200-72-72-c-100-iso10646-1
-! -xos4-terminus-medium-r-normal--22-220-72-72-c-110-iso10646-1
-! -xos4-terminus-medium-r-normal--24-240-72-72-c-120-iso10646-1
-! -xos4-terminus-medium-r-normal--28-280-72-72-c-140-iso10646-1
-! -xos4-terminus-medium-r-normal--32-320-72-72-c-160-iso10646-1
-! -xos4-terminus-bold-r-normal--12-120-72-72-c-60-iso10646-1
-! -xos4-terminus-bold-r-normal--14-140-72-72-c-80-iso10646-1
-! -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
-! -xos4-terminus-bold-r-normal--20-200-72-72-c-100-iso10646-1
-! -xos4-terminus-bold-r-normal--24-240-72-72-c-120-iso10646-1
-! -xos4-terminus-bold-r-normal--28-280-72-72-c-140-iso10646-1
-! -xos4-terminus-bold-r-normal--32-320-72-72-c-160-iso10646-1
