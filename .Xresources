@@ -10,7 +10,7 @@ XTerm*background:        #222D31
 XTerm*foreground:        #d8d8d8
 XTerm*pointerColor:      #1ABB9B
 XTerm*faceName:          Fixed
-XTerm*faceSize:          11
+XTerm*faceSize:          10
 XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
@@ -61,10 +61,10 @@ Xcursor.size:                     0
 /* URxvt.font:                      xft:Source\ Code\ Pro\ for\ Powerline:style      = Regular */
 /* URxvt.bold.font:                      xft:Source\ Code\ Pro\ for\ Powerline:style = Bold */
 /* URxvt.font: xft:TerminessTTF\ Nerd\ Font\ Mono:style                              = Medium */
-URxvt.font:                              xft:Hack\ Nerd\ Font\ Mono:style            = Regular
-URxvt.bold.font:                              xft:Hack\ Nerd\ Font\ Mono:style       = Bold
-URxvt*italicFont:                 xft:Hack\ Nerd\ Font\ Mono:style                   = Italic
-URxvt*boldItalicFont:             xft:Hack\ Nerd\ Font\ Mono:style                   = Bold Italic
+URxvt.font:                              xft:Hack\ Nerd\ Font\ Mono:style =Regular:size=10
+URxvt.bold.font:                              xft:Hack\ Nerd\ Font\ Mono:style       = Bold:size=10
+URxvt*italicFont:                 xft:Hack\ Nerd\ Font\ Mono:style = Italic:size=10
+URxvt*boldItalicFont:             xft:Hack\ Nerd\ Font\ Mono:style= Bold Italic:size=10
 ! URxvt*boldFont:                   xft:Hack\ Nerd\ Font\ Mono:style                 = Regular
 /* URxvt.bold.font:                      xft:TerminessTTF\ Nerd\ Font\ Mono:style = Bold */
 ! alternative font settings with 'terminus':
