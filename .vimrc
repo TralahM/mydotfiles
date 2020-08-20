@@ -1,6 +1,7 @@
 set nocompatible
 set encoding=utf-8
 set nospell
+let maplocalleader=" "
 if has('nvim')
     set inccommand=nosplit
     set incsearch
@@ -459,7 +460,7 @@ let g:pymode_syntax=1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_builtin_objs=1
 let g:pymode_syntax_builtin_funcs=1
-let g:pymode_lint_checkers = ['flake8', 'pyflakes', 'pydocstyle', 'pylint' ]
+let g:pymode_lint_checkers = ['flake8', 'pyflakes', 'pydocstyle']
 
 
 
@@ -536,7 +537,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_rst_checkers = ['text/language_check']
 let g:syntastic_tex_checkers = ["lacheck"]
-let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pydocstyle', 'pylint']
+let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pydocstyle']
 
 
 
@@ -569,7 +570,7 @@ let g:vimtex_fold_enabled =0
 let g:vimtex_enabled=1
 let g:vimtex_complete_enabled=1
 let g:vimtex_complete_close_braces=1
-let g:vimtex_compiler_progname='nvr'
+" let g:vimtex_compiler_progname='nvr'
 
 
 " FILENAMES LIKE *.XML, *.HTML, *.XHTML, ...
@@ -813,7 +814,7 @@ map <leader>f :MRU<CR>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 map <leader>w :w!<CR>
-map <space> /\v
+map <s-space> /\v
 map <c-space> ?
 map <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 map <leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -823,7 +824,7 @@ nnoremap <leader>x <esc>:bd<CR>
 nnoremap <leader>tx <esc>:tabclose<CR>
 nnoremap <leader>f :MRU<CR>
 nnoremap <leader>e :NERDTreeFind<CR>
-nnoremap <space> /\v
+nnoremap <s-space> /\v
 nnoremap <c-space> ?
 nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 nnoremap <leader>cwd :cd %:p:h<CR>:pwd<CR>
