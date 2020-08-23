@@ -7,10 +7,11 @@
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-set $mod=Mod1
-# set $mod_next=Mod4
+set $mod Mod1
+set $mod_next Mod4
 
 font pango: Hack\ Nerd\ Font\ Mono 10
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -41,7 +42,7 @@ set $left j
 set $right semicolon
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
-floating_modifier Mod1
+set $floating_modifier Mod1
 
 # start a terminal
 bindsym Mod1+Return exec i3-sensible-terminal
@@ -166,6 +167,8 @@ bindsym Mod4+7 move container to workspace number $ws7
 bindsym Mod4+8 move container to workspace number $ws8
 bindsym Mod4+9 move container to workspace number $ws9
 bindsym Mod4+0 move container to workspace number $ws10
+bindsym Mod1+Tab          workspace back_and_forth
+
 
 # reload the configuration file
 bindsym Mod1+Shift+c reload
@@ -219,7 +222,6 @@ bar {
 # Please remove the following exec line:
 #######################################################################
 # exec i3-config-wizard
-exec --no-startup-id xcfe4-power-manager
 exec --no-startup-id volumeicon
 exec --no-startup-id kdeconnect-indicator
 exec --no-startup-id i3-msg 'workspace 2; exec chromium; workspace 1'
@@ -230,7 +232,7 @@ exec --no-startup-id urxvt
 exec --no-startup-id picom -bc
 exec --no-startup-id wpchanger.sh
 
-exec_always --no-startup-id xcfe4-power-manager
+exec_always --no-startup-id "xcfe4-power-manager"
 
 bindsym Mod4+Shift+l mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot,  (Shift+s)hutdown
@@ -248,5 +250,10 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+for_window [title="GIMP Startup"] move workspace $ws5
+for_window [class="Gimp"] move workspace $ws5
+for_window [window_role="GtkFileChooserDialog"] resize set 800 600
+for_window [window_role="GtkFileChooserDialog"] move position center
 
 # vim:filetype=i3config
