@@ -20,7 +20,7 @@ export DEFAULT_USER="$(whoami)"
 export GREP_COLORS='ms=01;32;49'
 
 # ~/ Clean-up:
-export XDG_CONFIG_HOME="$HOME/.config"
+# export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
@@ -44,7 +44,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-export FZF_DEFAULT_OPTS="--layout=r everse --height 40%"
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 # Color man pages
 # add color to man pages
 export MANROFFOPT='-c'
@@ -110,6 +110,37 @@ exarch ()
     echo "'$1' is not a valid file"
   fi
 }
+
+
+repos() {
+  local user="${1?}"
+  shift 1
+  paginate hub api -t graphql -f user="$user" "$@" -f query='
+    query($user: String!, $per_page: Int = 100, $after: String) {
+      user(login: $user) {
+        repositories(first: $per_page, after: $after) {
+          nodes {
+            nameWithOwner
+          }
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+        }
+      }
+    }
+  '
+}
+
+paginate() {
+  local output cursor
+  output="$("$@")"
+  cursor="$(awk '/\.hasNextPage/ { has_next=$2 } /\.endCursor/ { if (has_next=="true") print $2 }' <<<"$output")"
+  printf "%s\n" "$output"
+  [ -z "$cursor" ] || paginate "$@" -f after="$cursor"
+}
+
+# repos "tralahm" | awk '/\.nameWithOwner\t/ { print $2 }'
 
 if [[ -f $HOME/aliasrc ]]; then
     source $HOME/aliasrc
