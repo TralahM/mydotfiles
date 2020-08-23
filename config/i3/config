@@ -230,6 +230,8 @@ exec --no-startup-id urxvt
 exec --no-startup-id picom -bc
 exec --no-startup-id wpchanger.sh
 
+exec_always --no-startup-id xcfe4-power-manager
+
 bindsym Mod4+Shift+l mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot,  (Shift+s)hutdown
 

@@ -16,12 +16,10 @@ zstyle ':completion:*' rehash true                              # automatically 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-HISTFILE=~/.zhistory
-HISTSIZE=1000
-SAVEHIST=5000
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
-WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
+export HISTFILE=~/.zsh_history
+export HISTSIZE=100000
+export SAVEHIST=5000
+export WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
 
 ## Keybindings section
@@ -51,10 +49,9 @@ bindkey '^[[1;5C' forward-word                                  #
 bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
-## Alias section
-alias df='df -h'                                                # Human-readable sizes
-alias free='free -m'                                            # Show sizes in MB
-alias gitu='git add . && git commit && git push'
+if [[ -f $HOME/aliasrc ]]; then
+    source $HOME/aliasrc
+fi
 
 # Theming section
 autoload -U compinit colors zcalc
@@ -131,22 +128,6 @@ git_prompt_string() {
   [ ! -n "$git_where" ] && echo "%{$fg[red]%} %(?..[%?])"
 }
 
-# Right prompt with exit status of previous command if not successful
- #RPROMPT="%{$fg[red]%} %(?..[%?])"
-# Right prompt with exit status of previous command marked with ✓ or ✗
- #RPROMPT="%(?.%{$fg[green]%}✓ %{$reset_color%}.%{$fg[red]%}✗ %{$reset_color%})"
-
-
-# Color man pages
-export LESS_TERMCAP_mb=$'\E[01;32m'
-export LESS_TERMCAP_md=$'\E[01;32m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;47;34m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;36m'
-export LESS=-r
-
 
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
@@ -188,27 +169,18 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
         RPROMPT='$(git_prompt_string)'
 		# Use autosuggestion
 		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
+		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=300
   		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     ;;
 esac
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH=~/.zsh
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-export DEFAULT_USER="$(whoami)"
-export GREP_COLORS='ms=01;32;49'
-
 # Vulkan Graphics Library setup
 export VULKAN_SDK=~/vulkan/1.2.135.0/x86_64
 export PATH=$PATH:$VULKAN_SDK/bin
-export PATH=$PATH:$GOHOME/bin:~/go/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$VULKAN_SDK/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/:/usr/lib/
 export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
@@ -218,16 +190,12 @@ PATH=/usr/local/texlive/2020/bin/x86_64-linux:$PATH; export PATH
 MANPATH=/usr/local/texlive/2020/texmf-dist/doc/man:$MANPATH; export MANPATH
 INFOPATH=/usr/local/texlive/2020/texmf-dist/doc/info:$INFOPATH; export INFOPATH
 
-# Snap apps to path
-export PATH=$PATH:/snap/bin
-
-# display how long all tasks over 10 seconds take
-export REPORTTIME=10
-export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_241/
+# export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_241/
 unset JAVA_OPTS
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/data/data/com.termux/files/usr/share/terminfo
-if [[ -e ~/.localenv ]];then
-    source ~/.localenv
+
+if [[ -e ~/.localrc ]];then
+    source ~/.localrc
 fi
 if [[ -e ~/.profile ]];then
     source ~/.profile
@@ -235,29 +203,8 @@ fi
 if command -v tmux &> /dev/null && [ -z "$TMUX" ];then
     clear;ls
 fi
-export HADOOP_HOME=/home/hadoop/hadoop-2.7.7
-export HADOOP_INSTALL=$HADOOP_HOME
-export HADOOP_MAPRED_HOME=$HADOOP_HOME
-export HADOOP_COMMON_HOME=$HADOOP_HOME
-export HADOOP_HDFS_HOME=$HADOOP_HOME
-export YARN_HOME=$HADOOP_HOME
-export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
-export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
-export SPARK_HOME=~/spark-3.0.0-preview2-bin-hadoop2.7
-export PYTHONPATH=$SPARK_HOME/python:$PYTHONPATH
-export PYSPARK_DRIVER_PYTHON="jupyter"
-export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
-export PYSPARK_PYTHON=python3
-export PATH=$SPARK_HOME:$PATH:$JAVA_HOME/jre/bin
 
-export PATH=/home/african/.local/bin:$PATH
-export PATH=/usr/local/go/bin:$PATH
-export PATH=$JAVA_HOME/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/go/lib:$LD_LIBRARY_PATH
 
-# Snap aps
-export PATH=$PATH:/snap/bin
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively
 if [[ -d ~/code ]]; then
@@ -272,23 +219,15 @@ fi
 
 
 
-export EDITOR='nvim'
-export GIT_EDITOR='nvim'
-
-
-# add /usr/local/sbin
+# termux add /usr/local/sbin
 if [[ -d /data/data/com.termux/files/usr/local/sbin ]]; then
     export PATH=/data/data/com.termux/files/usr/local/sbin:$PATH
 	export PATH=/data/data/com.termux/files/usr/local/bin:$PATH
 fi
 
-# adding path directory for custom scripts
-#export PATH=$DOTFILES/bin:$PATH
 
-# check for custom bin directory and add to path
 if [[ -d ~/bin ]]; then
     export PATH=~/bin:$PATH
-    # source ~/bin/tmux-completion/tmux
 fi
 
 if [[ -d ~/.rbenv ]]; then
@@ -306,28 +245,12 @@ if type hub > /dev/null 2>&1; then
     eval "$(alias hub='git')"
 fi
 
-md(){
-    mkdir -p $1;
-    cd $1;
-    pwd;
-}
 # move to next word with ctrl-F
 bindkey -M viins "^F" vi-forward-word
 bindkey -M viins "^[" vi-backward-word
 # Move to end of line with ctrl-E
 bindkey -M viins "^E" vi-add-eol
 
-# add color to man pages
-export MANROFFOPT='-c'
-export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
-export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
-export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
-export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
-export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
-export LESS_TERMCAP_mr=$(tput rev)
-export LESS_TERMCAP_mh=$(tput dim)
 
 export POWERLEVEL9K_MODE='nerdfont-complete'
 export POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
@@ -335,72 +258,15 @@ export POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
 export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 typeset -g POWERLEVEL9K_VCS_GIT_ICON=$'\uF113 '
 export POWERLEVEL9K_VCS_GIT_ICON='  '
-# add shellcheck config
-# For a full list of errors, refer to
-# https://github.com/koalaman/shellcheck/wiki
 #
-# export SHELLCHECK_OPTS=""
-alias grep="egrep --color "
-alias norg="gron --ungron"
-alias ungron="gron --ungron"
-alias gad="git add ."
-alias gap="git add -p"
-alias gaci="git add .;git commit "
-alias gp="git push "
-alias gpom="git push origin master"
-alias pythonx="python"
-alias gpf="git fetch "
-alias gpum="git pull origin master"
-alias gphum="git pull heroku master"
-alias gphm="git push heroku master"
-alias grs="git remote set-url "
-alias cls="clear"
-alias pubip="curl icanhazip.com"
-alias vim="nvim "
-alias vf="vifm"
-alias hrkli="heroku login -i"
-alias hrklgs="heroku logs -t"
-alias hrkpyshl="heroku run python manage.py shell_plus"
-alias hrkbsh="heroku run bash"
-alias djsp="django-admin startproject "
-alias djsa="django-admin startapp "
-alias ghrc="gcli repo create "
-alias grao="git remote add origin "
-alias yt="youtube-dl"
-alias scrapy="~/anaconda3/bin/scrapy"
-alias ipy="ipython"
-alias jpynb="jupyter-notebook . &"
-alias ls="ls -hN --color=auto -t "
-alias v="nvim"
-alias ccat="highlight --out-format=ansi"
-alias psaux="ps -aux"
-alias sv="sudo nvim"
-alias p="sudo pacman"
-alias vbsh="nvim ~/.bashrc"
-alias vzsh="nvim ~/.zshrc"
-alias vimrc="nvim ~/.vimrc"
-alias ka="kill -9"
-alias cp="cp -r"
-
-
-# export PYTHONHOME="/usr/bin/python3"
-# export ANDROIDSDK="/home/african/Android/Sdk"
-# export ANDROIDNDK="/home/african/android-ndk-r18b"
-if [[ -d ~/anaconda3/bin ]];then
-    export PATH=~/anaconda3/bin:$PATH
+if [[ -d $HOME/anaconda3/bin ]];then
+    export PATH=$HOME/anaconda3/bin:$PATH
 fi
-# export PATH=/home/african/Android/Sdk/tools/bin:/home/african/android-studio/bin:$PATH
 
-# # Install Ruby Gems to ~/gems
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
-# export PYTHONPATH=/home/anaconda3/lib/python3.6:/home/anaconda3/lib/python3.7:/usr/lib/python3.7:/usr/lib/python3.6:/usr/lib/python3.6:
-#
-# start a tmux session
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/african/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
@@ -414,43 +280,15 @@ unset __conda_setup
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
-# unset PYTHONPATH
-# export PYTHONHOME=/home/african/anaconda/lib/python3.7:/home/african/anaconda3/bin/python
-# export PYTHONPATH=$PYTHONPATH:$PYTHONHOME:/home/anaconda/lib/python3.7
 # Golang home config
 export GOHOME=~/gocode
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #
-# # ex - archive extractor
-# # usage: ex <file>
-exarch ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/home/african/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+HEROKU_AC_ZSH_SETUP_PATH=$HOME/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 # alias hub to git
 eval $(hub alias -s)
-# Rust src path
-export RUST_SRC_PATH=/home/african/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
 bindkey -v
 
@@ -493,19 +331,18 @@ bindkey '^K^U' _mtxr-to-upper # Ctrl+K + Ctrl+U
 bindkey '^K^L' _mtxr-to-lower # Ctrl+K + Ctrl+L
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/home/african/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+HEROKU_AC_ZSH_SETUP_PATH=$HOME/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-PATH="/home/african/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/african/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/african/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/african/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/african/perl5"; export PERL_MM_OPT;
+PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
 ### End of Zinit's installer chunk
 ### End of Zinit's installer chunk
 ### End of Zinit's installer chunk
 ### End of Zinit's installer chunk
 # Put this in .zshrc, after this plugin is loaded
-bindkey -v
