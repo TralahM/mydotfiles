@@ -38,6 +38,8 @@ if [[ -d $HOME/bin/ ]]; then
     export PATH=$PATH:$HOME/bin
 fi
 
+export PATH=$PATH:$HOME/.local/lib/python3.8/site-packages/bin
+
 # Nvim config
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

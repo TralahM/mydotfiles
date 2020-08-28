@@ -43,14 +43,27 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Leader tt toggles checkbox
+" Plug 'Inazuma110/deoplete-greek' "Greek letter completion
+" Plug 'Shougo/deoplete-clangx'
+" Plug 'deoplete-plugins/deoplete-asm' "assembly completions
+" Plug 'deoplete-plugins/deoplete-dictionary' "dictionary completions
+" Plug 'deoplete-plugins/deoplete-docker' "dockerfile completions
+" Plug 'deoplete-plugins/deoplete-go' "go completions
+" Plug 'deoplete-plugins/deoplete-jedi'
+" Plug 'deoplete-plugins/deoplete-tag' "tag completions
+" Plug 'deoplete-plugins/deoplete-zsh',{'for':'zsh'} "zsh completions
+" Plug 'fszymanski/deoplete-emoji' " Emoji completions
+" Plug 'lighttiger2505/deoplete-vim-lsp' "Language Server completion
+" Plug 'poppyschmo/deoplete-latex'
+" Plug 'sebastianmarkow/deoplete-rust',{'for':'rust'}
+" Plug 'zchee/deoplete-clang'
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja Filetype syntax hl
-Plug 'Inazuma110/deoplete-greek' "Greek letter completion
+Plug 'HansPinckaers/ncm2-jedi'
 Plug 'KabbAmine/zeavim.vim' " Zea Documentation Tool
-Plug 'mboughaba/i3config.vim'
 Plug 'Konfekt/FastFold' "Required by vim-coiled-snake
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'Raku/vim-raku' " For raku vim 6 support
+Plug 'Raku/vim-raku' " For raku perl 6 support
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neosnippet-snippets' " Snippets
 Plug 'Shougo/neosnippet.vim' " Snippets
@@ -62,12 +75,6 @@ Plug 'bfrg/vim-jq',{'for':'json'} "json query parser
 Plug 'bfrg/vim-jqplay',{'for':'json'} "json query parser
 Plug 'chrisbra/csv.vim',{'for':'csv'} "csv pretty display
 Plug 'cloudhead/neovim-fuzzy'
-Plug 'deoplete-plugins/deoplete-asm' "assembly completions
-Plug 'deoplete-plugins/deoplete-dictionary' "dictionary completions
-Plug 'deoplete-plugins/deoplete-docker' "dockerfile completions
-Plug 'deoplete-plugins/deoplete-go' "go completions
-Plug 'deoplete-plugins/deoplete-tag' "tag completions
-Plug 'deoplete-plugins/deoplete-zsh',{'for':'zsh'} "zsh completions
 Plug 'derekwyatt/vim-scala',{'for': ['scala','sbt']} "scala syntax
 Plug 'dhruvasagar/vim-table-mode' "easy markdown tables
 Plug 'ehamberg/vim-cute-python',{'for':'python','branch':'moresymbols'} "pretty math symbols
@@ -75,7 +82,6 @@ Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
 Plug 'enricobacis/vim-airline-clock'
 Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' } "Scala ide features for vim
 Plug 'euclio/vim-markdown-composer',{'for':'markdown', 'do': function('BuildComposer') }
-" Plug 'fszymanski/deoplete-emoji' " Emoji completions
 Plug 'garbas/vim-snipmate' "snipmate snippets
 Plug 'gcorne/vim-sass-lint',{'for':['css', 'sass', 'scss', 'less']}
 Plug 'glts/vim-magnum' "required by radical
@@ -91,26 +97,46 @@ Plug 'junegunn/fzf.vim' "Fzf
 Plug 'junegunn/vim-emoji' "emojis
 Plug 'justinmk/vim-sneak' "The missing motion for vim
 Plug 'kalekundert/vim-coiled-snake' "Python Folding
+Plug 'kana/vim-arpeggio' "Key mapping for simultaneously pressed keys
 Plug 'kana/vim-textobj-entire' "text objects for entire buffer
 Plug 'kana/vim-textobj-user' "text objects for entire buffer
-Plug 'kana/vim-arpeggio' "Key mapping for simultaneously pressed keys
 Plug 'lervag/vimtex',{'for':['tex', 'markdown','pandoc']}
-Plug 'lighttiger2505/deoplete-vim-lsp' "Language Server completion
 Plug 'luochen1990/rainbow' "Per Depth html,xml hl colors
 Plug 'machakann/vim-highlightedyank' " Temporary highlight yanked txt
 Plug 'majutsushi/tagbar' "TagBar
 Plug 'mattn/emmet-vim' "abbreviation expanding html similar to emmet
-Plug 'mattn/webapi-vim' "emmet plugin for web apis
 Plug 'mattn/vim-lsp-settings' "lsp settings
+Plug 'mattn/webapi-vim' "emmet plugin for web apis
 Plug 'maxbrunsfeld/vim-yankstack' "cycle between prev yanks
+Plug 'mboughaba/i3config.vim'
 Plug 'michaeljsmith/vim-indent-object' "indent text objects"
 Plug 'mileszs/ack.vim'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ncm2/float-preview.nvim'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-cssomni'
+Plug 'ncm2/ncm2-github'
+Plug 'ncm2/ncm2-go'
+Plug 'ncm2/ncm2-html-subscope'
+Plug 'ncm2/ncm2-markdown-subscope'
+Plug 'ncm2/ncm2-match-highlight'
+Plug 'ncm2/ncm2-neoinclude' | Plug 'Shougo/neoinclude.vim'
+Plug 'ncm2/ncm2-neosnippet'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-pyclang'
+Plug 'ncm2/ncm2-racer'
+Plug 'ncm2/ncm2-rst-subscope'
+Plug 'ncm2/ncm2-snipmate'
+Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
+Plug 'ncm2/ncm2-vim-lsp'
 Plug 'neomake/neomake'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'pearofducks/ansible-vim'
 Plug 'plasticboy/vim-markdown',{'for':'markdown'}
-Plug 'poppyschmo/deoplete-latex'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'psf/black', { 'branch': 'stable' }
@@ -121,11 +147,11 @@ Plug 'rust-lang/rust.vim', {'for':'rust'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'sebastianmarkow/deoplete-rust',{'for':'rust'}
 Plug 'slashmili/alchemist.vim',{'for':'elixir'}
 Plug 'tell-k/vim-autopep8',{'for':'python'}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-smooth-scroll'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'  "to highlight files in nerdtree
 Plug 'tomtom/tlib_vim'
 Plug 'tounaishouta/coq.vim', {'for':'coq'}
 Plug 'tpope/vim-abolish'
@@ -151,18 +177,18 @@ Plug 'vim-ruby/vim-ruby',{'for':'ruby'}
 Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
+Plug 'wellle/tmux-complete.vim'
 Plug 'wlemuel/vim-tldr'
 Plug 'xavierd/clang_complete'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'yegappan/mru' "most recently used
-Plug 'zchee/deoplete-clang'
+
 
 if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-jedi'
     Plug 'davidhalter/jedi-vim'
+    Plug 'roxma/nvim-yarp'
 else
-    Plug 'Shougo/deoplete.nvim'
+    " Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     Plug 'davidhalter/jedi-vim'
@@ -173,18 +199,19 @@ else
     endif
 endif
 if has('win32') || has('win64')
-    Plug 'tbodt/deoplete-tabnine', { 'do': 'powershell.exe .\install.ps1' }
+    " Plug 'tbodt/deoplete-tabnine', { 'do': 'powershell.exe .\install.ps1' }
 else
     if uname=='Android'
         " Do Nothing
     else
-        Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+        " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
     endif
 endif
 
 call plug#end()
 
-
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " BEGIN CONFIGURATIONS HERE
 "
@@ -192,12 +219,9 @@ call plug#end()
 " source ~/.vim/autoload/load_customs.vim
 " GENERAL CONGIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Some of the following is taken from Steve Losh:
-" http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " Basic Internal Configurations
 set undofile
 set hidden
-" set nobackup
 set writebackup
 set cmdheight=2
 set updatetime=300
@@ -211,9 +235,18 @@ set directory=~/.vim/backup
 set wildignore+=*_build/*
 set wildignore+=*.pyc,*.so,*.swp,*.zip,*.un~,.*.*~,*.o,*.obj
 set wildignore+=*/coverage/*
-set viminfo='20,\"500
+set viminfo='20,<1000
 set lazyredraw
-set history=100
+set history=1000
+set breakindent  " preserve horizontal whitespace when wrapping
+set showbreak=..
+set lbr  " wrap words
+set nowrap  " i turn on wrap manually when needed
+set pumheight=5
+
+set scrolloff=3 " keep three lines between the cursor and the edge of the screen
+set splitright  " i prefer splitting right and below
+set splitbelow
 
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")
@@ -241,9 +274,8 @@ else
 endif
 " set cursorline
 set modelines=2
-set wrap
+" set wrap
 set linebreak
-" set nolist " disables linebreak"
 set showcmd
 set showmode
 set visualbell
@@ -277,7 +309,7 @@ set t_Co=256
 set sidescroll=5
 set ttyfast
 set wildmode=list:longest,full
-" set ttimeoutlen=50
+set ttimeoutlen=50
 set noswapfile
 " Set identation to 4 spaces
 set noai ts=4 sw=4 expandtab
@@ -307,6 +339,11 @@ autocmd! BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
 syntax enable
 let g:solarized_termcolors=256
 let g:gitgutter_max_signs=4000
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_map_keys = 0
+
+let g:python3_host_prog='/usr/bin/python'
+
 if emoji#available()
     let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
     let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
@@ -314,12 +351,14 @@ if emoji#available()
     let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
 
-let g:UltiSnipsSnippetDirectories=['~/.vim/plugged/vim-snippets/UltiSnips/', '~/.vim/plugged/vim-snippets/snippets/','~/.vim/snippets/']
+let g:UltiSnipsSnippetsDir="~/.vim/snippets"
+let g:UltiSnipsSnippetDirectories=['~/.vim/snippets', '~/.vim/plugged/vim-snippets/UltiSnips', 'UltiSnips' ]
 let g:UltiSnipsEditSplit="vertical"
 colorscheme delek
 let g:solarized_contrast="high"
 highlight clear SpellBad
 highlight SpellBad cterm=underline,bold ctermbg=white ctermfg=blue
+
 " Remove trailing spaces on save
 autocmd! BufWritePre * :%s/\s\+$//e
 " Git commits
@@ -336,7 +375,11 @@ set path+=**
 set wildmenu
 
 "" Better navigation through omnicomplete option list
-set completeopt=longest,menuone,menu,preview
+set completeopt=noinsert,menuone
+
+au User Ncm2PopupOpen set completeopt=noinsert,menuone
+au User Ncm2PopupClose set completeopt=menuone
+
 function! OmniPopup(action)
     if pumvisible()
         if a:action=='j'
@@ -383,36 +426,20 @@ autocmd BufWritePost Makefile* silent! execute "!make >/dev/null 2>&1" | redraw!
 " vim-indent-guides conf
 let g:indent_guides_enable_on_vim_startup=1
 
-" Deoplete Conf
-" " deoplete completion
-" let g:deoplete#sources={}
-" let g:deoplete#sources._ = ['buffer', 'file', 'omni', 'tag', 'ultisnips','around']
-call deoplete#custom#option('sources',{
-            \ '_': ['buffer', 'file', 'omni', 'tag', 'ultisnips','around'],
-            \ 'gitcommit': ['github', 'buffer'],
-            \})
-" Remove this if you'd like to use fuzzy search
-call deoplete#custom#source( 'dictionary', 'matchers', ['matcher_head'])
-" If dictionary is already sorted, no need to sort it again.
-call deoplete#custom#source('dictionary', 'sorters', [])
-" Do not complete too short words
-call deoplete#custom#source( 'dictionary', 'min_pattern_length', 3)
-let g:deoplete#enable_at_startup=1
-let g:deoplete#sources#clang#libclang_path='/usr/lib/clang/10.0.0/lib/linux/libclang_rt.scudo-x86_64.so'
-let g:deoplete#sources#clang#clang_header='/usr/include/clang/'
-let g:deoplete#sources#clang#sort_algo='priority'
-let g:deoplete#sources#clang#std={'cpp': 'c++17', 'c': 'c11'}
-call deoplete#custom#var('keyword_patterns',{'gitcommit': '.+'})
-call deoplete#custom#var('input_patterns',{'scala':'[^. *\t]\.\w*'
-            \})
 
-let g:deoplete#sources#jedi#enable_typeinfo = 0
-let g:deoplete#sources#jedi#ignore_errors=1
-call deoplete#custom#var('max_list',1000)
-let g:deoplete#enable_ignore_case=1
-let g:jedi#completions_enabled=1
+" jedi options
 let g:jedi#force_py_version=3
-
+let g:jedi#auto_initialization = 1
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#completions_command = ""
+let g:jedi#show_call_signatures = "1"
+let g:jedi#show_call_signatures_delay = 0
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#show_call_signatures_modes = 'i'  " ni = also in normal mode
+let g:jedi#enable_speed_debugging=0
 
 " Vim-SCala Conf
 let g:scala_scaladoc_indent = 1
@@ -446,10 +473,10 @@ let g:ropevim_enable_shortcuts = 1
 let g:pymode_rope_lookup_project=0
 let g:pymode_doc = 0
 let g:pymode_doc_bind = '<leader>i'
-let g:pymode_rope=0
+let g:pymode_rope=1
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_autoimport = 1
+let g:pymode_rope_autoimport = 0
 " let g:pymode_rope_autoimport_modules = ['os', 'datetime']
 let g:pymode_rope_organize_imports_bind = '<leader>ri'
 let g:pymode_rope_autoimport_bind = '<leader>ra'
@@ -564,7 +591,11 @@ set conceallevel =1
 
 " VIMTEX CONFIG FOR TEX FILES
 " VIMTEX
-let g:tex_flavour='latex'
+let g:tex_flavor='latex'
+let g:vimtex_view_general_viewer= 'zathura'
+let g:vimtex_view_general_options= '-reuse-instance -forward-search @tex @line @pdf'
+let g:vimtex_view_general_options= '-reuse-instance'
+let g:matchup_matchparens_deferred=1
 " let g:matchup_override_vimtex = 1
 let g:vimtex_fold_enabled =0
 let g:vimtex_enabled=1
@@ -603,13 +634,14 @@ let g:over_command_line_prompt=">"
 
 
 " " Ultisnips Config
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger='<C-j>'
+let g:UltiSnipsJumpBackwardTrigger='<C-k>'
+let g:UltiSnipsRemoveSelectModeMappings = 0
 
 
 command! MakeTags !ctags -R -a *.*
-autocmd! bufwritepost *.c *.cpp *.hpp *.h *.rs *.py  MakeTags
+" autocmd! bufwritepost *.c *.cpp *.hpp *.h *.rs *.py  MakeTags
 
 
 " Markdown Composer options
@@ -630,7 +662,21 @@ let g:livepreview_cursorhold_recompile = 1
 " Neosnippets
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+imap <c-c> <ESC>
+imap <silent> <expr> <Tab> pumvisible() ?  ncm2_ultisnips#expand_or("\<Tab>", 'n')
+imap <silent> <expr> <CR> pumvisible() ? ncm2_neosnippet#expand_or("\<CR>", 'n')
 
+au User Ncm2Plugin call ncm2#register_source({
+            \ 'name' : 'css',
+            \ 'priority': 9,
+            \ 'subscope_enable': 1,
+            \ 'scope': ['css','scss'],
+            \ 'mark': 'css',
+            \ 'word_pattern': '[\w\-]+',
+            \ 'complete_pattern': ':\s*',
+            \ 'on_complete': ['ncm2#on_complete#delay', 180,  'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+            \ })
 
 " Clang Stuff
 let g:clang_complete_auto=1
@@ -692,14 +738,6 @@ nmap <leader><leader>z <Plug>ZVKeyDocset
 nnoremap <leader>] :TagbarToggle<CR>
 nnoremap <leader>[ :NERDTreeToggle<CR>
 
-" " SuperTab like snippets behavior.
-" " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-" imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
@@ -735,6 +773,15 @@ endfunction
 
 command! InsPydoc call s:try_insert("tdc")
 nnoremap <leader>3 :InsPydoc <cr>
+
+function! Try_insert(skel)
+    execute "normal! i" . a:skel . "\<C-r>=UltiSnips#ExpandSnippet()\<CR>"
+    if g:ulti_expand_res == 0
+        silent! undo
+    endif
+
+    return g:ulti_expand_res
+endfunction
 " All my keymaps go here
 " Taking a modularized approach
 " Quickly Edit My VIMRC
