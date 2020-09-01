@@ -27,6 +27,16 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
+# Battery
+#
+
+[custom_bat]
+color="#cfffff"
+interval=60
+command=~/bin/battery
+markup=pango
+# label=BAT
+separator=true
 
 # Weather stats
 #
@@ -162,15 +172,6 @@ interval=10
 command=~/bin/cpu_usage
 separator=true
 
-# Battery
-#
-
-[battery]
-color="#2f2f2f"
-interval=30
-# label=BAT
-command=~/bin/battery
-separator=true
 
 # Date Time
 #
