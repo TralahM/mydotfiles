@@ -5,8 +5,8 @@
 
 # Currencies should be ;-separated:
 # human-readable name;urlname;icon
-coins="Bitcoin;btc;💰
-Ethereum;eth;🍸"
+coins="Bitcoin;btc;₿
+Ethereum;eth;Ξ"
 # LBC;lbc;📚"
 # Basic Attention Token;bat;🦁
 
@@ -17,8 +17,8 @@ getprices() { # The command to get the desired prices
 	printf "🔃 "; printprices
 	{ rm -rf "${dir:?}/*"
 	echo "$coins" | while IFS=';' read -r human web icon; do
-		val="$(curl -s "rate.sx/1$web")" &&
-		echo "$icon;$val;$human" > "$dir/$web"
+    val="$(curl -s "rate.sx/1$web")" &&v2=$(printf "%.2f" $val) &&
+		echo "$icon;$v2;$human" > "$dir/$web"
 	done; [ -d "$dir" ] && touch "$dir"
 	pkill -RTMIN+13 "${STATUSBAR:-i3blocks}" ;} &
 	exit
