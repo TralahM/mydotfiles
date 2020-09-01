@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+NCMP=$(mpc | awk '/^\[playing\]/{print $1}')
+
+if [[ "$NCMP" = "[playing]" ]];then
+    echo "${1:-} $(basename $(mpc current))"
+else
+    echo "${1:-} Pause "
+fi
+
+# vim: ft=sh
