@@ -32,11 +32,12 @@ markup=none
 #
 
 [weather]
-color="#10efff"
+color="#f0efff"
 # label=W
 interval=60
 command=~/bin/weather
 separator=false
+
 
 
 # Moonphases
@@ -48,6 +49,7 @@ interval=14400
 command=~/bin/moonphase
 separator=true
 
+
 # Music Player Daemon
 #
 
@@ -58,13 +60,29 @@ interval=30
 # label=♪
 separator=true
 
+
+# Currency Exchange Rates
+#
+[currency_exchange_usd]
+color="#01b1dc"
+command=~/bin/currency_exchange USD KES
+interval=60
+separator=false
+
+[currency_exchange_gbp]
+color="#11cc11"
+command=~/bin/currency_exchange GBP KES
+interval=60
+separator=true
+
+
 # Crypto Currency Prices
 #
 
 [cryptobtc]
-color="#1030ff"
-command=~/bin/crypto btc
-label=
+color="#3060ef"
+command=~/bin/crypto
+# label=
 interval=30
 separator=true
 
