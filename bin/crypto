@@ -6,9 +6,9 @@
 # Currencies should be ;-separated:
 # human-readable name;urlname;icon
 coins="Bitcoin;btc;💰
-Etherium;eth;🍸
-Basic Attention Token;bat;🦁
-LBC;lbc;📚"
+Ethereum;eth;🍸"
+# LBC;lbc;📚"
+# Basic Attention Token;bat;🦁
 
 # Directory where currency info is stored.
 dir="${XDG_DATA_HOME:-$HOME/.local/share}/crypto-prices"
@@ -20,7 +20,7 @@ getprices() { # The command to get the desired prices
 		val="$(curl -s "rate.sx/1$web")" &&
 		echo "$icon;$val;$human" > "$dir/$web"
 	done; [ -d "$dir" ] && touch "$dir"
-	pkill -RTMIN+13 "${STATUSBAR:-dwmblocks}" ;} &
+	pkill -RTMIN+13 "${STATUSBAR:-i3blocks}" ;} &
 	exit
 	}
 
@@ -28,7 +28,7 @@ printprices() { # Print/format all prices
 	for x in "$dir"/*; do
 		[ -f "$x" ] || break
 		info="$(cut -d';' -f-2 --output-delimiter=' ' "$x")"
-		printf "%s$%0.2f " "$info"
+		printf "%s $ " "$info"
 	done | sed 's/ $/\n/'
 	}
 
