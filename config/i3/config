@@ -10,7 +10,7 @@
 set $mod Mod1
 set $mod_next Mod4
 
-font pango: Hack\ Nerd\ Font\ Mono 10
+font pango:Hack Nerd Font 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -207,7 +207,7 @@ bindsym Mod1+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command SCRIPT_DIR=~/bin/ i3blocks
         position top
 }
 

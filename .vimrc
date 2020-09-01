@@ -267,9 +267,9 @@ endif
 
 " autoreloading of the vimrc file.
 autocmd! bufwritepost .vimrc source %
-autocmd! bufwritepre hosts setl filetype=dosini
-autocmd! bufread hosts setl filetype=dosini
-autocmd! bufread config setl filetype=dosini
+autocmd! bufwritepre hosts setl filetype=cfg
+autocmd! bufread hosts setl filetype=cfg
+autocmd! bufread config setl filetype=cfg
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
 set autoindent

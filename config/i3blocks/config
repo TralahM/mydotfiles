@@ -1,0 +1,165 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+# Change $SCRIPT_DIR to the location of your scripts!
+command=$SCRIPT_DIR/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+
+# Weather stats
+#
+
+[weather]
+color="#10efff"
+# label=W
+interval=60
+command=~/bin/weather
+separator=false
+
+
+# Moonphases
+#
+
+[moonphase]
+color="#1fffff"
+interval=14400
+command=~/bin/moonphase
+separator=true
+
+
+# Pacman Upgrades
+#
+
+[pacpackages]
+color="#ffffff"
+# label=:
+command=~/bin/pacpackages
+interval=600
+
+
+# Volume indicator \uf028
+
+[volume]
+label= :
+color=#ef5c10
+interval=once
+signal=10
+STEP=5%
+separator=true
+
+# Memory usage
+#
+# The type defaults to "mem" if the instance is not specified.
+[memory]
+label=:
+color=#00aeff
+interval=30
+separator=true
+
+# [memory]
+# label=SWAP
+# instance=swap
+# separator=false
+# interval=30
+
+# Disk usage
+#
+# The directory defaults to $HOME if the instance is not specified.
+# The script may be called with a optional argument to set the alert
+# (defaults to 10 for 10%).
+[disk]
+color=#bb2cf0
+label=
+interval=30
+separator=true
+
+# Network interface monitoring
+#
+# If the instance is not specified, use the interface used for default route.
+# The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
+[iface]
+IFACE=wlp2s0
+color=#00FF00
+interval=10
+separator=false
+
+[wifi]
+INTERFACE=wlp2s0
+color=#0ee0ee
+label= _
+interval=10
+command=curl icanhazip.com
+separator=true
+
+
+# CPU usage \uf0e4
+#
+
+
+[cpu]
+color="#ffffff"
+label=  :
+interval=10
+command=~/bin/cpu_usage
+separator=true
+
+# Battery
+#
+
+[battery]
+color="#2f2f2f"
+interval=30
+# label=BAT
+command=~/bin/battery
+separator=true
+
+# Date Time
+#
+[time]
+command=date '+%a %h %d %T'
+interval=5
+separator=true
+
+# Music Player Daemon
+#
+
+[mpd_song]
+color="#ff0fff"
+command=~/bin/mpd_song
+interval=30
+# label=♪
+separator=true
+
+# Crypto Currency Prices
+#
+
+# [cryptobtc]
+# color="#1030ff"
+# command=~/bin/crypto btc
+# label=
+# interval=30
+# separator=true
+
+# vim: ft=cfg
