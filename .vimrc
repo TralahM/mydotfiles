@@ -81,7 +81,6 @@ Plug 'ehamberg/vim-cute-python',{'for':'python','branch':'moresymbols'} "pretty 
 Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
 Plug 'enricobacis/vim-airline-clock'
 Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' } "Scala ide features for vim
-Plug 'euclio/vim-markdown-composer',{'for':'markdown', 'do': function('BuildComposer') }
 Plug 'garbas/vim-snipmate' "snipmate snippets
 Plug 'gcorne/vim-sass-lint',{'for':['css', 'sass', 'scss', 'less']}
 Plug 'glts/vim-magnum' "required by radical
@@ -133,10 +132,16 @@ Plug 'ncm2/ncm2-tmux'
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
 Plug 'ncm2/ncm2-vim-lsp'
+Plug 'filipekiss/ncm2-look.vim'
+Plug 'fgrsnau/ncm-otherbuf'
+Plug 'fgrsnau/ncm2-aspell'
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
 Plug 'neomake/neomake'
+Plug 'dkarter/bullets.vim' " Markdown  Bullets list
+Plug 'sheerun/vim-polyglot'                             " many languages support
+Plug 'tpope/vim-liquid'                                 " liquid language support
 Plug 'pbrisbin/vim-mkdir'
 Plug 'pearofducks/ansible-vim'
-Plug 'plasticboy/vim-markdown',{'for':'markdown'}
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'psf/black', { 'branch': 'stable' }
@@ -222,6 +227,7 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 " Basic Internal Configurations
 set undofile
 set hidden
+set mouse=a
 set writebackup
 set cmdheight=2
 set updatetime=300
@@ -242,7 +248,8 @@ set breakindent  " preserve horizontal whitespace when wrapping
 set showbreak=..
 set lbr  " wrap words
 set nowrap  " i turn on wrap manually when needed
-set pumheight=5
+set pumheight=7
+set emoji
 
 set scrolloff=3 " keep three lines between the cursor and the edge of the screen
 set splitright  " i prefer splitting right and below
@@ -342,7 +349,7 @@ let g:gitgutter_max_signs=4000
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_map_keys = 0
 
-let g:python3_host_prog='/usr/bin/python'
+" let g:python3_host_prog='/usr/bin/python'
 
 if emoji#available()
     let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
@@ -375,10 +382,10 @@ set path+=**
 set wildmenu
 
 "" Better navigation through omnicomplete option list
-set completeopt=noinsert,menuone
+set completeopt=noinsert,menuone,noselect
 
-au User Ncm2PopupOpen set completeopt=noinsert,menuone
-au User Ncm2PopupClose set completeopt=menuone
+au User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
+au User Ncm2PopupClose set completeopt=menuone,menu
 
 function! OmniPopup(action)
     if pumvisible()
@@ -516,12 +523,20 @@ let g:NERDTreeShowLineNumbers=1
 let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeMinimalUI=1
+let NERDTreeShowHidden=1
+let g:NERDTreeIgnore = [
+\ '\.vim$',
+\ '\~$',
+\ '.git',
+\ '_site',
+\]
 autocmd! Filetype nerdtree setlocal relativenumber number
 autocmd! WinEnter __Tagbar__* setlocal relativenumber number
 autocmd! WinLeave __Tagbar__* setlocal relativenumber number
 autocmd! WinNew __Tagbar__* setlocal relativenumber number
 autocmd! StdinReadPre * let s:std_in=1
 autocmd! VimEnter * if argc()==0 && !exists("s:std_in") | NERDTree | endif
+let g:tagbar_width=27
 
 
 "
@@ -634,10 +649,10 @@ let g:over_command_line_prompt=">"
 
 
 " " Ultisnips Config
-let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpForwardTrigger='<C-j>'
-let g:UltiSnipsJumpBackwardTrigger='<C-k>'
-let g:UltiSnipsRemoveSelectModeMappings = 0
+let g:UltiSnipsExpandTrigger		= "<C-space>"
+let g:UltiSnipsJumpForwardTrigger='<C-n>'
+let g:UltiSnipsJumpBackwardTrigger='<C-p>'
+" let g:UltiSnipsRemoveSelectModeMappings = 0
 
 
 command! MakeTags !ctags -R -a *.*
@@ -664,8 +679,13 @@ let g:livepreview_cursorhold_recompile = 1
 let g:neosnippet#enable_snipmate_compatibility = 1
 " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
 imap <c-c> <ESC>
-imap <silent> <expr> <Tab> pumvisible() ?  ncm2_ultisnips#expand_or("\<Tab>", 'n')
-imap <silent> <expr> <CR> pumvisible() ? ncm2_neosnippet#expand_or("\<CR>", 'n')
+
+" Do not hijack the Enter key
+inoremap <expr><Tab> (pumvisible() ? (empty(v:completed_item) ? "\<C-n>":"\<C-y>"):"\<Tab>")
+inoremap <expr><CR> (pumvisible() ? (empty(v:completed_item) ? "\<CR>\<CR>":"\<C-y>"):"\<CR>")
+let ncm2#popup_delay=5
+let ncm2#complete_length=[[1, 1]]
+let g:ncm2#matcher='substrfuzzy'
 
 au User Ncm2Plugin call ncm2#register_source({
             \ 'name' : 'css',
@@ -709,6 +729,10 @@ let g:user_emmet_settings={
             \'haml':{'extends':'html'},
             \'htmldjango':{'extends':'html'},
                 \}
+autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType htmldjango inoremap {{ {{  }}<left><left><left>
+autocmd FileType htmldjango inoremap {% {%  %}<left><left><left>
+autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
 
 " RAINBOW PARENTHESES
 let g:rainbow_active=1
@@ -717,6 +741,11 @@ let g:rainbow_active=1
 " FUZZYFIILE CONF
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'escape': 'quit',
+  \ 'ctrl-v': 'vsplit' }
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 " [Tags] Command to generate tags file
@@ -862,7 +891,6 @@ map <leader>n :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 map <leader>w :w!<CR>
 map <s-space> /\v
-map <c-space> ?
 map <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 map <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>w :w!<CR>
@@ -872,7 +900,6 @@ nnoremap <leader>tx <esc>:tabclose<CR>
 nnoremap <leader>f :MRU<CR>
 nnoremap <leader>e :NERDTreeFind<CR>
 nnoremap <s-space> /\v
-nnoremap <c-space> ?
 nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<CR>/
 nnoremap <leader>cwd :cd %:p:h<CR>:pwd<CR>
 nnoremap ; :
@@ -900,7 +927,6 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 nnoremap <leader><tab> :tabnext <CR>
 nnoremap <leader>` :tabprevious <CR>
 
-nnoremap <C-f> :FuzzyOpen <CR>
 
 
 if has('nvim')
@@ -989,3 +1015,37 @@ au Filetype markdown,vimwiki,pandoc  set textwidth=80
 nnoremap <leader>\l :Line2Link <CR>
 nnoremap <leader>wx :GenWikiIndex <CR>
 nnoremap <leader>ix :GenImgIndex <CR>
+
+function! Fzf_dev()
+  function! s:files()
+    let files = split(system($FZF_DEFAULT_COMMAND), '\n')
+    return s:prepend_icon(files)
+  endfunction
+
+  function! s:prepend_icon(candidates)
+    let result = []
+    for candidate in a:candidates
+      let filename = fnamemodify(candidate, ':p:t')
+      let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
+      call add(result, printf("%s %s", icon, candidate))
+    endfor
+
+    return result
+  endfunction
+
+  function! s:edit_file(item)
+    let parts = split(a:item, ' ')
+    let file_path = get(parts, 1, '')
+    execute 'silent e' file_path
+  endfunction
+
+  call fzf#run({
+        \ 'source': <sid>files(),
+        \ 'sink':   function('s:edit_file'),
+        \ 'options': '-m -x +s',
+        \ 'down':    '40%' })
+endfunction
+
+
+command! FilesWithIcon :call Fzf_dev()
+nnoremap <C-f> :FilesWithIcon <CR>

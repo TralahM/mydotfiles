@@ -12,6 +12,7 @@ else
     export GIT_EDITOR='vim'
 fi
 
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 export ZSH=~/.zsh
 export LANG="en_US.UTF-8"
