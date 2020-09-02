@@ -519,7 +519,7 @@ state_line_color = default
 #
 state_flags_color = default:b
 #
-main_window_color = transparent_yellow
+main_window_color = default
 #
 color1 = white
 #
@@ -535,7 +535,7 @@ statusbar_time_color = default:b
 #
 player_state_color = default:b
 #
-alternative_ui_separator_color = brown:b
+alternative_ui_separator_color = yellow:b
 #
 window_border_color = green
 #
