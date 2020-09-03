@@ -57,6 +57,8 @@ call plug#begin('~/.vim/plugged')
 " Plug 'poppyschmo/deoplete-latex'
 " Plug 'sebastianmarkow/deoplete-rust',{'for':'rust'}
 " Plug 'zchee/deoplete-clang'
+Plug 'RRethy/vim-illuminate'
+Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja Filetype syntax hl
 Plug 'HansPinckaers/ncm2-jedi'
 Plug 'KabbAmine/zeavim.vim' " Zea Documentation Tool

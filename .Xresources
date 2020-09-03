@@ -16,7 +16,7 @@ XTerm*selectToClipboard: true
 
 *background:                      #222D31
 *foreground:                      #d8d8d8
-*fading:                          8
+*fading:                          7
 *fadeColor:                       black
 *cursorColor:                     #000000
 *pointerColorBackground:          #2B2C2B
@@ -27,7 +27,7 @@ XTerm*selectToClipboard: true
 *color8:                          #585858
 
 !! red dark/light
-*color1:                          #d31010
+*color1:                          #f31010
 *color9:                          #ff0000
 
 !! green dark/light
@@ -35,7 +35,7 @@ XTerm*selectToClipboard: true
 *color10:                         #00ff00
 
 !! yellow dark/light
-*color3:                          #ccdc11
+*color3:                          #fcfc11
 *color11:                         #dddd10
 
 !! blue dark/light
@@ -44,8 +44,8 @@ XTerm*selectToClipboard: true
 
 
 !! magenta dark/light
-*color5:                          #d313ff
-*color13:                         #c41baf
+*color5:                          #d3131f
+*color13:                         #c41b1f
 
 !! cyan dark/light
 *color6:                          #1ABBfB
@@ -61,10 +61,10 @@ Xcursor.size:                     0
 /* URxvt.font:                      xft:Source\ Code\ Pro\ for\ Powerline:style      = Regular */
 /* URxvt.bold.font:                      xft:Source\ Code\ Pro\ for\ Powerline:style = Bold */
 /* URxvt.font: xft:TerminessTTF\ Nerd\ Font\ Mono:style                              = Medium */
-URxvt.font:                              xft:Hack\ Nerd\ Font\ Mono:style =Regular:size=10
-URxvt.bold.font:                              xft:Hack\ Nerd\ Font\ Mono:style       = Bold:size=10
-URxvt*italicFont:                 xft:Hack\ Nerd\ Font\ Mono:style = Italic:size=10
-URxvt*boldItalicFont:             xft:Hack\ Nerd\ Font\ Mono:style= Bold Italic:size=10
+URxvt.font:                       xft:Hack\ Nerd\ Font\ Mono:style=Regular:size=10
+URxvt.bold.font:                  xft:Hack\ Nerd\ Font\ Mono:style=Bold:size=10
+URxvt*italicFont:                 xft:Hack\ Nerd\ Font\ Mono:style=Italic:size=10
+URxvt*boldItalicFont:             xft:Hack\ Nerd\ Font\ Mono:style=Bold\ Italic:size=10
 ! URxvt*boldFont:                   xft:Hack\ Nerd\ Font\ Mono:style                 = Regular
 /* URxvt.bold.font:                      xft:TerminessTTF\ Nerd\ Font\ Mono:style = Bold */
 ! alternative font settings with 'terminus':
@@ -78,7 +78,7 @@ URxvt*mouseWheelScrollPage:       true
 URxvt*cursorBlink:                true
 URxvt*background:                 black
 URxvt*foreground:                 grey
-URxvt*saveLines:                  5000
+URxvt*saveLines:                  50000
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:            true
@@ -99,7 +99,6 @@ URxvt.keysym.Control-Up:          \033[1;5A
 URxvt.keysym.Shift-Control-Up:    \033[1;6A
 URxvt.keysym.Control-Down:        \033[1;5B
 URxvt.keysym.Shift-Control-Down:  \033[1;6B
-! Rxvt.perl-ext-common:             ...,clipboard
 ! URxvt.keysym.M-C-c:               perl:clipboard:copy
 ! URxvt.keysym.M-v:                 perl:clipboard:paste
 ! URxvt.keysym.M-C-v:               perl:clipboard:paste_escaped
@@ -158,7 +157,7 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 ! URxvt*borderLess:                 true
 ! URxvt*lineSpace:                  number
 ! URxvt*letterSpace:                number
-! URxvt*skipBuiltinGlyphs:          boolean
+URxvt*skipBuiltinGlyphs:          false
 ! URxvt*pointerBlankDelay:          number
 ! URxvt*backspacekey:               string
 ! URxvt*deletekey:                  string
@@ -170,11 +169,11 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 ! URxvt*secondaryScroll:            boolean
 ! URxvt*perl-lib:                   string
 ! URxvt*perl-eval:                  perl-eval
-URxvt*perl-ext-common:            default,matcher,url-select
+URxvt*perl-ext-common:            default,matcher,url-select,clipboard
 URxvt*perl-ext:                   default,matcher,url-select
 ! URxvt*perl-ext:                   string
-! URxvt*iso14755:                   boolean
-! URxvt*iso14755_52:                boolean
+URxvt*iso14755:                   true
+URxvt*iso14755_52:                true
 ! URxvt*xrm:                        string
 ! URxvt*keysym.sym:                 keysym
 ! URxvt*background.border:          boolean

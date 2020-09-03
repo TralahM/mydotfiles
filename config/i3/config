@@ -28,7 +28,7 @@ exec --no-startup-id xss-lock /usr/bin/i3lock-fancy -p
 exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
+set $refresh_i3status killall -SIGUSR1 i3blocks
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
@@ -167,7 +167,7 @@ bindsym Mod4+7 move container to workspace number $ws7
 bindsym Mod4+8 move container to workspace number $ws8
 bindsym Mod4+9 move container to workspace number $ws9
 bindsym Mod4+0 move container to workspace number $ws10
-bindsym Mod1+Tab          workspace back_and_forth
+bindsym Mod1+Tab workspace back_and_forth
 
 
 # reload the configuration file
@@ -207,7 +207,7 @@ bindsym Mod1+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command SCRIPT_DIR=~/bin/ i3blocks
+        status_command SCRIPT_DIR=~/bin i3blocks
         position top
 }
 
@@ -224,7 +224,7 @@ bar {
 # exec i3-config-wizard
 exec --no-startup-id volumeicon
 exec --no-startup-id kdeconnect-indicator
-exec --no-startup-id i3-msg 'workspace 2; exec chromium; workspace 1'
+exec --no-startup-id i3-msg 'workspace 2; exec chromium;sleep 15;'
 exec --no-startup-id i3-msg 'workspace 3; exec pcmanfm; workspace 1'
 exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 exec --no-startup-id urxvt
@@ -245,7 +245,6 @@ mode "$mode_system" {
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
