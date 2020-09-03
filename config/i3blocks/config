@@ -23,18 +23,16 @@
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
 # Change $SCRIPT_DIR to the location of your scripts!
-command=$SCRIPT_DIR/$BLOCK_NAME
+command=~/bin/$BLOCK_NAME
 separator_block_width=15
-markup=none
+markup=pango
 
 # Battery
 #
 
 [battery]
-interval=60
-command=~/bin/battery
-# markup=pango
-label=B
+interval=5
+command=battery BAT0
 separator=true
 
 # Weather stats
@@ -43,7 +41,7 @@ separator=true
 [weather]
 color="#f0efff"
 # label=W
-interval=60
+interval=18000
 command=~/bin/weather
 separator=false
 
@@ -145,13 +143,13 @@ separator=true
 # interval=10
 # separator=false
 
-# [wifi]
-# INTERFACE=wlp2s0
-# color=#0ee0ee
-# label= _
-# interval=10
-# command=curl icanhazip.com
-# separator=true
+[wifi]
+INTERFACE=wlp2s0
+color=#0ee0ee
+label= _
+interval=10
+command=curl icanhazip.com
+separator=true
 
 
 # CPU usage \uf0e4
