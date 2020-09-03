@@ -44,8 +44,8 @@ XTerm*selectToClipboard: true
 
 
 !! magenta dark/light
-*color5:                          #d3131f
-*color13:                         #c41b1f
+*color5:                          #c313ff
+*color13:                         #c313ff
 
 !! cyan dark/light
 *color6:                          #1ABBfB
