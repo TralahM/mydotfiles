@@ -1,29 +1,68 @@
 #!/usr/bin/env bash
 
-if [ -z "$1" -o -z "$2" ]; then
-  echo "Please provide first and second currency."
-  echo "e.g. $0 CAD USD [amount]"
-  exit 1
-fi
-
+coins="USD;KES
+USD;KES
+GBP;KES
+EUR;KES"
+# Directory where currency info is stored.
+dir="${XDG_DATA_HOME:-$HOME/.local/share}/currency_exchange_rates"
 Akey="1a09efb5f6fe4ec6b5f3"
-currency1=`echo -n $1 | tr '[:lower:]' '[:upper:]'`
-currency2=`echo -n $2 | tr '[:lower:]' '[:upper:]'`
-sym1=$(jq ".${currency1}.symbol" ~/bin/currencies.json)
-sym2=$(jq ".${currency2}.symbol" ~/bin/currencies.json)
 
-unit_price_f=$(curl -s "https://free.currconv.com/api/v7/convert?q=${currency1}_${currency2}&compact=ultra&apiKey=${Akey}" | jq ".${currency1}_${currency2}")
 
-unit_price=$(printf "%.2f"  $unit_price_f)
+# currency1=`echo -n $1 | tr '[:lower:]' '[:upper:]'`
+# currency2=`echo -n $2 | tr '[:lower:]' '[:upper:]'`
+# sym1=$(jq ".${currency1}.symbol" ~/bin/currencies.json)
+# sym2=$(jq ".${currency2}.symbol" ~/bin/currencies.json)
+
+getprices() { # The command to get the desired prices
+	printf "🔃 "; printprices
+	{ rm -rf "${dir:?}/*"
+	echo "$coins" | while IFS=';' read -r currency1 currency2; do
+    val="$(curl -s "https://free.currconv.com/api/v7/convert?q=${currency1}_${currency2}&compact=ultra&apiKey=${Akey}" | jq ".${currency1}_${currency2}")" &&v2=$(printf "%.2f" $val)|sed 's/\"//g' &&
+        sym1=$(jq ".${currency1}.symbol" ~/bin/currencies.json)&&
+        sym2=$(jq ".${currency2}.symbol" ~/bin/currencies.json)&&
+		echo "$sym1;$v2;$sym2" > "$dir/${currency1}_${currency2}"
+	done; [ -d "$dir" ] && touch "$dir"
+	pkill -RTMIN+13 "${STATUSBAR:-i3blocks}" ;} &
+	exit
+	}
+
+printprices() { # Print/format all prices
+	for x in "$dir"/*; do
+		[ -f "$x" ] || break
+		info="$(cut -d';' -f-3 --output-delimiter=' ' "$x")"
+		printf "%s " "$info"
+	done | sed 's/ $/\n/;s/"//g'
+	}
+
+[ "$(stat -c %x "$HOME/.local/share/currency_exchange_rates" | cut -d' ' -f1)" != "$(date '+%Y-%m-%d')" ] && { getprices || exit ; }
+
+# unit_price_f=$(curl -s "https://free.currconv.com/api/v7/convert?q=${currency1}_${currency2}&compact=ultra&apiKey=${Akey}" | jq ".${currency1}_${currency2}")
+
+# unit_price=$(printf "%.2f"  $unit_price_f)
 
 # echo  $currency1 from $currency2 is  $unit_price.
 
-echo  "$sym1 $unit_price $sym2"|sed 's/\"//g'
+# echo  "$sym1 $unit_price $sym2"|sed 's/\"//g'
 
-if [ ! -z "$3" ]; then
-  echo
-  echo -n "$3 $1 is "
-  echo "$3 * $unit_price" | bc -l | tr -d "\n"
-  echo " $2"
-fi
+# if [ ! -z "$3" ]; then
+#   echo
+#   echo -n "$3 $1 is "
+#   echo "$3 * $unit_price" | bc -l | tr -d "\n"
+#   echo " $2"
+# fi
+case $BLOCK_BUTTON in
+	1) uptime="$(date -d "$(stat -c %x "$dir")" '+%D at %T' | sed "s|$(date '+%D')|Today|")"
+		notify-send "Exact Currency Rates" "$(awk -F';' '{print 1, $1 ":\n\t" $3
+        $2}' "$dir"/*|sed 's/"//g')
+        <b>Last updated:</b> $uptime" ;;
+	2) getprices ;;
+	3) notify-send "Currency Exchange Rates Module" "\- Left click for exact prices.
+- Middle click to update.
+- Shows 🔃 if updating prices.
+- Manually add/remove currencies to list in the script." ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+getprices
+printprices
 # vim: ft=sh
