@@ -73,15 +73,9 @@ separator=true
 
 # Currency Exchange Rates
 #
-[currency_exchange_usd]
-color="#01b1dc"
-command=~/bin/currency_exchange USD KES
-interval=60
-separator=false
-
-[currency_exchange_gbp]
+[currency_exchange_rates]
 color="#11cc11"
-command=~/bin/currency_exchange GBP KES
+command=~/bin/currency_exchange
 interval=60
 separator=true
 
