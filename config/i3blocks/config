@@ -30,12 +30,11 @@ markup=none
 # Battery
 #
 
-[custom_bat]
-color="#cfffff"
+[battery]
 interval=60
 command=~/bin/battery
-markup=pango
-# label=BAT
+# markup=pango
+label=B
 separator=true
 
 # Weather stats
