@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+statsed='s/^\s\s//g;s/^\s//g;s/\s/,/g;s/,,/,/g;s/,,/,/g;s/,,/,/g;s/:,/:/g;s/IO,B/IOB/g;s/(,/(/g;s/\/,/\//g;s/,regular,/_regular_/g;s/\([0-9]\),\([0-9]\)/\1\s\2/g;s/,+/+/g;1s/,/\s/g;s/\([0-9][0-9]\):\([0-9][0-9]\):\([0-9][0-9]\)/\1;\2;\3/g;s/,,/,/g;s/Access:(/Permissions:(/g'
+statawk='BEGIN{FS=","};{for(i=1;i<=NF;++i)print $i}'
+filesed='s/^.*:\s/Description:/'
+
+stat $1|sed ${statsed}|awk 'BEGIN{FS=","};{for(i=1;i<=NF;++i)print $i}'&& file $1|sed ${filesed}
