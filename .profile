@@ -198,3 +198,4 @@ alias vzsh="$EDITOR ~/.zshrc"
 alias yt="youtube-dl"
 
 
+alias vi=vim
