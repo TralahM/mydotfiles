@@ -4,4 +4,9 @@ statsed='s/^\s\s//g;s/^\s//g;s/\s/,/g;s/,,/,/g;s/,,/,/g;s/,,/,/g;s/:,/:/g;s/IO,B
 statawk='BEGIN{FS=","};{for(i=1;i<=NF;++i)print $i}'
 filesed='s/^.*:\s/Description:/'
 
-stat $1|sed ${statsed}|awk 'BEGIN{FS=","};{for(i=1;i<=NF;++i)print $i}'&& file $1|sed ${filesed}
+raw_info(){
+    stat $1|sed ${statsed}|awk 'BEGIN{FS=","};{for(i=1;i<=NF;++i)print $i}'&&
+        file $1|sed ${filesed}
+}
+
+raw_info $1|awk 'BEGIN{FS=":";print "{"}{printf "\"%s\":\"%s\",\n",$1,$2};END{print "}"}'|sed "s/\(^\"Description.*\).*,/\1/g"
