@@ -1,0 +1,69 @@
+#!/usr/bin/env python
+from argparse import ArgumentParser
+from random import choice
+
+letters = {
+    " ": [" "],
+    "a": ["\ufb9c", "\uf031"],
+    "b": ["\uf49d", "\uf763", "\ufd11"],
+    "c": ["\ufb70"],
+    "d": [
+        "\uf906",
+        "\uf886",
+        "\uf7bb",
+        "\uf6d1",
+        "\uf6d2",
+    ],
+    "e": ["\uf6e8", "\uf2d7", "\uf702"],
+    "f": ["\ufcb7", "\uf09a", "\uf70b", "\uf78d"],
+    "g": ["\uf7b7"],
+    "h": ["\uf1dc", "\ufd27", "\ufc13"],
+    "i": [
+        "\uf129",
+        "\ufb4d",
+        "\uf776",
+    ],
+    "j": ["\ufedd"],
+    "k": ["\ufa05"],
+    "l": ["\ufe84", "\ufe8e"],
+    "m": ["\uf858", "\uf859", "\uf136"],
+    "n": ["\ufc44"],
+    "o": ["\ufc18", "\uf8cd"],
+    "p": ["\uf77c", "\uf8da", "\uf8e2"],
+    "q": ["\uf2c4", "\uf935"],
+    "r": ["\uf946", "\uf25d"],
+    "s": [
+        "\uf28a",
+    ],
+    "t": ["\ufb68", "\uf035", "\uf173"],
+    "u": ["\uf0cd", "\uf076", "\uf786"],
+    "v": [
+        "\ufd42",
+        "\ufa77",
+        "\uf1ca",
+    ],
+    "w": ["\uf266"],
+    "x": ["\ufcdb", "\uf00d", "\ufaac"],
+    "y": ["\ufcb8", "\ufcba", "\uf19e"],
+    "z": ["\uf1bd", "\uf6c6"],
+}
+
+
+def mojify(word):
+    ks = list(word.lower())
+    nw = []
+    for k in ks:
+        nw.append(choice(letters[k]))
+
+    return "".join(nw)
+
+
+def main():
+    parser = ArgumentParser()
+    parser.add_argument("word", action="store", type=str)
+    args = parser.parse_args()
+    print(mojify(args.word))
+
+
+if __name__ == "__main__":
+    main()
