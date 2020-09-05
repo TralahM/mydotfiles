@@ -5,8 +5,8 @@
 
 # Currencies should be ;-separated:
 # human-readable name;urlname;icon
-coins="Bitcoin;btc;₿
-Ethereum;eth;Ξ"
+coins="Bitcoin;btc;
+Ethereum;eth;ﲹ"
 # LBC;lbc;📚"
 # Basic Attention Token;bat;🦁
 
@@ -40,7 +40,7 @@ printprices() { # Print/format all prices
 
 case $BLOCK_BUTTON in
 	1) uptime="$(date -d "$(stat -c %x "$dir")" '+%D at %T' | sed "s|$(date '+%D')|Today|")"
-		notify-send "Exact prices in USD" "$(awk -F';' '{print $1, $3 ":\n\t$" $2}' "$dir"/*)
+		notify-send "Exact prices in USD" "$(awk -F';' '{print $1, $3 ":\n\t" $2}' "$dir"/*)
 <b>Last updated:</b>
 	$uptime" ;;
 	2) getprices ;;

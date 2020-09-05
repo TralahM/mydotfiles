@@ -1,26 +1,26 @@
 {
     "USD": {
-        "symbol": "$",
+        "symbol": "\uf6b2",
         "name": "US Dollar",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "USD",
         "name_plural": "US dollars"
     },
     "CAD": {
-        "symbol": "CA$",
+        "symbol": "CA\uf6b2",
         "name": "Canadian Dollar",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "CAD",
         "name_plural": "Canadian dollars"
     },
     "EUR": {
-        "symbol": "€",
+        "symbol": "\u20ac",
         "name": "Euro",
-        "symbol_native": "€",
+        "symbol_native": "\u20ac",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "EUR",
@@ -29,7 +29,7 @@
     "AED": {
         "symbol": "AED",
         "name": "United Arab Emirates Dirham",
-        "symbol_native": "د.إ.‏",
+        "symbol_native": "\u062f.\u0625.\u200f",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "AED",
@@ -38,7 +38,7 @@
     "AFN": {
         "symbol": "Af",
         "name": "Afghan Afghani",
-        "symbol_native": "؋",
+        "symbol_native": "\u060b",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "AFN",
@@ -51,30 +51,30 @@
         "decimal_digits": 0,
         "rounding": 0,
         "code": "ALL",
-        "name_plural": "Albanian lekë"
+        "name_plural": "Albanian lek\u00eb"
     },
     "AMD": {
         "symbol": "AMD",
         "name": "Armenian Dram",
-        "symbol_native": "դր.",
+        "symbol_native": "\u0564\u0580.",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "AMD",
         "name_plural": "Armenian drams"
     },
     "ARS": {
-        "symbol": "AR$",
+        "symbol": "AR\uf6b2",
         "name": "Argentine Peso",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "ARS",
         "name_plural": "Argentine pesos"
     },
     "AUD": {
-        "symbol": "AU$",
+        "symbol": "AU\uf6b2",
         "name": "Australian Dollar",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "AUD",
@@ -83,7 +83,7 @@
     "AZN": {
         "symbol": "man.",
         "name": "Azerbaijani Manat",
-        "symbol_native": "ман.",
+        "symbol_native": "\u043c\u0430\u043d.",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "AZN",
@@ -101,7 +101,7 @@
     "BDT": {
         "symbol": "Tk",
         "name": "Bangladeshi Taka",
-        "symbol_native": "৳",
+        "symbol_native": "\u09f3",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "BDT",
@@ -110,7 +110,7 @@
     "BGN": {
         "symbol": "BGN",
         "name": "Bulgarian Lev",
-        "symbol_native": "лв.",
+        "symbol_native": "\u043b\u0432.",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "BGN",
@@ -119,7 +119,7 @@
     "BHD": {
         "symbol": "BD",
         "name": "Bahraini Dinar",
-        "symbol_native": "د.ب.‏",
+        "symbol_native": "\u062f.\u0628.\u200f",
         "decimal_digits": 3,
         "rounding": 0,
         "code": "BHD",
@@ -135,9 +135,9 @@
         "name_plural": "Burundian francs"
     },
     "BND": {
-        "symbol": "BN$",
+        "symbol": "BN\uf6b2",
         "name": "Brunei Dollar",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "BND",
@@ -153,9 +153,9 @@
         "name_plural": "Bolivian bolivianos"
     },
     "BRL": {
-        "symbol": "R$",
+        "symbol": "R\uf6b2",
         "name": "Brazilian Real",
-        "symbol_native": "R$",
+        "symbol_native": "R\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "BRL",
@@ -180,9 +180,9 @@
         "name_plural": "Belarusian rubles"
     },
     "BZD": {
-        "symbol": "BZ$",
+        "symbol": "BZ\uf6b2",
         "name": "Belize Dollar",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "BZD",
@@ -207,54 +207,54 @@
         "name_plural": "Swiss francs"
     },
     "CLP": {
-        "symbol": "CL$",
+        "symbol": "CL\uf6b2",
         "name": "Chilean Peso",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "CLP",
         "name_plural": "Chilean pesos"
     },
     "CNY": {
-        "symbol": "CN¥",
+        "symbol": "CN\u00a5",
         "name": "Chinese Yuan",
-        "symbol_native": "CN¥",
+        "symbol_native": "CN\u00a5",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "CNY",
         "name_plural": "Chinese yuan"
     },
     "COP": {
-        "symbol": "CO$",
+        "symbol": "CO\uf6b2",
         "name": "Colombian Peso",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "COP",
         "name_plural": "Colombian pesos"
     },
     "CRC": {
-        "symbol": "₡",
-        "name": "Costa Rican Colón",
-        "symbol_native": "₡",
+        "symbol": "\u20a1",
+        "name": "Costa Rican Col\u00f3n",
+        "symbol_native": "\u20a1",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "CRC",
-        "name_plural": "Costa Rican colóns"
+        "name_plural": "Costa Rican col\u00f3ns"
     },
     "CVE": {
-        "symbol": "CV$",
+        "symbol": "CV\uf6b2",
         "name": "Cape Verdean Escudo",
-        "symbol_native": "CV$",
+        "symbol_native": "CV\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "CVE",
         "name_plural": "Cape Verdean escudos"
     },
     "CZK": {
-        "symbol": "Kč",
+        "symbol": "K\u010d",
         "name": "Czech Republic Koruna",
-        "symbol_native": "Kč",
+        "symbol_native": "K\u010d",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "CZK",
@@ -279,9 +279,9 @@
         "name_plural": "Danish kroner"
     },
     "DOP": {
-        "symbol": "RD$",
+        "symbol": "RD\uf6b2",
         "name": "Dominican Peso",
-        "symbol_native": "RD$",
+        "symbol_native": "RD\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "DOP",
@@ -290,7 +290,7 @@
     "DZD": {
         "symbol": "DA",
         "name": "Algerian Dinar",
-        "symbol_native": "د.ج.‏",
+        "symbol_native": "\u062f.\u062c.\u200f",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "DZD",
@@ -308,7 +308,7 @@
     "EGP": {
         "symbol": "EGP",
         "name": "Egyptian Pound",
-        "symbol_native": "ج.م.‏",
+        "symbol_native": "\u062c.\u0645.\u200f",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "EGP",
@@ -333,9 +333,9 @@
         "name_plural": "Ethiopian birrs"
     },
     "GBP": {
-        "symbol": "£",
+        "symbol": "\uf6ad",
         "name": "British Pound Sterling",
-        "symbol_native": "£",
+        "symbol_native": "\u00a3",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "GBP",
@@ -351,9 +351,9 @@
         "name_plural": "Georgian laris"
     },
     "GHS": {
-        "symbol": "GH₵",
+        "symbol": "GH\u20b5",
         "name": "Ghanaian Cedi",
-        "symbol_native": "GH₵",
+        "symbol_native": "GH\u20b5",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "GHS",
@@ -378,9 +378,9 @@
         "name_plural": "Guatemalan quetzals"
     },
     "HKD": {
-        "symbol": "HK$",
+        "symbol": "HK\uf6b2",
         "name": "Hong Kong Dollar",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "HKD",
@@ -423,9 +423,9 @@
         "name_plural": "Indonesian rupiahs"
     },
     "ILS": {
-        "symbol": "₪",
+        "symbol": "\u20aa",
         "name": "Israeli New Sheqel",
-        "symbol_native": "₪",
+        "symbol_native": "\u20aa",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "ILS",
@@ -434,7 +434,7 @@
     "INR": {
         "symbol": "Rs",
         "name": "Indian Rupee",
-        "symbol_native": "₹",
+        "symbol_native": "\u20b9",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "INR",
@@ -443,7 +443,7 @@
     "IQD": {
         "symbol": "IQD",
         "name": "Iraqi Dinar",
-        "symbol_native": "د.ع.‏",
+        "symbol_native": "\u062f.\u0639.\u200f",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "IQD",
@@ -452,7 +452,7 @@
     "IRR": {
         "symbol": "IRR",
         "name": "Iranian Rial",
-        "symbol_native": "﷼",
+        "symbol_native": "\ufdfc",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "IRR",
@@ -460,17 +460,17 @@
     },
     "ISK": {
         "symbol": "Ikr",
-        "name": "Icelandic Króna",
+        "name": "Icelandic Kr\u00f3na",
         "symbol_native": "kr",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "ISK",
-        "name_plural": "Icelandic krónur"
+        "name_plural": "Icelandic kr\u00f3nur"
     },
     "JMD": {
-        "symbol": "J$",
+        "symbol": "J\uf6b2",
         "name": "Jamaican Dollar",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "JMD",
@@ -479,16 +479,16 @@
     "JOD": {
         "symbol": "JD",
         "name": "Jordanian Dinar",
-        "symbol_native": "د.أ.‏",
+        "symbol_native": "\u062f.\u0623.\u200f",
         "decimal_digits": 3,
         "rounding": 0,
         "code": "JOD",
         "name_plural": "Jordanian dinars"
     },
     "JPY": {
-        "symbol": "¥",
+        "symbol": "\u00a5",
         "name": "Japanese Yen",
-        "symbol_native": "￥",
+        "symbol_native": "\uffe5",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "JPY",
@@ -506,7 +506,7 @@
     "KHR": {
         "symbol": "KHR",
         "name": "Cambodian Riel",
-        "symbol_native": "៛",
+        "symbol_native": "\u17db",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "KHR",
@@ -522,9 +522,9 @@
         "name_plural": "Comorian francs"
     },
     "KRW": {
-        "symbol": "₩",
+        "symbol": "\u20a9",
         "name": "South Korean Won",
-        "symbol_native": "₩",
+        "symbol_native": "\u20a9",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "KRW",
@@ -533,7 +533,7 @@
     "KWD": {
         "symbol": "KD",
         "name": "Kuwaiti Dinar",
-        "symbol_native": "د.ك.‏",
+        "symbol_native": "\u062f.\u0643.\u200f",
         "decimal_digits": 3,
         "rounding": 0,
         "code": "KWD",
@@ -542,16 +542,16 @@
     "KZT": {
         "symbol": "KZT",
         "name": "Kazakhstani Tenge",
-        "symbol_native": "тңг.",
+        "symbol_native": "\u0442\u04a3\u0433.",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "KZT",
         "name_plural": "Kazakhstani tenges"
     },
     "LBP": {
-        "symbol": "LB£",
+        "symbol": "LB\u00a3",
         "name": "Lebanese Pound",
-        "symbol_native": "ل.ل.‏",
+        "symbol_native": "\u0644.\u0644.\u200f",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "LBP",
@@ -587,7 +587,7 @@
     "LYD": {
         "symbol": "LD",
         "name": "Libyan Dinar",
-        "symbol_native": "د.ل.‏",
+        "symbol_native": "\u062f.\u0644.\u200f",
         "decimal_digits": 3,
         "rounding": 0,
         "code": "LYD",
@@ -596,7 +596,7 @@
     "MAD": {
         "symbol": "MAD",
         "name": "Moroccan Dirham",
-        "symbol_native": "د.م.‏",
+        "symbol_native": "\u062f.\u0645.\u200f",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "MAD",
@@ -639,9 +639,9 @@
         "name_plural": "Myanma kyats"
     },
     "MOP": {
-        "symbol": "MOP$",
+        "symbol": "MOP\uf6b2",
         "name": "Macanese Pataca",
-        "symbol_native": "MOP$",
+        "symbol_native": "MOP\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "MOP",
@@ -657,9 +657,9 @@
         "name_plural": "Mauritian rupees"
     },
     "MXN": {
-        "symbol": "MX$",
+        "symbol": "MX\uf6b2",
         "name": "Mexican Peso",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "MXN",
@@ -684,31 +684,31 @@
         "name_plural": "Mozambican meticals"
     },
     "NAD": {
-        "symbol": "N$",
+        "symbol": "N\uf6b2",
         "name": "Namibian Dollar",
-        "symbol_native": "N$",
+        "symbol_native": "N\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "NAD",
         "name_plural": "Namibian dollars"
     },
     "NGN": {
-        "symbol": "₦",
+        "symbol": "\u20a6",
         "name": "Nigerian Naira",
-        "symbol_native": "₦",
+        "symbol_native": "\u20a6",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "NGN",
         "name_plural": "Nigerian nairas"
     },
     "NIO": {
-        "symbol": "C$",
-        "name": "Nicaraguan Córdoba",
-        "symbol_native": "C$",
+        "symbol": "C\uf6b2",
+        "name": "Nicaraguan C\u00f3rdoba",
+        "symbol_native": "C\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "NIO",
-        "name_plural": "Nicaraguan córdobas"
+        "name_plural": "Nicaraguan c\u00f3rdobas"
     },
     "NOK": {
         "symbol": "Nkr",
@@ -722,16 +722,16 @@
     "NPR": {
         "symbol": "NPRs",
         "name": "Nepalese Rupee",
-        "symbol_native": "नेरू",
+        "symbol_native": "\u0928\u0947\u0930\u0942",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "NPR",
         "name_plural": "Nepalese rupees"
     },
     "NZD": {
-        "symbol": "NZ$",
+        "symbol": "NZ\uf6b2",
         "name": "New Zealand Dollar",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "NZD",
@@ -740,7 +740,7 @@
     "OMR": {
         "symbol": "OMR",
         "name": "Omani Rial",
-        "symbol_native": "ر.ع.‏",
+        "symbol_native": "\u0631.\u0639.\u200f",
         "decimal_digits": 3,
         "rounding": 0,
         "code": "OMR",
@@ -765,9 +765,9 @@
         "name_plural": "Peruvian nuevos soles"
     },
     "PHP": {
-        "symbol": "₱",
+        "symbol": "\u20b1",
         "name": "Philippine Peso",
-        "symbol_native": "₱",
+        "symbol_native": "\u20b1",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "PHP",
@@ -776,25 +776,25 @@
     "PKR": {
         "symbol": "PKRs",
         "name": "Pakistani Rupee",
-        "symbol_native": "₨",
+        "symbol_native": "\u20a8",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "PKR",
         "name_plural": "Pakistani rupees"
     },
     "PLN": {
-        "symbol": "zł",
+        "symbol": "z\u0142",
         "name": "Polish Zloty",
-        "symbol_native": "zł",
+        "symbol_native": "z\u0142",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "PLN",
         "name_plural": "Polish zlotys"
     },
     "PYG": {
-        "symbol": "₲",
+        "symbol": "\u20b2",
         "name": "Paraguayan Guarani",
-        "symbol_native": "₲",
+        "symbol_native": "\u20b2",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "PYG",
@@ -803,7 +803,7 @@
     "QAR": {
         "symbol": "QR",
         "name": "Qatari Rial",
-        "symbol_native": "ر.ق.‏",
+        "symbol_native": "\u0631.\u0642.\u200f",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "QAR",
@@ -821,7 +821,7 @@
     "RSD": {
         "symbol": "din.",
         "name": "Serbian Dinar",
-        "symbol_native": "дин.",
+        "symbol_native": "\u0434\u0438\u043d.",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "RSD",
@@ -830,7 +830,7 @@
     "RUB": {
         "symbol": "RUB",
         "name": "Russian Ruble",
-        "symbol_native": "руб.",
+        "symbol_native": "\u0440\u0443\u0431.",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "RUB",
@@ -848,7 +848,7 @@
     "SAR": {
         "symbol": "SR",
         "name": "Saudi Riyal",
-        "symbol_native": "ر.س.‏",
+        "symbol_native": "\u0631.\u0633.\u200f",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "SAR",
@@ -873,9 +873,9 @@
         "name_plural": "Swedish kronor"
     },
     "SGD": {
-        "symbol": "S$",
+        "symbol": "S\uf6b2",
         "name": "Singapore Dollar",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "SGD",
@@ -891,18 +891,18 @@
         "name_plural": "Somali shillings"
     },
     "SYP": {
-        "symbol": "SY£",
+        "symbol": "SY\u00a3",
         "name": "Syrian Pound",
-        "symbol_native": "ل.س.‏",
+        "symbol_native": "\u0644.\u0633.\u200f",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "SYP",
         "name_plural": "Syrian pounds"
     },
     "THB": {
-        "symbol": "฿",
+        "symbol": "\u0e3f",
         "name": "Thai Baht",
-        "symbol_native": "฿",
+        "symbol_native": "\u0e3f",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "THB",
@@ -911,20 +911,20 @@
     "TND": {
         "symbol": "DT",
         "name": "Tunisian Dinar",
-        "symbol_native": "د.ت.‏",
+        "symbol_native": "\u062f.\u062a.\u200f",
         "decimal_digits": 3,
         "rounding": 0,
         "code": "TND",
         "name_plural": "Tunisian dinars"
     },
     "TOP": {
-        "symbol": "T$",
-        "name": "Tongan Paʻanga",
-        "symbol_native": "T$",
+        "symbol": "T\uf6b2",
+        "name": "Tongan Pa\u02bbanga",
+        "symbol_native": "T\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "TOP",
-        "name_plural": "Tongan paʻanga"
+        "name_plural": "Tongan pa\u02bbanga"
     },
     "TRY": {
         "symbol": "TL",
@@ -936,18 +936,18 @@
         "name_plural": "Turkish Lira"
     },
     "TTD": {
-        "symbol": "TT$",
+        "symbol": "TT\uf6b2",
         "name": "Trinidad and Tobago Dollar",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "TTD",
         "name_plural": "Trinidad and Tobago dollars"
     },
     "TWD": {
-        "symbol": "NT$",
+        "symbol": "NT\uf6b2",
         "name": "New Taiwan Dollar",
-        "symbol_native": "NT$",
+        "symbol_native": "NT\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "TWD",
@@ -963,9 +963,9 @@
         "name_plural": "Tanzanian shillings"
     },
     "UAH": {
-        "symbol": "₴",
+        "symbol": "\u20b4",
         "name": "Ukrainian Hryvnia",
-        "symbol_native": "₴",
+        "symbol_native": "\u20b4",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "UAH",
@@ -981,9 +981,9 @@
         "name_plural": "Ugandan shillings"
     },
     "UYU": {
-        "symbol": "$U",
+        "symbol": "\uf6b2U",
         "name": "Uruguayan Peso",
-        "symbol_native": "$",
+        "symbol_native": "\uf6b2",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "UYU",
@@ -1000,17 +1000,17 @@
     },
     "VEF": {
         "symbol": "Bs.F.",
-        "name": "Venezuelan Bolívar",
+        "name": "Venezuelan Bol\u00edvar",
         "symbol_native": "Bs.F.",
         "decimal_digits": 2,
         "rounding": 0,
         "code": "VEF",
-        "name_plural": "Venezuelan bolívars"
+        "name_plural": "Venezuelan bol\u00edvars"
     },
     "VND": {
-        "symbol": "₫",
+        "symbol": "\u20ab",
         "name": "Vietnamese Dong",
-        "symbol_native": "₫",
+        "symbol_native": "\u20ab",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "VND",
@@ -1037,7 +1037,7 @@
     "YER": {
         "symbol": "YR",
         "name": "Yemeni Rial",
-        "symbol_native": "ر.ي.‏",
+        "symbol_native": "\u0631.\u064a.\u200f",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "YER",

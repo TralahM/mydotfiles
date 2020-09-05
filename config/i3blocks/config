@@ -31,8 +31,10 @@ markup=pango
 #
 
 [battery]
+instance=BAT0
 interval=5
 command=battery BAT0
+markup=none
 separator=true
 
 # Weather stats
@@ -70,11 +72,11 @@ separator=true
 
 # Currency Exchange Rates
 #
-[currency_exchange_rates]
+[currency_exchange]
 color="#11cc11"
 command=~/bin/currency_exchange
-interval=60
-separator=true
+interval=5
+separator=false
 
 
 # Crypto Currency Prices
@@ -83,7 +85,6 @@ separator=true
 [cryptobtc]
 color="#3060ef"
 command=~/bin/crypto
-# label=
 interval=30
 separator=true
 
@@ -167,7 +168,7 @@ separator=true
 # Date Time
 #
 [time]
-command=date '+%a %h %d %T'
+command=date '+%a %h %d %H:%M'
 interval=5
 separator=true
 
