@@ -20,8 +20,8 @@ getprices() { # The command to get the desired prices
 	echo "$coins" | while IFS=';' read -r currency1 currency2; do
         val="$(curl -s "https://free.currconv.com/api/v7/convert?q=${currency1}_${currency2}&compact=ultra&apiKey=${Akey}" | jq ".${currency1}_${currency2}")" &&
             # v2=$(printf "%.2f" $val) &&
-            sym1=$(jq ".${currency1}.symbol" ~/bin/currencies.json)&&
-                sym2=$(jq ".${currency2}.symbol" ~/bin/currencies.json)&&
+            sym1=$(jq ".${currency1}.symbol" ~/data/currencies.json)&&
+                sym2=$(jq ".${currency2}.symbol" ~/data/currencies.json)&&
                 echo "$sym1;$val;$sym2"|sed 's/\"//g' > "$dir/${currency1}_${currency2}"
 	done; [ -d "$dir" ] && touch "$dir"
 	pkill -RTMIN+13 "${STATUSBAR:-i3blocks}" ;} &
