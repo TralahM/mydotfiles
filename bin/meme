@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+# Author: Navan Chauhan https://github.com/navanchauhan
+currentVersion="1.23.0"
+configuredClient=""
+fileName=""
+## This function determines which http get tool the system has installed and returns an error if there isnt one
+getConfiguredClient()
+{
+  if  command -v curl &>/dev/null; then
+    configuredClient="curl"
+  elif command -v wget &>/dev/null; then
+    configuredClient="wget"
+  elif command -v http &>/dev/null; then
+    configuredClient="httpie"
+  else
+    echo "Error: This tool requires either curl, wget, httpie or fetch to be installed." >&2
+    return 1
+  fi
+}
+
+## Allows to call the users configured client without if statements everywhere
+httpGet()
+{
+  case "$configuredClient" in
+    curl)  curl -O -H "accept: application/json" -X GET  "$@" ;;
+    wget)  wget  "$@" ;;
+    httpie) http --download GET "$@" ;;
+  esac
+}
+
+update()
+{
+    echo
+}
+
+checkInternet()
+{
+  curl -s -X GET github.com > /dev/null 2>&1 || { echo "Error: no active internet connection" >&2; return 1; } # query github with a get request
+}
+
+main(){
+    echo -n "Enter the name for the meme's background (Ex. buzz, doge, blb ): "
+    read bg
+    echo -n "Enter the text for the first line: "
+    read raw_first
+    almost_first=$(echo "$raw_first" | awk '{print tolower($0)}')
+    first=$(echo "$almost_first" | sed -e 's/ /_/g')
+    echo -n "Enter the text for the second line: "
+    read raw_second
+    almost_second=$(echo "$raw_second" | awk '{print tolower($0)}')
+    second=$(echo "$almost_second" | sed -e 's/ /_/g')
+    if [ -z "$first" ]
+    then
+    first=$(echo "_")
+    else
+      echo ""
+    fi
+    if [ -z "$second" ]
+    then
+    second=$(echo "_")
+    else
+      echo ""
+    fi
+    echo "https://api.memegen.link/images/$bg/$first/$second.png"
+    echo "\n"
+    httpGet "https://api.memegen.link/images/$bg/$first/$second.png"
+    return 0
+}
+
+usage()
+{
+  cat <<EOF
+Meme
+Description: A lightning fast meme generator
+Usage: tool [flags] or tool [flags] [arguments]
+  -u  Update Bash-Snippet Tools
+  -h  Show the help
+  -f  Choose the output filename
+  -v  Get the tool version
+Examples:
+   meme -h
+   meme -f dogeMeme
+EOF
+}
+
+
+
+while getopts "uvhf:" opt; do
+  case "$opt" in
+    \?) echo "Invalid option: -$OPTARG" >&2
+        exit 1
+        ;;
+    h)  usage
+        exit 0
+        ;;
+    v)  echo "Version $currentVersion"
+        exit 0
+        ;;
+    u)  getConfiguredClient || exit 1
+        checkInternet || exit 1
+        update
+        exit 0
+        ;;
+    f)
+        fileName=$OPTARG
+        getConfiguredClient || exit 1
+        checkInternet || exit 1
+        main || exit 1
+        exit 0
+    ;;
+    :)  echo "Option -$OPTARG requires an argument." >&2
+        exit 1
+        ;;
+  esac
+done
+
+
+
+
+# special set of first arguments that have a specific behavior across tools
+if [[ $# == "0" ]]; then
+  getConfiguredClient || exit 1
+  checkInternet || exit 1
+  if [[ $fileName == "" ]]; then
+    fileName="meme"
+  fi
+  main || exit 1
+  exit 0
+elif [[ $# == "1" ]]; then
+  if [[ $1 == "update" ]]; then
+    getConfiguredClient || exit 1
+    checkInternet || exit 1
+    update || exit 1
+    exit 0
+  elif [[ $1 == "help" ]]; then
+    usage
+    exit 0
+  fi
+fi
