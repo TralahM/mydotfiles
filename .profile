@@ -199,3 +199,4 @@ alias yt="youtube-dl"
 
 
 alias vi=vim
+export PATH=$PATH:/data/data/com.termux/files/usr/bin/texlive
