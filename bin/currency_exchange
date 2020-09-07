@@ -40,8 +40,7 @@ printprices() { # Print/format all prices
 
 case $BLOCK_BUTTON in
 	1) uptime="$(date -d "$(stat -c %x "$dir")" '+%D at %T' | sed "s|$(date '+%D')|Today|")"
-		notify-send "Exact Currency Rates" "$(awk -F';' '{print 1, $1 ":\n\t" $3
-        $2}' "$dir"/*|sed 's/"//g')
+		notify-send "Exact Currency Rates" "$(awk -F';' '{print 1, $1 ":\n\t" $2 " " $3 }' "$dir"/*|sed 's/"//g')
         <b>Last updated:</b> $uptime" ;;
 	2) getprices ;;
 	3) notify-send "Currency Exchange Rates Module" "\- Left click for exact prices.
