@@ -1,3 +1,6 @@
 [submodule "mutt-wizard"]
 	path = mutt-wizard
 	url = https://github.com/LukeSmithxyz/mutt-wizard
+[submodule "termux/termux-omz"]
+	path = termux/termux-omz
+	url = git@github.com:adi1090x/termux-omz
