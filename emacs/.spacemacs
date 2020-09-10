@@ -1,18 +1,4 @@
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#080808" "#d70000" "#67b11d" "#875f00" "#268bd2" "#af00df" "#00ffff" "#b2b2b2"])
- '(package-selected-packages
-   '(yaml-mode xterm-color web-mode web-beautify unfill typo tagedit sql-indent smeargle slim-mode shell-pop scss-mode sass-mode ranger pug-mode phpunit phpcbf php-extras php-auto-yasnippets orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download omnisharp mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup magit-gh-pulls livid-mode skewer-mode simple-httpd js2-refactor multiple-cursors js2-mode js-doc insert-shebang ibuffer-projectile htmlize hlinum helm-gtags helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck fish-mode evil-magit magit git-commit with-editor eshell-z eshell-prompt-extras esh-help emmet-mode drupal-mode php-mode dockerfile-mode docker transient tablist json-mode docker-tramp json-snatcher json-reformat disaster diff-hl csharp-mode company-web web-completion-data company-statistics company-shell company-c-headers company coffee-mode cmake-mode clang-format auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async evil-unimpaired f s dash)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(defun dotspacemacs-layers ()
 (setq-default
  ;; Base distribution to use. This is a layer contained in the directory
  ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -47,6 +33,9 @@
    helm
    auto-completion
    better-defaults
+   vim-powerline
+   evil-cleverparens
+   evil-commentary
    emacs-lisp
    git
    github
@@ -94,6 +83,7 @@
  ;; them if they become unused. `all' installs *all* packages supported by
  ;; Spacemacs and never uninstall them. (default is `used-only')
  dotspacemacs-install-packages 'used-only)
+)
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -117,7 +107,7 @@ values."
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
    ;; whenever you start Emacs. (default nil)
-   dotspacemacs-check-for-update t
+   dotspacemacs-check-for-update nil
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
    ;; to `emacs-version'.
@@ -295,3 +285,100 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil))
+
+(defun dotspacemacs/user-init ()
+    "Initialization function for user code.
+It is called immediately after `dotspacemacs/init', before layer configuration
+executes.
+ This function is mostly useful for variables that need to be set
+before packages are loaded. If you are unsure, you should try in setting them in
+`dotspacemacs/user-config' first."
+    (setq-default
+     git-enable-magit-svn-plugin t
+
+     ;; Backups
+     backup-directory-alist `((".*" . ,temporary-file-directory))
+     auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+     backup-by-copying t
+     delete-old-versions t
+     kept-new-versions 6
+     kept-old-versions 2
+     make-backup-files nil
+
+     ;; Avy
+     avy-all-windows 'all-frames
+
+     ;; Web
+     css-indent-offset 2
+     web-mode-markup-indent-offset 2
+     web-mode-css-indent-offset 2
+     web-mode-code-indent-offset 4
+
+     ;; js2-mode
+     js2-basic-offset 2
+     react-mode-offset 2
+     ) ;END setq-default
+    (setq ispell-program-name "aspell")
+
+
+    ;; Evil for proced
+    (with-eval-after-load 'proced
+      (sm|evilify-map proced-mode-map
+                      :mode proced-mode))
+    )
+
+(defun dotspacemacs/user-config ()
+    "Configuration function for user code.
+  This function is called at the very end of Spacemacs initialization after
+  layers configuration.
+  This is the place where most of your configurations should be done. Unless it is
+  explicitly specified that a variable should be set before a package is loaded,
+  you should place your code here."
+
+    (global-git-commit-mode t)
+    (global-linum-mode) ; Show line numbers by default
+    (linum-relative-global-mode) ; Show line numbers by default
+    (hlinum-activate)
+    (x-select-enable-clipboard nill) ; Stop visual selection copy to clipboard
+    (spacemacs/toggle-evil-cleverparens-on)
+    (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
+
+    (custom-theme-set-faces
+     'underwater
+     ;; Your init file should contain only one such instance.
+     ;; If there is more than one, they won't work right.
+     '(hl-line ((t (:background "#194161" :underline nil))))
+     '(tooltip ((t (:background "#194161"))))
+     '(linum ((t (:background "#1a2a33"))))
+     '(linum-highlight-face ((t (:background "#194161"))))
+     '(company-tooltip ((t (:background "#194161"))))
+     '(company-tooltip-annotation ((t (:Foreground "#4cc14b"))))
+     '(company-tooltip-annotation-selection ((t (:Foreground "#4cc14b"))))
+     '(company-tooltip-common ((t (:Foreground "#4cc14b"))))
+     '(company-tooltip-common-selection ((t (:Foreground "#4cc14b"))))
+     '(company-scrollbar-bg ((t (:background "deep sky blue"))))
+     '(company-scrollbar-fg ((t (:background "deep sky blue"))))
+     '(company-tooltip-selection ((t (:background "cadet blue"))))
+     '(company-template-field ((t (:background "deep sky blue"))))
+     )
+     ) ;END dotspacemacs/user-config
+
+
+
+;; Do not write anything past this comment. This is where Emacs will
+;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#080808" "#d70000" "#67b11d" "#875f00" "#268bd2" "#af00df" "#00ffff" "#b2b2b2"])
+ '(package-selected-packages
+   '(yaml-mode xterm-color web-mode web-beautify unfill typo tagedit sql-indent smeargle slim-mode shell-pop scss-mode sass-mode ranger pug-mode phpunit phpcbf php-extras php-auto-yasnippets orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download omnisharp mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup magit-gh-pulls livid-mode skewer-mode simple-httpd js2-refactor multiple-cursors js2-mode js-doc insert-shebang ibuffer-projectile htmlize hlinum helm-gtags helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck fish-mode evil-magit magit git-commit with-editor eshell-z eshell-prompt-extras esh-help emmet-mode drupal-mode php-mode dockerfile-mode docker transient tablist json-mode docker-tramp json-snatcher json-reformat disaster diff-hl csharp-mode company-web web-completion-data company-statistics company-shell company-c-headers company coffee-mode cmake-mode clang-format auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async evil-unimpaired f s dash)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
