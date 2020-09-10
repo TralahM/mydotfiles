@@ -4,3 +4,6 @@
 [submodule "termux/termux-omz"]
 	path = termux/termux-omz
 	url = git@github.com:adi1090x/termux-omz
+[submodule "emacs/spacemacs"]
+	path = emacs/spacemacs
+	url = https://github.com/syl20bnr/spacemacs
