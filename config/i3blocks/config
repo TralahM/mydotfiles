@@ -98,15 +98,15 @@ command=~/bin/pacpackages
 interval=600
 
 
-# Volume indicator \uf028
+# # Volume indicator \uf028
 
-[volume]
-label= :
-color=#ef5c10
-interval=once
-signal=10
-STEP=5%
-separator=true
+# [volume]
+# label= :
+# color=#ef5c10
+# interval=once
+# signal=10
+# STEP=5%
+# separator=true
 
 # Memory usage
 #

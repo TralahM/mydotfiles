@@ -58,6 +58,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'sebastianmarkow/deoplete-rust',{'for':'rust'}
 " Plug 'zchee/deoplete-clang'
 Plug 'RRethy/vim-illuminate'
+Plug 'vlime/vlime', {'rtp': 'vim/'}
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja Filetype syntax hl
 Plug 'HansPinckaers/ncm2-jedi'
@@ -637,6 +638,7 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 au FileType xml,html,xhtml,jinja,phtml,jsx,markdown,pandoc,vimwiki setlocal matchpairs+=<:>
 
+au FileType lisp setlocal matchpairs-=':'
 
 " Autopep8 conf
 let g:autopep8_disable_show_diff=1
