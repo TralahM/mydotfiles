@@ -1,89 +1,92 @@
 (defun dotspacemacs-layers ()
-(setq-default
- ;; Base distribution to use. This is a layer contained in the directory
- ;; `+distribution'. For now available distributions are `spacemacs-base'
- ;; or `spacemacs'. (default 'spacemacs)
- dotspacemacs-distribution 'spacemacs
- ;; Lazy installation of layers (i.e. layers are installed only when a file
- ;; with a supported type is opened). Possible values are `all', `unused'
- ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
- ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
- ;; lazy install any layer that support lazy installation even the layers
- ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
- ;; installation feature and you have to explicitly list a layer in the
- ;; variable `dotspacemacs-configuration-layers' to install it.
- ;; (default 'unused)
- dotspacemacs-enable-lazy-installation 'unused
- ;; If non-nil then Spacemacs will ask for confirmation before installing
- ;; a layer lazily. (default t)
- dotspacemacs-ask-for-lazy-installation t
- ;; If non-nil layers with lazy install support are lazy installed.
- ;; List of additional paths where to look for configuration layers.
- ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
- dotspacemacs-configuration-layer-path '()
- ;; List of configuration layers to load.
- dotspacemacs-configuration-layers
- '(
-   ;; ----------------------------------------------------------------
-   ;; Example of useful layers you may want to use right away.
-   ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-   ;; <M-m f e R> (Emacs style) to install them.
-   ;; ----------------------------------------------------------------
-   html
-   helm
-   auto-completion
-   better-defaults
-   vim-powerline
-   evil-cleverparens
-   evil-commentary
-   emacs-lisp
-   git
-   github
-   gtags
-   markdown
-   (c-c++ :variables c-c++-enable-clang-support t)
-   csharp
-   (ibuffer :variables ibuffer-group-buffers-by nil)
-   javascript
-   react
-   (ranger :variables
-           ranger-show-preview t
-           ranger-cleanup-on-disable t
-           ranger-show-dotfiles t
-           ranger-ignored-extensions '("mkv" "iso" "mp4")
-           ranger-max-preview-size 8)
-   php
-   sql
-   docker
-   org
-   yaml
-   (shell :variables
-          shell-default-height 30
-          shell-default-position 'bottom)
-   (spell-checking :variables spell-checking-enable-auto-dictionary t)
-   syntax-checking
-   shell-scripts
-   (version-control :variables version-control-diff-tool 'diff-hl)
-   typography
-   )
- ;; List of additional packages that will be installed without being
- ;; wrapped in a layer. If you need some configuration for these
- ;; packages, then consider creating a layer. You can also put the
- ;; configuration in `dotspacemacs/user-config'.
- dotspacemacs-additional-packages '(hlinum scss-mode)
- ;; A list of packages that cannot be updated.
- dotspacemacs-frozen-packages '()
- ;; A list of packages that will not be installed and loaded.
- dotspacemacs-excluded-packages '()
- ;; Defines the behaviour of Spacemacs when installing packages.
- ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
- ;; `used-only' installs only explicitly used packages and uninstall any
- ;; unused packages as well as their unused dependencies.
- ;; `used-but-keep-unused' installs only the used packages but won't uninstall
- ;; them if they become unused. `all' installs *all* packages supported by
- ;; Spacemacs and never uninstall them. (default is `used-only')
- dotspacemacs-install-packages 'used-only)
-)
+  (setq-default
+   ;; Base distribution to use. This is a layer contained in the directory
+   ;; `+distribution'. For now available distributions are `spacemacs-base'
+   ;; or `spacemacs'. (default 'spacemacs)
+   dotspacemacs-distribution 'spacemacs
+   ;; Lazy installation of layers (i.e. layers are installed only when a file
+   ;; with a supported type is opened). Possible values are `all', `unused'
+   ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
+   ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
+   ;; lazy install any layer that support lazy installation even the layers
+   ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
+   ;; installation feature and you have to explicitly list a layer in the
+   ;; variable `dotspacemacs-configuration-layers' to install it.
+   ;; (default 'unused)
+   dotspacemacs-enable-lazy-installation 'unused
+   ;; If non-nil then Spacemacs will ask for confirmation before installing
+   ;; a layer lazily. (default t)
+   dotspacemacs-ask-for-lazy-installation t
+   ;; If non-nil layers with lazy install support are lazy installed.
+   ;; List of additional paths where to look for configuration layers.
+   ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
+   dotspacemacs-configuration-layer-path '()
+   ;; List of configuration layers to load.
+   dotspacemacs-configuration-layers
+   '(
+     ;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+     ;; <M-m f e R> (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
+     html
+     helm
+     auto-completion
+     better-defaults
+     vim-powerline
+     evil-cleverparens
+     evil-commentary
+     emacs-lisp
+     git
+     github
+     gtags
+     pandoc
+     markdown
+     (c-c++ :variables c-c++-enable-clang-support t)
+     csharp
+     (ibuffer :variables ibuffer-group-buffers-by nil)
+     javascript
+     react
+     (ranger :variables
+             ranger-show-preview t
+             ranger-cleanup-on-disable t
+             ranger-show-dotfiles t
+             ranger-ignored-extensions '("mkv" "iso" "mp4")
+             ranger-max-preview-size 8)
+     php
+     sql
+     docker
+     python
+     bibtex
+     org
+     yaml
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     (spell-checking :variables spell-checking-enable-auto-dictionary t)
+     syntax-checking
+     shell-scripts
+     (version-control :variables version-control-diff-tool 'diff-hl)
+     typography
+     )
+   ;; List of additional packages that will be installed without being
+   ;; wrapped in a layer. If you need some configuration for these
+   ;; packages, then consider creating a layer. You can also put the
+   ;; configuration in `dotspacemacs/user-config'.
+   dotspacemacs-additional-packages '(hlinum scss-mode)
+   ;; A list of packages that cannot be updated.
+   dotspacemacs-frozen-packages '()
+   ;; A list of packages that will not be installed and loaded.
+   dotspacemacs-excluded-packages '()
+   ;; Defines the behaviour of Spacemacs when installing packages.
+   ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
+   ;; `used-only' installs only explicitly used packages and uninstall any
+   ;; unused packages as well as their unused dependencies.
+   ;; `used-but-keep-unused' installs only the used packages but won't uninstall
+   ;; them if they become unused. `all' installs *all* packages supported by
+   ;; Spacemacs and never uninstall them. (default is `used-only')
+   dotspacemacs-install-packages 'used-only)
+  )
 
 (defun dotspacemacs/init ()
   "Initialization function.
@@ -107,7 +110,7 @@ values."
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
    ;; whenever you start Emacs. (default nil)
-   dotspacemacs-check-for-update nil
+   dotspacemacs-check-for-update t
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
    ;; to `emacs-version'.
@@ -136,9 +139,9 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
-                          underwater
-                          solarized-dark
-                          spacemacs-light)
+                         underwater
+                         solarized-dark
+                         spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; The leader key
@@ -253,7 +256,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers relative
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -263,7 +266,7 @@ values."
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis nil
+   dotspacemacs-smart-closing-parenthesis t
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -284,84 +287,89 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil))
+   dotspacemacs-whitespace-cleanup t))
 
 (defun dotspacemacs/user-init ()
-    "Initialization function for user code.
+  "Initialization function for user code.
 It is called immediately after `dotspacemacs/init', before layer configuration
 executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-    (setq-default
-     git-enable-magit-svn-plugin t
+  (setq-default
+   git-enable-magit-svn-plugin t
 
-     ;; Backups
-     backup-directory-alist `((".*" . ,temporary-file-directory))
-     auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
-     backup-by-copying t
-     delete-old-versions t
-     kept-new-versions 6
-     kept-old-versions 2
-     make-backup-files nil
+   ;; Backups
+   backup-directory-alist `((".*" . ,temporary-file-directory))
+   auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+   backup-by-copying t
+   delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   make-backup-files nil
 
-     ;; Avy
-     avy-all-windows 'all-frames
+   ;; Python
+   (setq-default dotspacemacs-configuration-layers
+                   '((python :variables python-test-runner 'pytest)))
+   ;; Avy
+   avy-all-windows 'all-frames
 
-     ;; Web
-     css-indent-offset 2
-     web-mode-markup-indent-offset 2
-     web-mode-css-indent-offset 2
-     web-mode-code-indent-offset 4
+   ;; Bibtex
+   (setq org-ref-open-pdf-function
+         (lambda (fpath)
+               (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath))w)
+   ;; Web
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 4
 
-     ;; js2-mode
-     js2-basic-offset 2
-     react-mode-offset 2
-     ) ;END setq-default
-    (setq ispell-program-name "aspell")
+   ;; js2-mode
+   js2-basic-offset 2
+   react-mode-offset 2
+   ) ;END setq-default
+  (setq ispell-program-name "aspell")
 
 
-    ;; Evil for proced
-    (with-eval-after-load 'proced
-      (sm|evilify-map proced-mode-map
-                      :mode proced-mode))
-    )
+  ;; Evil for proced
+  (with-eval-after-load 'proced
+    (sm|evilify-map proced-mode-map
+                    :mode proced-mode))
+  )
 
 (defun dotspacemacs/user-config ()
-    "Configuration function for user code.
+  "Configuration function for user code.
   This function is called at the very end of Spacemacs initialization after
   layers configuration.
   This is the place where most of your configurations should be done. Unless it is
   explicitly specified that a variable should be set before a package is loaded,
   you should place your code here."
 
-    (global-git-commit-mode t)
-    (global-linum-mode) ; Show line numbers by default
-    (linum-relative-global-mode) ; Show line numbers by default
-    (hlinum-activate)
-    (x-select-enable-clipboard nill) ; Stop visual selection copy to clipboard
-    (spacemacs/toggle-evil-cleverparens-on)
-    (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
+  (global-linum-mode) ; Show line numbers by default
+  (hlinum-activate)
+  (x-select-enable-clipboard nill) ; Stop visual selection copy to clipboard
+  (spacemacs/toggle-evil-cleverparens-on)
+  (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 
-    (custom-theme-set-faces
-     'underwater
-     ;; Your init file should contain only one such instance.
-     ;; If there is more than one, they won't work right.
-     '(hl-line ((t (:background "#194161" :underline nil))))
-     '(tooltip ((t (:background "#194161"))))
-     '(linum ((t (:background "#1a2a33"))))
-     '(linum-highlight-face ((t (:background "#194161"))))
-     '(company-tooltip ((t (:background "#194161"))))
-     '(company-tooltip-annotation ((t (:Foreground "#4cc14b"))))
-     '(company-tooltip-annotation-selection ((t (:Foreground "#4cc14b"))))
-     '(company-tooltip-common ((t (:Foreground "#4cc14b"))))
-     '(company-tooltip-common-selection ((t (:Foreground "#4cc14b"))))
-     '(company-scrollbar-bg ((t (:background "deep sky blue"))))
-     '(company-scrollbar-fg ((t (:background "deep sky blue"))))
-     '(company-tooltip-selection ((t (:background "cadet blue"))))
-     '(company-template-field ((t (:background "deep sky blue"))))
-     )
-     ) ;END dotspacemacs/user-config
+  (custom-theme-set-faces
+   'underwater
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(hl-line ((t (:background "#194161" :underline nil))))
+   '(tooltip ((t (:background "#194161"))))
+   '(linum ((t (:background "#1a2a33"))))
+   '(linum-highlight-face ((t (:background "#194161"))))
+   '(company-tooltip ((t (:background "#194161"))))
+   '(company-tooltip-annotation ((t (:Foreground "#4cc14b"))))
+   '(company-tooltip-annotation-selection ((t (:Foreground "#4cc14b"))))
+   '(company-tooltip-common ((t (:Foreground "#4cc14b"))))
+   '(company-tooltip-common-selection ((t (:Foreground "#4cc14b"))))
+   '(company-scrollbar-bg ((t (:background "deep sky blue"))))
+   '(company-scrollbar-fg ((t (:background "deep sky blue"))))
+   '(company-tooltip-selection ((t (:background "cadet blue"))))
+   '(company-template-field ((t (:background "deep sky blue"))))
+   )
+  ) ;END dotspacemacs/user-config
 
 
 
