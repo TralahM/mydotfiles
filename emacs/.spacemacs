@@ -85,7 +85,7 @@
    ;; `used-but-keep-unused' installs only the used packages but won't uninstall
    ;; them if they become unused. `all' installs *all* packages supported by
    ;; Spacemacs and never uninstall them. (default is `used-only')
-   dotspacemacs-install-packages 'used-only)
+   dotspacemacs-install-packages 'all)
   )
 
 (defun dotspacemacs/init ()
@@ -256,7 +256,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers relative
+   dotspacemacs-line-numbers 'relative
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -346,9 +346,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   you should place your code here."
 
   (global-linum-mode) ; Show line numbers by default
-  (hlinum-activate)
-  (x-select-enable-clipboard nill) ; Stop visual selection copy to clipboard
-  (spacemacs/toggle-evil-cleverparens-on)
+  ;; (hlinum-activate)
+  ;; (x-select-enable-clipboard t) ; Stop visual selection copy to clipboard
+  ;; (spacemacs/toggle-evil-cleverparens-on)
   (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 
   (custom-theme-set-faces
