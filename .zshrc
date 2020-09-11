@@ -307,7 +307,7 @@ zplugin light dbkaplun/smart-cd
 zplugin light oldratlee/hacker-quotes
 zplugin light "chrissicool/zsh-256color"
 zplugin light "olets/zsh-abbr"
-zplugin light marlonrichert/zsh-autocomplete
+# zplugin light marlonrichert/zsh-autocomplete
 zplugin ice "bhilburn/powerlevel9k"
 zplugin light Tarrasch/zsh-bd
 zplugin light "arzzen/calc.plugin.zsh"
