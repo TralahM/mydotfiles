@@ -1,75 +1,77 @@
 (defun dotspacemacs-layers ()
   (setq-default
-   ;; Base distribution to use. This is a layer contained in the directory
-   ;; `+distribution'. For now available distributions are `spacemacs-base'
-   ;; or `spacemacs'. (default 'spacemacs)
-   dotspacemacs-distribution 'spacemacs
-   ;; Lazy installation of layers (i.e. layers are installed only when a file
-   ;; with a supported type is opened). Possible values are `all', `unused'
-   ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
-   ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
-   ;; lazy install any layer that support lazy installation even the layers
-   ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
-   ;; installation feature and you have to explicitly list a layer in the
-   ;; variable `dotspacemacs-configuration-layers' to install it.
-   ;; (default 'unused)
-   dotspacemacs-enable-lazy-installation 'unused
-   ;; If non-nil then Spacemacs will ask for confirmation before installing
-   ;; a layer lazily. (default t)
-   dotspacemacs-ask-for-lazy-installation t
-   ;; If non-nil layers with lazy install support are lazy installed.
-   ;; List of additional paths where to look for configuration layers.
-   ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
-   ;; List of configuration layers to load.
-   dotspacemacs-configuration-layers
-   '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     html
-     helm
-     auto-completion
-     better-defaults
-     vim-powerline
-     evil-cleverparens
-     evil-commentary
-     emacs-lisp
-     git
-     github
-     gtags
-     pandoc
-     markdown
-     (c-c++ :variables c-c++-enable-clang-support t)
-     csharp
-     (ibuffer :variables ibuffer-group-buffers-by nil)
-     javascript
-     react
-     (ranger :variables
-             ranger-show-preview t
-             ranger-cleanup-on-disable t
-             ranger-show-dotfiles t
-             ranger-ignored-extensions '("mkv" "iso" "mp4")
-             ranger-max-preview-size 8)
-     php
-     sql
-     docker
-     python
-     bibtex
-     org
-     yaml
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
-     (spell-checking :variables spell-checking-enable-auto-dictionary t)
-     syntax-checking
-     shell-scripts
-     (version-control :variables version-control-diff-tool 'diff-hl)
-     typography
-     )
-   ;; List of additional packages that will be installed without being
+    ;; Base distribution to use. This is a layer contained in the directory
+    ;; `+distribution'. For now available distributions are `spacemacs-base'
+    ;; or `spacemacs'. (default 'spacemacs)
+    dotspacemacs-distribution 'spacemacs
+    ;; Lazy installation of layers (i.e. layers are installed only when a file
+    ;; with a supported type is opened). Possible values are `all', `unused'
+    ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
+    ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
+    ;; lazy install any layer that support lazy installation even the layers
+    ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
+    ;; installation feature and you have to explicitly list a layer in the
+    ;; variable `dotspacemacs-configuration-layers' to install it.
+    ;; (default 'unused)
+    dotspacemacs-enable-lazy-installation 'nil
+    ;; If non-nil then Spacemacs will ask for confirmation before installing
+    ;; a layer lazily. (default t)
+    dotspacemacs-ask-for-lazy-installation t
+    ;; If non-nil layers with lazy install support are lazy installed.
+    ;; List of additional paths where to look for configuration layers.
+    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
+    dotspacemacs-configuration-layer-path '()
+    ;; List of configuration layers to load.
+    dotspacemacs-configuration-layers
+    '(
+      ;; ----------------------------------------------------------------
+      ;; Example of useful layers you may want to use right away.
+      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+      ;; <M-m f e R> (Emacs style) to install them.
+      ;; ----------------------------------------------------------------
+      html
+      helm
+      auto-completion
+      unicode-fonts
+      better-defaults
+      vim-powerline
+      evil-cleverparens
+      evil-commentary
+      emacs-lisp
+      common-lisp
+      git
+      github
+      gtags
+      pandoc
+      markdown
+      (c-c++ :variables c-c++-enable-clang-support t)
+      csharp
+      (ibuffer :variables ibuffer-group-buffers-by nil)
+      javascript
+      react
+      (ranger :variables
+              ranger-show-preview t
+              ranger-cleanup-on-disable t
+              ranger-show-dotfiles t
+              ranger-ignored-extensions '("mkv" "iso" "mp4")
+              ranger-max-preview-size 8)
+      php
+      sql
+      docker
+      python
+      bibtex
+      org
+      yaml
+      (shell :variables
+             shell-default-height 30
+             shell-default-position 'bottom)
+      (spell-checking :variables spell-checking-enable-auto-dictionary t)
+      syntax-checking
+      shell-scripts
+      (version-control :variables version-control-diff-tool 'diff-hl)
+      typography
+      )
+    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
@@ -106,6 +108,7 @@ values."
    dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 10
+   exec-path-from-shell-check-startup-files nil
    ;; If non nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
@@ -148,9 +151,9 @@ values."
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
    ;; (default "SPC")
-   dotspacemacs-emacs-command-key "SPC"
+   dotspacemacs-emacs-command-key "\\"
    ;; The key used for Vim Ex commands (default ":")
-   dotspacemacs-ex-command-key ":"
+   dotspacemacs-ex-command-key ";"
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
    dotspacemacs-emacs-leader-key "M-m"
@@ -174,7 +177,7 @@ values."
    dotspacemacs-retain-visual-state-on-shift t
    ;; If non-nil, J and K move lines up and down when in visual mode.
    ;; (default nil)
-   dotspacemacs-visual-line-move-text nil
+   dotspacemacs-visual-line-move-text t
    ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
    dotspacemacs-ex-substitute-global nil
@@ -201,10 +204,10 @@ values."
    dotspacemacs-helm-resize nil
    ;; if non nil, the helm header is hidden when there is only one source.
    ;; (default nil)
-   dotspacemacs-helm-no-header nil
+   dotspacemacs-helm-no-header t
    ;; define the position to display `helm', options are `bottom', `top',
    ;; `left', or `right'. (default 'bottom)
-   dotspacemacs-helm-position 'bottom
+   dotspacemacs-helm-position 'top
    ;; Controls fuzzy matching in helm. If set to `always', force fuzzy matching
    ;; in all non-asynchronous sources. If set to `source', preserve individual
    ;; source settings. Else, disable fuzzy matching in all sources.
@@ -212,7 +215,7 @@ values."
    dotspacemacs-helm-use-fuzzy 'always
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-transient-state nil
+   dotspacemacs-enable-paste-transient-state t
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
@@ -224,7 +227,7 @@ values."
    ;; If non nil a progress bar is displayed when spacemacs is loading. This
    ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil to boost the loading time. (default t)
-   dotspacemacs-loading-progress-bar t
+   dotspacemacs-loading-progress-bar nil
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
    dotspacemacs-fullscreen-at-startup nil
@@ -238,11 +241,11 @@ values."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-active-transparency 90
+   dotspacemacs-active-transparency 75
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-inactive-transparency 90
+   dotspacemacs-inactive-transparency 83
    ;; If non nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
    ;; If non nil show the color guide hint for transient state keys. (default t)
@@ -300,24 +303,22 @@ before packages are loaded. If you are unsure, you should try in setting them in
    git-enable-magit-svn-plugin t
 
    ;; Backups
-   backup-directory-alist `((".*" . ,temporary-file-directory))
-   auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+   backup-directory-alist '((".*" . ,temporary-file-directory))
+   auto-save-file-name-transforms '((".*" ,temporary-file-directory t))
    backup-by-copying t
    delete-old-versions t
-   kept-new-versions 6
-   kept-old-versions 2
+   kept-new-versions 2
+   kept-old-versions 1
    make-backup-files nil
-
+   dotspacemacs-default-font '("Hack Nerd Font Mono" :size 12)
    ;; Python
-   (setq-default dotspacemacs-configuration-layers
-                   '((python :variables python-test-runner 'pytest)))
+   dotspacemacs-configuration-layers '((python :variables python-test-runner 'pytest))
    ;; Avy
    avy-all-windows 'all-frames
 
    ;; Bibtex
-   (setq org-ref-open-pdf-function
-         (lambda (fpath)
-               (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath))w)
+   org-ref-open-pdf-function (lambda (fpath) (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath))
+
    ;; Web
    css-indent-offset 2
    web-mode-markup-indent-offset 2
@@ -328,6 +329,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
    js2-basic-offset 2
    react-mode-offset 2
    ) ;END setq-default
+
   (setq ispell-program-name "aspell")
 
 
@@ -346,13 +348,16 @@ before packages are loaded. If you are unsure, you should try in setting them in
   you should place your code here."
 
   (global-linum-mode) ; Show line numbers by default
+  (setq linum-global-relative-mode t)
+  (setq initial-buffer-choice (lambda () (get-buffer "*scratch*")))
   ;; (hlinum-activate)
-  ;; (x-select-enable-clipboard t) ; Stop visual selection copy to clipboard
+  ;; (x-select-enable-clipboard t) ; Enable visual selection copy to clipboard
+  (setq inferior-lisp-program "/usr/bin/sbcl")
   ;; (spacemacs/toggle-evil-cleverparens-on)
   (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 
   (custom-theme-set-faces
-   'underwater
+   'spacemacs-dark
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
    '(hl-line ((t (:background "#194161" :underline nil))))
@@ -383,7 +388,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
  '(ansi-color-names-vector
    ["#080808" "#d70000" "#67b11d" "#875f00" "#268bd2" "#af00df" "#00ffff" "#b2b2b2"])
  '(package-selected-packages
-   '(yaml-mode xterm-color web-mode web-beautify unfill typo tagedit sql-indent smeargle slim-mode shell-pop scss-mode sass-mode ranger pug-mode phpunit phpcbf php-extras php-auto-yasnippets orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download omnisharp mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup magit-gh-pulls livid-mode skewer-mode simple-httpd js2-refactor multiple-cursors js2-mode js-doc insert-shebang ibuffer-projectile htmlize hlinum helm-gtags helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck fish-mode evil-magit magit git-commit with-editor eshell-z eshell-prompt-extras esh-help emmet-mode drupal-mode php-mode dockerfile-mode docker transient tablist json-mode docker-tramp json-snatcher json-reformat disaster diff-hl csharp-mode company-web web-completion-data company-statistics company-shell company-c-headers company coffee-mode cmake-mode clang-format auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async evil-unimpaired f s dash)))
+   '(evil-lispy common-lisp-snippets yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic spaceline-all-the-icons xclip spacemacs-theme yaml-mode xterm-color web-mode web-beautify unfill typo tagedit sql-indent smeargle slim-mode shell-pop scss-mode sass-mode ranger pug-mode phpunit phpcbf php-extras php-auto-yasnippets orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download omnisharp mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow magit-popup magit-gh-pulls livid-mode skewer-mode simple-httpd js2-refactor multiple-cursors js2-mode js-doc insert-shebang ibuffer-projectile htmlize hlinum helm-gtags helm-gitignore helm-css-scss helm-company helm-c-yasnippet haml-mode gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gist gh marshal logito pcache ht gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck fish-mode evil-magit magit git-commit with-editor eshell-z eshell-prompt-extras esh-help emmet-mode drupal-mode php-mode dockerfile-mode docker transient tablist json-mode docker-tramp json-snatcher json-reformat disaster diff-hl csharp-mode company-web web-completion-data company-statistics company-shell company-c-headers company coffee-mode cmake-mode clang-format auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async evil-unimpaired f s dash)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
