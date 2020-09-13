@@ -62,6 +62,7 @@ Plug 'vlime/vlime', {'rtp': 'vim/'}
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja Filetype syntax hl
 Plug 'HansPinckaers/ncm2-jedi'
+Plug 'kovisoft/paredit'
 Plug 'KabbAmine/zeavim.vim' " Zea Documentation Tool
 Plug 'Konfekt/FastFold' "Required by vim-coiled-snake
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -1053,3 +1054,17 @@ endfunction
 
 command! FilesWithIcon :call Fzf_dev()
 nnoremap <C-f> :FilesWithIcon <CR>
+
+" AutoPairs Conf
+au BufRead,BufWrite *.asd,.emacs,.spacemacs,*.lisp,.sbclrc,.clisprc  set ft=lisp
+au FileType html,xml,xhtml,php,jinja  let b:AutoPairs=AutoPairsDefine({'<':'>','<!--':'--!>','{%':'%}','{%#':'#%}','<?':'?>','<?php':'?>'})
+let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+au FileType  lisp let b:AutoPairs=AutoPairsDefine({';':';',"`":"'"},["'"]) " remove ' for lisp files
+
+
+let g:vlime_window_settings = {
+        \ "repl": {
+            \ "pos": "botright",
+            \ "vertical": v:true
+        \ }
+    \ }
