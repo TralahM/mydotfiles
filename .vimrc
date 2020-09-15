@@ -1056,15 +1056,25 @@ command! FilesWithIcon :call Fzf_dev()
 nnoremap <C-f> :FilesWithIcon <CR>
 
 " AutoPairs Conf
-au BufRead,BufWrite *.asd,.emacs,.spacemacs,*.lisp,.sbclrc,.clisprc  set ft=lisp
-au FileType html,xml,xhtml,php,jinja  let b:AutoPairs=AutoPairsDefine({'<':'>','<!--':'--!>','{%':'%}','{%#':'#%}','<?':'?>','<?php':'?>'})
+au BufRead *.asd,.emacs,.spacemacs,*.lisp,.sbclrc,.clisprc  set ft=lisp
+au FileType html,xml,xhtml,php,jinja  let b:AutoPairs=AutoPairsDefine({'<':'>',"<!--":"--!>",'{%':'%}','{%#':'#%}','<?':'?>','<?php':'?>'})
 let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
-au FileType  lisp let b:AutoPairs=AutoPairsDefine({';':';',"`":"'"},["'"]) " remove ' for lisp files
+au! FileType  lisp silent! let b:AutoPairs=AutoPairsDefine({';':' '},["'","`"]) " remove ' for lisp files
 
 
 let g:vlime_window_settings = {
         \ "repl": {
             \ "pos": "botright",
             \ "vertical": v:true
-        \ }
+        \ },
+        \ "server":{
+            \ "size": winheight(".")/10
+        \}
     \ }
+
+let g:vlime_cl_use_terminal=v:true
+let g:vlime_enable_autodoc=v:true
+let g:vlime_autodoc_max_lines=15
+
+au FileType vlime_server silent! resize 5
+
