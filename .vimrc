@@ -107,9 +107,9 @@ Plug 'lervag/vimtex',{'for':['tex', 'markdown','pandoc']}
 Plug 'luochen1990/rainbow' "Per Depth html,xml hl colors
 Plug 'machakann/vim-highlightedyank' " Temporary highlight yanked txt
 Plug 'majutsushi/tagbar' "TagBar
-Plug 'mattn/emmet-vim' "abbreviation expanding html similar to emmet
+Plug 'mattn/emmet-vim', {'for':['html','xhtml','jinja','htmldjango','xml','php']} "abbreviation expanding html similar to emmet
 Plug 'mattn/vim-lsp-settings' "lsp settings
-Plug 'mattn/webapi-vim' "emmet plugin for web apis
+Plug 'mattn/webapi-vim' , {'for':['html','xhtml','jinja','htmldjango','xml','php']} "emmet plugin for web apis
 Plug 'maxbrunsfeld/vim-yankstack' "cycle between prev yanks
 Plug 'mboughaba/i3config.vim'
 Plug 'michaeljsmith/vim-indent-object' "indent text objects"
@@ -196,6 +196,7 @@ Plug 'yegappan/mru' "most recently used
 if has('nvim')
     Plug 'davidhalter/jedi-vim'
     Plug 'roxma/nvim-yarp'
+    Plug 'zxqfl/tabnine-vim'
 else
     " Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
@@ -368,7 +369,7 @@ let g:UltiSnipsEditSplit="vertical"
 colorscheme delek
 let g:solarized_contrast="high"
 highlight clear SpellBad
-highlight SpellBad cterm=underline,bold ctermbg=white ctermfg=blue
+highlight SpellBad cterm=underline,bold ctermbg=none ctermfg=yellow
 
 " Remove trailing spaces on save
 autocmd! BufWritePre * :%s/\s\+$//e
@@ -386,7 +387,7 @@ set path+=**
 set wildmenu
 
 "" Better navigation through omnicomplete option list
-set completeopt=noinsert,menuone,noselect
+set completeopt=menuone,noselect,menu
 
 au User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
 au User Ncm2PopupClose set completeopt=menuone,menu
@@ -442,7 +443,7 @@ let g:indent_guides_enable_on_vim_startup=1
 let g:jedi#force_py_version=3
 let g:jedi#auto_initialization = 1
 let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
+let g:jedi#auto_vim_configuration = 1
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_command = ""
@@ -686,7 +687,7 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 imap <c-c> <ESC>
 
 " Do not hijack the Enter key
-inoremap <expr><Tab> (pumvisible() ? (empty(v:completed_item) ? "\<C-n>":"\<C-y>"):"\<Tab>")
+" inoremap <expr><Tab> (pumvisible() ? (empty(v:completed_item) ? "\<C-n>":"\<C-y>"):"\<Tab>")
 inoremap <expr><CR> (pumvisible() ? (empty(v:completed_item) ? "\<CR>\<CR>":"\<C-y>"):"\<CR>")
 let ncm2#popup_delay=5
 let ncm2#complete_length=[[1, 1]]
@@ -735,9 +736,9 @@ let g:user_emmet_settings={
             \'htmldjango':{'extends':'html'},
                 \}
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType htmldjango inoremap {{ {{  }}<left><left><left>
-autocmd FileType htmldjango inoremap {% {%  %}<left><left><left>
-autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
+" autocmd FileType htmldjango inoremap {{ {{  }}<left><left><left>
+" autocmd FileType htmldjango inoremap {% {%  %}<left><left><left>
+" autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
 
 " RAINBOW PARENTHESES
 let g:rainbow_active=1
@@ -863,6 +864,7 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <F12> :set invpaste paste?<CR>
 "Ommit the <C-W> when moving between splits
 nnoremap <C-J> <C-W><C-J>
+nnoremap <C-j> <C-W><C-j>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
@@ -1053,11 +1055,13 @@ endfunction
 
 
 command! FilesWithIcon :call Fzf_dev()
-nnoremap <C-f> :FilesWithIcon <CR>
+nnoremap <C-f> :FuzzyOpen <CR>
 
 " AutoPairs Conf
 au BufRead *.asd,.emacs,.spacemacs,*.lisp,.sbclrc,.clisprc  set ft=lisp
-au FileType html,xml,xhtml,php,jinja  let b:AutoPairs=AutoPairsDefine({'<':'>',"<!--":"--!>",'{%':'%}','{%#':'#%}','<?':'?>','<?php':'?>'})
+au FileType html,xml,xhtml,php,jinja
+            \let b:AutoPairs=AutoPairsDefine({'<':'>',"<!--":"--!>",'{%':'%}',
+            \ '{%#':'#%}','<?':'?>','<?php':'?>'})
 let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 au! FileType  lisp silent! let b:AutoPairs=AutoPairsDefine({';':' '},["'","`"]) " remove ' for lisp files
 
@@ -1068,13 +1072,25 @@ let g:vlime_window_settings = {
             \ "vertical": v:true
         \ },
         \ "server":{
-            \ "size": winheight(".")/10
-        \}
+            \ "pos": "botright",
+            \ "size": 5,
+            \ "vertical": v:true
+        \},
+        \ "sldb": {
+            \ "pos": "topleft",
+            \ "vertical": v:true,
+            \ "size": v:null
+        \ }
     \ }
 
-let g:vlime_cl_use_terminal=v:true
+let g:vlime_cl_use_terminal=v:false
 let g:vlime_enable_autodoc=v:true
-let g:vlime_autodoc_max_lines=15
+let g:vlime_autodoc_max_lines=10
 
-au FileType vlime_server silent! resize 5
+au FileType vlime_server,vlime_notes silent! resize 5
+au BufEnter,BufLeave vlime_server silent! resize 5
+au BufEnter,BufLeave vlime_notes silent! resize 5
+au BufLeave vlime_preview silent! bd
 
+au FileType lisp silent! syntax keyword lispFunc lambda conceal cchar=λ
+au FileType lisp silent! set conceallevel=2

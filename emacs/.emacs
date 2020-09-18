@@ -3,4 +3,4 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/") t)
 (load-file "~/.emacs.d/init.el")
 ; '(inhibit-startup-screen t)
-
+(setq inferior-lisp-program "sbcl --noinform --no-linedit")
