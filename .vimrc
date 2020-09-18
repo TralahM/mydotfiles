@@ -1093,4 +1093,13 @@ au BufEnter,BufLeave vlime_notes silent! resize 5
 au BufLeave vlime_preview silent! bd
 
 au FileType lisp silent! syntax keyword lispFunc lambda conceal cchar=λ
+au FileType lisp silent! syntax keyword lispFunc sqrt conceal cchar=√
+au FileType lisp silent! syntax keyword lispFunc every conceal cchar=∀
+au FileType lisp silent! syntax keyword lispFunc some conceal cchar=∃
+au FileType lisp silent! syntax keyword lispFunc or conceal cchar=∨
+au FileType lisp silent! syntax keyword lispFunc and conceal cchar=∧
+au FileType lisp silent! syntax keyword lispFunc "/" conceal cchar=÷
+au FileType lisp silent! syntax keyword lispFunc not  conceal cchar=¬
+au FileType lisp silent! syntax keyword lispSymbol nil conceal cchar=∅
+au FileType lisp silent! syntax keyword lispSymbol pi conceal cchar=π
 au FileType lisp silent! set conceallevel=2
