@@ -357,10 +357,10 @@ let g:gitgutter_map_keys = 0
 " let g:python3_host_prog='/usr/bin/python'
 
 if emoji#available()
-    let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-    let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-    let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-    let g:gitgutter_sign_modified_removed = emoji#for('collision')
+    let g:gitgutter_sign_added = "車"
+    let g:gitgutter_sign_modified = "契"
+    let g:gitgutter_sign_removed = "襤"
+    let g:gitgutter_sign_modified_removed = "雷"
 endif
 
 let g:UltiSnipsSnippetsDir="~/.vim/snippets"
