@@ -1,0 +1,173 @@
+#!/usr/bin/env python
+"""Wikipedia tables extractor."""
+from bs4 import BeautifulSoup
+import requests
+import itertools
+import pandas as pd
+import re
+
+
+def remove_bracs_parens(string):
+    return re.sub(r"\n|(\s+){2,20}|\(.*\)|\[.*\]", "", string)
+
+
+def get_tables(wikipedia_url):
+    """Use BeautifulSoup to get a list of table elements of class wikitable."""
+    wikipedia_url = wikipedia_url
+    page = requests.get(wikipedia_url)
+    soup = BeautifulSoup(page.content, "lxml")
+    tables = soup.find_all("table", {"class": "wikitable"})
+    # table = tables[table_from_top - 1]
+    return tables
+
+
+def get_table_headers(table):
+    """Return a list of feature_names or the headers of a table."""
+    feature_names = []
+    header_row = table.find("tr")
+    for header in header_row.find_all("th"):
+        feature_name = " ".join(header.find_all(text=True))
+        feature_name.replace(r"\n", "")
+        lspaces = sum(1 for _ in itertools.takewhile(
+            str.isspace, feature_name))
+        feature_name = feature_name[lspaces:]
+        feature_name = remove_bracs_parens(feature_name)
+        feature_names.append(feature_name)
+    return feature_names
+
+
+def get_table_data(table):
+    """Get Table Data.
+
+    Returns a list of dict objects key value pairs of
+    [{feature_name[i] :feature_value[i],...},...].
+    """
+    samples = []
+    feature_names = get_table_headers(table)
+    sample_rows = table.find_all("tr")[1:]
+    for sample_row in sample_rows:
+        features = []
+        for feature_col in sample_row.find_all("td"):
+            if not feature_col.string:
+                continue
+            text = " ".join(feature_col.find_all(text=True))
+            text = text.replace("\n", "")
+            lspaces = sum(1 for _ in itertools.takewhile(str.isspace, text))
+            text = text[lspaces:]
+            features.append(text)
+        samples.append(dict(zip(feature_names, features)))
+    return samples
+
+
+def get_table_values(table):
+    """Return the Feature values of a table element."""
+    values = []
+    sample_rows = table.find_all("tr")[1:]
+    for sample_row in sample_rows:
+        features = []
+        for feature_col in sample_row.find_all("td"):
+            text = "".join(feature_col.find_all(text=True))
+            lspaces = sum(1 for _ in itertools.takewhile(str.isspace, text))
+            text = text[lspaces:]
+            features.append(text)
+        values.append(features)
+    return values
+
+
+def print_table_headers(table_headers):
+    """Print a formatted table feature_names or headers."""
+    print(
+        ",".join(table_headers).replace("\n", "").replace(
+            " ,", ",").replace("  ", " ")
+    )
+
+
+def print_table_values(table_values):
+    """Print a formatted table feature_values or rows."""
+    for row in table_values[:2]:
+        print(",".join([i if i else "" for i in row]).replace("\n", ""))
+
+
+def list_page_tables(tables):
+    """Print all headers of all tables in tables."""
+    for i, table in enumerate(tables):
+        print(f"\n{'==='*13}>Table {i+1}")
+        print_table_headers(get_table_headers(table))
+        print_table_values(get_table_values(table))
+
+
+def to_pandas_dataframe(samples):
+    """Convert table_data to pandas.DataFrame.
+
+    Return the Extracted Table Data key,value samples to a Pandas DataFrame.
+    """
+    return pd.DataFrame(samples)
+
+
+def obtain_table_data_by_number(N, tables):
+    """Return the table data samples for the N^th table in wikipedia page."""
+    return get_table_data(tables[N - 1])
+
+
+def save_to_csv(df, filename):
+    """Save the pd.DataFrame to a CSV file with the given filename."""
+    return df.to_csv(filename, index=False)
+
+
+def get_filename_from_wikipedia_url(url):
+    """Get filename from wikipedia_url."""
+    return url.split("/")[-1] + ".csv"
+
+
+if __name__ == "__main__":
+    import argparse
+    import sys
+
+    parser = argparse.ArgumentParser(
+        prog="wikitable",
+        usage=f"""{sys.argv[0]} wikipedia_url [[-c --save-to-csv] [-N --table-number Int] [-o --output-file <filename>]]""",
+    )
+    parser.add_argument(
+        "wikipedia_url", help="Full url of the wikipedia page.")
+    parser.add_argument(
+        "-c",
+        "--save-to-csv",
+        action="store_true",
+        dest="save_to_csv",
+        help="Whether to save file to a csv file.",
+    )
+    parser.add_argument(
+        "-N",
+        "--table-number",
+        action="store",
+        dest="N",
+        help="The Number of the table to save to csv, default 1, i.e the first table.",
+        default=1,
+    )
+    parser.add_argument(
+        "-o",
+        "--output-file",
+        action="store",
+        dest="outf",
+        help="The filename to save csv to.",
+        default=None,
+    )
+    args = parser.parse_args()
+    tables = get_tables(args.wikipedia_url)
+    if not len(tables):
+        print("0 Tables Found!\tExiting...")
+        sys.exit(0)
+    if args.save_to_csv:
+        N = int(args.N)
+        table = obtain_table_data_by_number(N, tables)
+        if not args.outf:
+            filename = get_filename_from_wikipedia_url(args.wikipedia_url)
+        else:
+            filename = args.outf
+        save_to_csv(to_pandas_dataframe(table), filename)
+    else:
+        filename = get_filename_from_wikipedia_url(args.wikipedia_url)
+        list_page_tables(tables)
+        print("\n")
+        print(f"Default Output Filename: {filename}")
+        sys.exit(0)

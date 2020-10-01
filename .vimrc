@@ -43,20 +43,9 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Leader tt toggles checkbox
-" Plug 'Inazuma110/deoplete-greek' "Greek letter completion
-" Plug 'Shougo/deoplete-clangx'
-" Plug 'deoplete-plugins/deoplete-asm' "assembly completions
-" Plug 'deoplete-plugins/deoplete-dictionary' "dictionary completions
-" Plug 'deoplete-plugins/deoplete-docker' "dockerfile completions
-" Plug 'deoplete-plugins/deoplete-go' "go completions
-" Plug 'deoplete-plugins/deoplete-jedi'
-" Plug 'deoplete-plugins/deoplete-tag' "tag completions
-" Plug 'deoplete-plugins/deoplete-zsh',{'for':'zsh'} "zsh completions
-" Plug 'fszymanski/deoplete-emoji' " Emoji completions
-" Plug 'lighttiger2505/deoplete-vim-lsp' "Language Server completion
-" Plug 'poppyschmo/deoplete-latex'
-" Plug 'sebastianmarkow/deoplete-rust',{'for':'rust'}
-" Plug 'zchee/deoplete-clang'
+Plug 'jpalardy/vim-slime', { 'for': 'python' }
+Plug 'pboettch/vim-cmake-syntax'
+Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 Plug 'RRethy/vim-illuminate'
 Plug 'vlime/vlime', {'rtp': 'vim/'}
 Plug 'kristijanhusak/vim-carbon-now-sh'
@@ -149,7 +138,6 @@ Plug 'pearofducks/ansible-vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'psf/black', { 'branch': 'stable' }
-Plug 'python-mode/python-mode',{'for':'python', 'branch':'develop'}
 Plug 'racer-rust/vim-racer',{'for':'rust'}
 Plug 'rstacruz/sparkup', {'rtp': '~/.vim/'}
 Plug 'rust-lang/rust.vim', {'for':'rust'}
@@ -196,7 +184,7 @@ Plug 'yegappan/mru' "most recently used
 if has('nvim')
     Plug 'davidhalter/jedi-vim'
     Plug 'roxma/nvim-yarp'
-    Plug 'zxqfl/tabnine-vim'
+    " Plug 'zxqfl/tabnine-vim'
 else
     " Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
@@ -205,7 +193,7 @@ else
     if uname=='Android'
         " Do Nothing
     else
-        Plug 'zxqfl/tabnine-vim'
+        " Plug 'zxqfl/tabnine-vim'
     endif
 endif
 if has('win32') || has('win64')
@@ -214,7 +202,7 @@ else
     if uname=='Android'
         " Do Nothing
     else
-        " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+        Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
     endif
 endif
 
@@ -253,7 +241,7 @@ set breakindent  " preserve horizontal whitespace when wrapping
 set showbreak=..
 set lbr  " wrap words
 set nowrap  " i turn on wrap manually when needed
-set pumheight=7
+set pumheight=4
 set emoji
 
 set scrolloff=3 " keep three lines between the cursor and the edge of the screen
@@ -279,7 +267,7 @@ autocmd! bufread config setl filetype=cfg
 au BufRead,BufNewFile *.sbt set filetype=scala
 set autoindent
 if has('nvim')
-    set clipboard+=unnamed
+    " set clipboard+=unnamed
     set clipboard+=unnamedplus
 else
     set clipboard+=unnamed
@@ -301,10 +289,10 @@ vnoremap ; :
 vnoremap : ;
 vnoremap <leader>s :sort <CR>
 " Remove the underline from enabling cursorline
-highlight Cursorline cterm=bold ctermbg=green ctermfg=white
-highlight ColorColumn ctermbg=black
+" highlight Cursorline cterm=bold ctermbg=green ctermfg=white
+" highlight ColorColumn ctermbg=black
 " Set line numbering to red background:
-highlight CursorLineNR cterm=bold ctermbg=green ctermfg=white
+" highlight CursorLineNR cterm=bold ctermbg=green ctermfg=white
 set ruler
 set undofile
 set ignorecase
@@ -478,29 +466,6 @@ autocmd! BufWritePost *.scala update | Neomake! sbt
 call yankstack#setup()
 let g:yankstack_yank_keys = ['y', 'd']
 
-"python-mode config
-let g:pymode_run = 1
-let g:pymode_run_bind = '<leader>r'
-let g:ropevim_enable_shortcuts = 1
-let g:pymode_rope_lookup_project=0
-let g:pymode_doc = 0
-let g:pymode_doc_bind = '<leader>i'
-let g:pymode_rope=0
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_autoimport = 0
-" let g:pymode_rope_autoimport_modules = ['os', 'datetime']
-let g:pymode_rope_organize_imports_bind = '<leader>ri'
-let g:pymode_rope_autoimport_bind = '<leader>ra'
-
-let g:pymode_rope_extended_complete=0
-let g:pymode_breakpoint=1
-let g:pymode_syntax=1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_builtin_objs=1
-let g:pymode_syntax_builtin_funcs=1
-let g:pymode_lint_checkers = ['flake8', 'pyflakes', 'pydocstyle']
-
 
 
 
@@ -578,7 +543,7 @@ let g:airline#extensions#branch#enabled = 1
 " SYNTASTIC SETTING
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_loc_list_height = 5
+let g:syntastic_loc_list_height = 3
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
@@ -629,16 +594,16 @@ let g:vimtex_complete_close_braces=1
 " "
 " " This will make the list of non-closing tags self-closing in the specified files.
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,.*.xml,*.jsx'
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-let g:closetag_filetypes = 'html,xhtml,phtml,jsx'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.xml'
+let g:closetag_filetypes = 'html,xhtml,phtml,jsx,xml'
 " This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,xml'
 let g:closetag_emptyTags_caseSensitive = 1
 " " Shortcut for closing tags, default is '>'
 let g:closetag_shortcut = '>'
 " " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
-au FileType xml,html,xhtml,jinja,phtml,jsx,markdown,pandoc,vimwiki setlocal matchpairs+=<:>
+" au FileType xml,html,xhtml,jinja,phtml,jsx,markdown,pandoc,vimwiki setlocal matchpairs+=<:>
 
 au FileType lisp setlocal matchpairs-=':'
 
@@ -687,8 +652,8 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 imap <c-c> <ESC>
 
 " Do not hijack the Enter key
-" inoremap <expr><Tab> (pumvisible() ? (empty(v:completed_item) ? "\<C-n>":"\<C-y>"):"\<Tab>")
-inoremap <expr><CR> (pumvisible() ? (empty(v:completed_item) ? "\<CR>\<CR>":"\<C-y>"):"\<CR>")
+
+
 let ncm2#popup_delay=5
 let ncm2#complete_length=[[1, 1]]
 let g:ncm2#matcher='substrfuzzy'
@@ -705,15 +670,18 @@ au User Ncm2Plugin call ncm2#register_source({
             \ })
 
 " Clang Stuff
-let g:clang_complete_auto=1
-let g:clang_complete_macros=1
+let g:clang_complete_auto=0
+let g:clang_restore_cr_imap='inoremap <buffer> <CR> <cr>'
+let g:clang_close_preview=1
+let g:clang_snippets_engine="ultisnips"
+let g:clang_complete_macros=0
 let g:clang_debug=1
 let g:clang_library_path='/usr/lib/'
 let g:clang_user_options='|| exit 0'
 let g:clang_snippets=1
 let g:clang_use_library=1
-let g:clang_auto_select=1
-let g:clang_complete_optional_args_in_snippets=1
+let g:clang_auto_select=0
+let g:clang_complete_optional_args_in_snippets=0
 
 " Rust Config
 let g:rustfmt_autosave=1
@@ -736,9 +704,7 @@ let g:user_emmet_settings={
             \'htmldjango':{'extends':'html'},
                 \}
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
-" autocmd FileType htmldjango inoremap {{ {{  }}<left><left><left>
-" autocmd FileType htmldjango inoremap {% {%  %}<left><left><left>
-" autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
+autocmd FileType html,xml,xhtml,php,mhtml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " RAINBOW PARENTHESES
 let g:rainbow_active=1
@@ -755,7 +721,7 @@ let g:fzf_action = {
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 " [Tags] Command to generate tags file
-let g:fzf_tags_command = 'ctags -R'
+let g:fzf_tags_command = 'ctags -R %'
 
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
@@ -786,7 +752,7 @@ function! Prettify()
     execute "%!python -m json.tool" | w
 endfunction
 
-autocmd! bufwritepost *.json call Prettify()
+autocmd! BufWritePost *.json call Prettify()
 
 function! s:try_insert(skel)
     execute "normal! i" . a:skel . "\<C-r>=UltiSnips#ExpandSnippet()\<CR>"
@@ -912,11 +878,6 @@ nnoremap <leader>cwd :cd %:p:h<CR>:pwd<CR>
 nnoremap ; :
 nnoremap : ;
 
-"python-mode config
-au Filetype python map <leader>d :call RopeGotoDefinition()<CR>
-au Filetype python nnoremap <leader>d :call RopeGotoDefinition()<CR>
-au Filetype python map <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
-au Filetype python nnoremap <leader>b Oimport ipdb; ipdb.set_trace() #BREAKPOINT<C-c>
 au Filetype markdown map <leader>[ :HeaderDecrease <cr>
 au Filetype markdown map <leader>] :HeaderIncrease <cr>
 au Filetype markdown map <leader>/ :TableFormat <cr>
@@ -924,6 +885,7 @@ au Filetype markdown set textwidth=80
 nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
 "Escape: exit autocompletion, go to Normal mode
 inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
+au FileType c,cpp inoremap <buffer> <silent> <CR> <CR>
 
 au FileType rust nmap gx <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
@@ -1001,16 +963,15 @@ autocmd! BufReadPost *
 
 
 function! Line2Link()
-    set operatorfunc=<SNR>135_opfunc
-    normal! g@$]
-    normal! yi[
-    normal! f]
-    normal! p
-    normal! $
-    normal! F]
-    normal! l
-    normal! g@$)
-    normal! 0
+    normal yss]
+    normal yi[
+    normal f]
+    normal p
+    normal $
+    normal F]
+    normal l
+    normal ys$)
+    normal 0
 endfunction
 
 command! Line2Link call Line2Link()
@@ -1059,9 +1020,7 @@ nnoremap <C-f> :FuzzyOpen <CR>
 
 " AutoPairs Conf
 au BufRead *.asd,.emacs,.spacemacs,*.lisp,.sbclrc,.clisprc  set ft=lisp
-au FileType html,xml,xhtml,php,jinja
-            \let b:AutoPairs=AutoPairsDefine({'<':'>',"<!--":"--!>",'{%':'%}',
-            \ '{%#':'#%}','<?':'?>','<?php':'?>'})
+au FileType html,xml,xhtml,php,jinja let b:AutoPairs=AutoPairsDefine({"<!--":"--!>",'{%':'%}','{%#':'#%}','<?':'?>','<?php':'?>'},["<"])
 let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 au! FileType  lisp silent! let b:AutoPairs=AutoPairsDefine({';':' '},["'","`"]) " remove ' for lisp files
 
@@ -1103,3 +1062,5 @@ au FileType lisp silent! syntax keyword lispFunc not  conceal cchar=¬
 au FileType lisp silent! syntax keyword lispSymbol nil conceal cchar=∅
 au FileType lisp silent! syntax keyword lispSymbol pi conceal cchar=π
 au FileType lisp silent! set conceallevel=2
+
+au FileType cmake silent syntax on
