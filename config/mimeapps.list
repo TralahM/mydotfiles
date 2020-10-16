@@ -15,10 +15,11 @@ image/png=viewnior.desktop;gpicview.desktop;
 text/plain=mousepad.desktop
 x-scheme-handler/mailto=userapp-Thunderbird.desktop
 message/rfc822=userapp-Thunderbird.desktop
-application/pdf=okular.desktop
-application/x-bittorrent=qbittorent.desktop
+application/pdf=okularApplication_pdf.desktop
+application/x-bittorrent=org.qbittorrent.qBittorrent.desktop
 x-scheme-handler/about=chromium.desktop
 x-scheme-handler/unknown=chromium.desktop
+application/octet-stream=nvim.desktop;
 
 [Added Associations]
 x-scheme-handler/ftp=userapp-Pale Moon.desktop;
@@ -39,4 +40,4 @@ application/pdf=epdfview.desktop;
 application/x-bittorrent=deluge.desktop;
 inode/directory=exo-file-manager.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop;
-application/octet-stream=vim.desktop;
+application/octet-stream=nvim.desktop;
