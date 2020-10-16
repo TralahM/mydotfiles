@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
 " Leader tt toggles checkbox
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'pboettch/vim-cmake-syntax'
+Plug 'neovimhaskell/haskell-vim'
 Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 Plug 'RRethy/vim-illuminate'
 Plug 'vlime/vlime', {'rtp': 'vim/'}
@@ -70,7 +71,7 @@ Plug 'chrisbra/csv.vim',{'for':'csv'} "csv pretty display
 Plug 'cloudhead/neovim-fuzzy'
 Plug 'derekwyatt/vim-scala',{'for': ['scala','sbt']} "scala syntax
 Plug 'dhruvasagar/vim-table-mode' "easy markdown tables
-Plug 'ehamberg/vim-cute-python',{'for':'python','branch':'moresymbols'} "pretty math symbols
+Plug 'ehamberg/vim-cute-python',{'for':'python','branch':'master'} "pretty math symbols
 Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
 Plug 'enricobacis/vim-airline-clock'
 Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' } "Scala ide features for vim
@@ -236,12 +237,13 @@ set wildignore+=*.pyc,*.so,*.swp,*.zip,*.un~,.*.*~,*.o,*.obj
 set wildignore+=*/coverage/*
 set viminfo='20,<1000
 set lazyredraw
+set redrawtime=3000
 set history=1000
 set breakindent  " preserve horizontal whitespace when wrapping
 set showbreak=..
 set lbr  " wrap words
 set nowrap  " i turn on wrap manually when needed
-set pumheight=4
+set pumheight=5
 set emoji
 
 set scrolloff=3 " keep three lines between the cursor and the edge of the screen
@@ -339,7 +341,7 @@ autocmd! BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
 syntax enable
 let g:solarized_termcolors=256
 let g:gitgutter_max_signs=4000
-let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_override_sign_column_highlight = 1
 let g:gitgutter_map_keys = 0
 
 " let g:python3_host_prog='/usr/bin/python'
@@ -1062,5 +1064,9 @@ au FileType lisp silent! syntax keyword lispFunc not  conceal cchar=¬
 au FileType lisp silent! syntax keyword lispSymbol nil conceal cchar=∅
 au FileType lisp silent! syntax keyword lispSymbol pi conceal cchar=π
 au FileType lisp silent! set conceallevel=2
+
+au FileType python silent! syntax match pyNiceStatement int conceal cchar=ℤ
+au FileType python silent! syntax match pyNiceStatement float conceal cchar=R
+au FileType python silent! syntax match pyNiceStatement complex conceal cchar=ℂ
 
 au FileType cmake silent syntax on
