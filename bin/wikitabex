@@ -48,8 +48,8 @@ def get_table_data(table):
     for sample_row in sample_rows:
         features = []
         for feature_col in sample_row.find_all("td"):
-            if not feature_col.string:
-                continue
+            # if not feature_col.string:
+            #     continue
             text = " ".join(feature_col.find_all(text=True))
             text = text.replace("\n", "")
             lspaces = sum(1 for _ in itertools.takewhile(str.isspace, text))
