@@ -55,8 +55,10 @@ bindsym Mod4+l exec /usr/bin/i3lock-fancy -p
 
 # start dmenu (a program launcher)
 # bindsym Mod4+d exec dmenu_run
-bindsym Mod4+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
-bindsym Mod4+Return exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
+# bindsym Mod4+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
+bindsym Mod4+d exec --no-startup-id "~/bin/launcher.sh"
+bindsym Mod4+Return exec --no-startup-id "~/bin/launcher.sh"
+# bindsym Mod4+Return exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
 bindsym Mod4+Tab exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show window"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -176,6 +178,10 @@ bindsym Mod1+Shift+c reload
 bindsym Mod1+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# bindsym Shift+Print exec "scrot ~/Pictures/launcher.sh"
+# bindsym Mod4+Shift+p exec --no-startup-id "scrot ~/Pictures/launcher.sh"
+# bindsym Print exec --no-startup-id xfce4-screenshooter
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
