@@ -1,3 +1,4 @@
+sudo Network-Manager &
 nm-applet &
 xfce4-power-manager &
 ~/bin/wpchanger.sh &
