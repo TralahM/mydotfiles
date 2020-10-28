@@ -24,7 +24,7 @@ alias \
 
 # These common commands are just too long! Abbreviate them.
 alias \
-	ka="killall" \
+	ka="kill -9 " \
 	g="git" \
 	trem="transmission-remote" \
 	YT="youtube-viewer" \
@@ -36,7 +36,7 @@ alias \
 	xi="sudo xbps-install" \
 	xr="sudo xbps-remove -R" \
 	xq="xbps-query" \
-	z="zathura"
+	zth="zathura"
 
 alias \
 	magit="nvim -c MagitOnly" \
@@ -49,3 +49,6 @@ alias free='free -m'                                            # Show sizes in 
 alias gitu='git add . && git commit && git push'
 
 alias xclipb="xclip -sel clipboard"
+
+alias swagger_codegen_cli="java -jar ~/javajars/swagger-codegen-cli-2xx.jar"
+alias swagger_codegen_cli3="java -jar ~/javajars/swagger-codegen-cli-3xx.jar"
