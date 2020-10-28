@@ -1,0 +1,6 @@
+sub on_osc_seq_perl {
+	my ($term, $args) = @_;
+	return () unless $args =~ s/^Cs;//;	
+	$term->option($urxvt::OPTION{'cursorUnderline'}, !!( $args =~ /^[34]$/ ));
+	()
+}
