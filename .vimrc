@@ -44,6 +44,7 @@ call plug#begin('~/.vim/plugged')
 
 " Leader tt toggles checkbox
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
+Plug 'jupyter-vim/jupyter-vim'
 Plug 'pboettch/vim-cmake-syntax'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
@@ -243,6 +244,7 @@ set breakindent  " preserve horizontal whitespace when wrapping
 set showbreak=..
 set lbr  " wrap words
 set nowrap  " i turn on wrap manually when needed
+
 set pumheight=5
 set emoji
 
@@ -334,6 +336,7 @@ autocmd! BufWritePre *.py execute ':Black'
 autocmd! BufNewFile,BufRead SConstruct set filetype=python
 autocmd! BufNewFile,BufRead *.py,*.pyx,SConstruct UltiSnipsAddFiletypes python
 autocmd! BufNewFile,BufReadPost,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=vimwiki
+autocmd! BufNewFile,BufReadPost,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set conceallevel=0
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal foldmethod=syntax
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
 autocmd! BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
@@ -573,7 +576,7 @@ let g:javascript_conceal_super = "Ω"
 let g:javascript_conceal_arrow_function = "⇒"
 let g:javascript_conceal_noarg_arrow_function = "⇒"
 let g:javascript_conceal_underscore_arrow_function = "⇒"
-set conceallevel =1
+" set conceallevel =1
 
 
 " VIMTEX CONFIG FOR TEX FILES
@@ -1022,7 +1025,7 @@ nnoremap <C-f> :FuzzyOpen <CR>
 
 " AutoPairs Conf
 au BufRead *.asd,.emacs,.spacemacs,*.lisp,.sbclrc,.clisprc  set ft=lisp
-au FileType html,xml,xhtml,php,jinja let b:AutoPairs=AutoPairsDefine({"<!--":"--!>",'{%':'%}','{%#':'#%}','<?':'?>','<?php':'?>'},["<"])
+au FileType html,xml,xhtml,php,jinja silent! let b:AutoPairs=AutoPairsDefine({"<!--":"--!>",'{%':'%}','{%#':'#%}','<?':'?>','<?php':'?>'},["<"])
 let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 au! FileType  lisp silent! let b:AutoPairs=AutoPairsDefine({';':' '},["'","`"]) " remove ' for lisp files
 
@@ -1070,3 +1073,6 @@ au FileType python silent! syntax match pyNiceStatement float conceal cchar=R
 au FileType python silent! syntax match pyNiceStatement complex conceal cchar=ℂ
 
 au FileType cmake silent syntax on
+au FileType vimwiki silent set conceallevel=0
+au FileType markdown silent set conceallevel=0
+au FileType pandoc silent set conceallevel=0
