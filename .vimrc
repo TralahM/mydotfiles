@@ -222,7 +222,7 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 " Basic Internal Configurations
 set undofile
 set hidden
-set mouse=a
+set mouse-=a
 set writebackup
 set cmdheight=2
 set updatetime=300
@@ -238,10 +238,10 @@ set wildignore+=*.pyc,*.so,*.swp,*.zip,*.un~,.*.*~,*.o,*.obj
 set wildignore+=*/coverage/*
 set viminfo='20,<1000
 set lazyredraw
-set redrawtime=3000
-set history=1000
-set breakindent  " preserve horizontal whitespace when wrapping
-set showbreak=..
+set redrawtime=5000
+set history=2000
+" set breakindent  " preserve horizontal whitespace when wrapping
+" set showbreak=..
 set lbr  " wrap words
 set nowrap  " i turn on wrap manually when needed
 
@@ -292,11 +292,6 @@ nmap ` <S-;>
 vnoremap ; :
 vnoremap : ;
 vnoremap <leader>s :sort <CR>
-" Remove the underline from enabling cursorline
-" highlight Cursorline cterm=bold ctermbg=green ctermfg=white
-" highlight ColorColumn ctermbg=black
-" Set line numbering to red background:
-" highlight CursorLineNR cterm=bold ctermbg=green ctermfg=white
 set ruler
 set undofile
 set ignorecase
@@ -304,7 +299,6 @@ set smartcase
 au FocusLost,WinLeave * :silent! wa
 au FocusGained,BufEnter * :silent! !
 set title
-set splitbelow
 
 set showmatch
 set hlsearch
@@ -336,7 +330,8 @@ autocmd! BufWritePre *.py execute ':Black'
 autocmd! BufNewFile,BufRead SConstruct set filetype=python
 autocmd! BufNewFile,BufRead *.py,*.pyx,SConstruct UltiSnipsAddFiletypes python
 autocmd! BufNewFile,BufReadPost,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=vimwiki
-autocmd! BufNewFile,BufReadPost,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set conceallevel=0
+autocmd! BufNewFile,BufRead,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set conceallevel=0
+autocmd! BufNewFile,BufRead,BufWritePre *.tex set conceallevel=0
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal foldmethod=syntax
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
 autocmd! BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
@@ -371,7 +366,6 @@ autocmd! Filetype gitcommit setlocal spell textwidth=80
 set pastetoggle=<M-v>
 " Disable folding. It's really annoying and I never remeber the commands.
 set laststatus=2
-set number relativenumber
 set smartindent
 
 
@@ -503,6 +497,8 @@ let g:NERDTreeIgnore = [
 \ '\.vim$',
 \ '\~$',
 \ '.git',
+\ '.cache',
+\ '.local',
 \ '_site',
 \]
 autocmd! Filetype nerdtree setlocal relativenumber number
@@ -586,7 +582,7 @@ let g:vimtex_view_general_viewer= 'zathura'
 let g:vimtex_view_general_options= '-reuse-instance -forward-search @tex @line @pdf'
 let g:vimtex_view_general_options= '-reuse-instance'
 let g:matchup_matchparens_deferred=1
-" let g:matchup_override_vimtex = 1
+let g:matchup_override_vimtex = 1
 let g:vimtex_fold_enabled =0
 let g:vimtex_enabled=1
 let g:vimtex_complete_enabled=1
@@ -598,9 +594,9 @@ let g:vimtex_complete_close_braces=1
 " " These are the file extensions where this plugin is enabled.
 " "
 " " This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,.*.xml,*.jsx'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,.*.xml,*.jsx,*.md,*.markdown'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.xml'
-let g:closetag_filetypes = 'html,xhtml,phtml,jsx,xml'
+let g:closetag_filetypes = 'html,xhtml,phtml,jsx,xml,markdown,vimwiki'
 " This will make the list of non-closing tags self-closing in the specified files.
 let g:closetag_xhtml_filetypes = 'xhtml,jsx,xml'
 let g:closetag_emptyTags_caseSensitive = 1
@@ -632,6 +628,8 @@ let g:UltiSnipsJumpBackwardTrigger='<C-p>'
 
 
 command! MakeTags !ctags -R -a *.*
+command! MakePyScope !find . -type f -name "*.py" |cscope -b -q -i - <CR>
+command! MakeCScope !cscope -b -d <CR>
 " autocmd! bufwritepost *.c *.cpp *.hpp *.h *.rs *.py  MakeTags
 
 
