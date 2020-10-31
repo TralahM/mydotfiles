@@ -12,18 +12,18 @@ setopt autocd                                                   # if only direct
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
 zstyle ':completion:*' rehash true                              # automatically find new executables in path
+zstyle ':completion:*' menu select
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
-export SAVEHIST=5000
+export SAVEHIST=50000
 export WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
 
 ## Keybindings section
-bindkey -e
 bindkey '^[[7~' beginning-of-line                               # Home key
 bindkey '^[[H' beginning-of-line                                # Home key
 if [[ "${terminfo[khome]}" != "" ]]; then
@@ -38,16 +38,6 @@ bindkey '^[[2~' overwrite-mode                                  # Insert key
 bindkey '^[[3~' delete-char                                     # Delete key
 bindkey '^[[C'  forward-char                                    # Right key
 bindkey '^[[D'  backward-char                                   # Left key
-bindkey '^[[5~' history-beginning-search-backward               # Page up key
-bindkey '^[[6~' history-beginning-search-forward                # Page down key
-
-# Navigate words with ctrl+arrow keys
-bindkey '^[Oc' forward-word                                     #
-bindkey '^[Od' backward-word                                    #
-bindkey '^[[1;5D' backward-word                                 #
-bindkey '^[[1;5C' forward-word                                  #
-bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
-bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
 if [[ -f $HOME/aliasrc ]]; then
     source $HOME/aliasrc
@@ -61,16 +51,6 @@ colors
 # enable substitution for prompt
 setopt prompt_subst
 
-# Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
- #PROMPT="%(!.%{$fg[red]%}[%n@%m %1~]%{$reset_color%}# .%{$fg[green]%}[%n@%m %1~]%{$reset_color%}$ "
-# Maia prompt
-PROMPT="%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b " # Print some system information when the shell is first started
-# Print a greeting message when shell is started
-echo $USER@$HOST  $(uname -srm) $(lsb_release -rcs)
-## Prompt on right side:
-#  - shows status of git when in git repository (code adapted from https://techanic.net/2012/12/30/my_git_prompt_for_zsh.html)
-#  - shows exit status of previous command (if previous command finished with an error)
-#  - is invisible, if neither is the case
 
 # Modify the colors and symbols in these variables as desired.
 GIT_PROMPT_SYMBOL="%{$fg[blue]%}±"                              # plus/minus     - clean repo
@@ -83,52 +63,6 @@ GIT_PROMPT_UNTRACKED="%{$fg_bold[red]%}●%{$reset_color%}"       # red circle  
 GIT_PROMPT_MODIFIED="%{$fg_bold[yellow]%}●%{$reset_color%}"     # yellow circle  - tracked files modified
 GIT_PROMPT_STAGED="%{$fg_bold[green]%}●%{$reset_color%}"        # green circle   - staged changes present = ready for "git push"
 
-parse_git_branch() {
-  # Show Git branch/tag, or name-rev if on detached head
-  ( git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD ) 2> /dev/null
-}
-
-parse_git_state() {
-  # Show different symbols as appropriate for various Git repository states
-  # Compose this value via multiple conditional appends.
-  local GIT_STATE=""
-  local NUM_AHEAD="$(git log --oneline @{u}.. 2> /dev/null | wc -l | tr -d ' ')"
-  if [ "$NUM_AHEAD" -gt 0 ]; then
-    GIT_STATE=$GIT_STATE${GIT_PROMPT_AHEAD//NUM/$NUM_AHEAD}
-  fi
-  local NUM_BEHIND="$(git log --oneline ..@{u} 2> /dev/null | wc -l | tr -d ' ')"
-  if [ "$NUM_BEHIND" -gt 0 ]; then
-    GIT_STATE=$GIT_STATE${GIT_PROMPT_BEHIND//NUM/$NUM_BEHIND}
-  fi
-  local GIT_DIR="$(git rev-parse --git-dir 2> /dev/null)"
-  if [ -n $GIT_DIR ] && test -r $GIT_DIR/MERGE_HEAD; then
-    GIT_STATE=$GIT_STATE$GIT_PROMPT_MERGING
-  fi
-  if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-    GIT_STATE=$GIT_STATE$GIT_PROMPT_UNTRACKED
-  fi
-  if ! git diff --quiet 2> /dev/null; then
-    GIT_STATE=$GIT_STATE$GIT_PROMPT_MODIFIED
-  fi
-  if ! git diff --cached --quiet 2> /dev/null; then
-    GIT_STATE=$GIT_STATE$GIT_PROMPT_STAGED
-  fi
-  if [[ -n $GIT_STATE ]]; then
-    echo "$GIT_PROMPT_PREFIX$GIT_STATE$GIT_PROMPT_SUFFIX"
-  fi
-}
-
-git_prompt_string() {
-  local git_where="$(parse_git_branch)"
-
-  # If inside a Git repository, print its branch and state
-  [ -n "$git_where" ] && echo "$GIT_PROMPT_SYMBOL$(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
-
-  # If not inside the Git repo, print exit codes of last command (only if it failed)
-  [ ! -n "$git_where" ] && echo "%{$fg[red]%} %(?..[%?])"
-}
-
-
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -136,6 +70,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
+zmodload zsh/complist
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
@@ -147,24 +82,6 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
     	RPROMPT="%{$fg[red]%} %(?..[%?])"
     	alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
     ;;
-#  'tmux: server')
-#        RPROMPT='$(git_prompt_string)'
-#		## Base16 Shell color themes.
-#		#possible themes: 3024, apathy, ashes, atelierdune, atelierforest, atelierhearth,
-#		#atelierseaside, bespin, brewer, chalk, codeschool, colors, default, eighties,
-#		#embers, flat, google, grayscale, greenscreen, harmonic16, isotope, londontube,
-#		#marrakesh, mocha, monokai, ocean, paraiso, pop (dark only), railscasts, shapesifter,
-#		#solarized, summerfruit, tomorrow, twilight
-#		#theme="eighties"
-#		#Possible variants: dark and light
-#		#shade="dark"
-#		#BASE16_SHELL="/usr/share/zsh/scripts/base16-shell/base16-$theme.$shade.sh"
-#		#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-#		# Use autosuggestion
-#		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-#		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-#  		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
-#     ;;
   *)
         RPROMPT='$(git_prompt_string)'
 		# Use autosuggestion
@@ -173,22 +90,34 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
   		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     ;;
 esac
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Vulkan Graphics Library setup
-export VULKAN_SDK=~/vulkan/1.2.135.0/x86_64
-export PATH=$PATH:$VULKAN_SDK/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$VULKAN_SDK/lib
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/:/usr/lib/
-export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
+VULKAN_SDK=~/vulkan/1.2.135.0/x86_64
+if [[ -d $VULKAN_SDK ]];then
+  export PATH=$PATH:$VULKAN_SDK/bin
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$VULKAN_SDK/lib
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/:/usr/lib/
+  export VK_LAYER_PATH=$VULKAN_SDK/etc/vulkan/explicit_layer.d
+fi
 
 # Texlive tlmngr
-PATH=/usr/local/texlive/2020/bin/x86_64-linux:$PATH; export PATH
-MANPATH=/usr/local/texlive/2020/texmf-dist/doc/man:$MANPATH; export MANPATH
-INFOPATH=/usr/local/texlive/2020/texmf-dist/doc/info:$INFOPATH; export INFOPATH
+TXPATH=/usr/local/texlive/2020/bin/x86_64-linux
+if [[ -d $TXMANPATH ]];then
+  export $TXPATH:$PATH; export PATH
+fi
+TXMANPATH=/usr/local/texlive/2020/texmf-dist/doc/man
+if [[ -d $TXMANPATH ]];then
+  export $TXMANPATH:$MANPATH; export MANPATH
+fi
+TXINFOPATH=/usr/local/texlive/2020/texmf-dist/doc/info
+if [[ -d $TXINFOPATH ]];then
+  export $TXINFOPATH:$INFOPATH; export INFOPATH
+fi
 
 # export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_241/
 unset JAVA_OPTS
@@ -204,18 +133,6 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ];then
     clear;ls
 fi
 
-
-# define the code directory
-# This is where my code exists and where I want the `c` autocomplete to work from exclusively
-if [[ -d ~/code ]]; then
-    export CODE_DIR=~/code
-fi
-
-
-
-if [[ -a ~/.localrc ]]; then
-    source ~/.localrc
-fi
 
 
 
@@ -240,10 +157,6 @@ if [[ -d ~/.cargo/bin/ ]]; then
 fi
 # add a config file for ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
-# alias git to hub
-if type hub > /dev/null 2>&1; then
-    eval "$(alias hub='git')"
-fi
 
 # move to next word with ctrl-F
 bindkey -M viins "^F" vi-forward-word
@@ -278,21 +191,33 @@ else
 fi
 unset __conda_setup
 
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=$HOME/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if [[ -d $HOME/perl5/ ]];then
+  PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
+  PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+  PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+  PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
+  PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
+fi
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 # Golang home config
-export GOHOME=~/gocode
+if [[ -d ~/gocode ]]; then
+  export GOHOME=~/gocode
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=$HOME/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 # alias hub to git
 eval $(hub alias -s)
 
 bindkey -v
 
-source ~/.profile
 
 
 
@@ -323,26 +248,11 @@ fpath=(~/.zplugin/completions/_zplugin $fpath)
 # initialize autocomplete
 autoload -U compinit add-zsh-hook
 compinit
+_comp_options+=(globdots)
 
 for config ($ZSH/completion.zsh) source $config;
 autoload -U compinit && compinit
 zplugin light "hlissner/zsh-autopair"
-bindkey '^K^U' _mtxr-to-upper # Ctrl+K + Ctrl+U
-bindkey '^K^L' _mtxr-to-lower # Ctrl+K + Ctrl+L
 
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=$HOME/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-PATH="$HOME/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
-### End of Zinit's installer chunk
-### End of Zinit's installer chunk
-### End of Zinit's installer chunk
 ### End of Zinit's installer chunk
 # Put this in .zshrc, after this plugin is loaded
