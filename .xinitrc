@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # ~/.xinitrc
 #
@@ -28,6 +28,23 @@ fi
 if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
+
+read -r -d '' PyURxvtMeta8 <<-'EOF'
+	#!/usr/bin/env python3
+
+	import locale
+
+	locale.setlocale(locale.LC_ALL, "")
+	encoding = locale.getlocale()[1]
+
+	# ASCII range
+	for i in range(32, 128):
+	    seq = "".join("\{:o}".format(j) for j in chr(i + (1<<7)).encode(encoding))
+	    key = "{:#06X}".format(i)
+	    print("urxvt*keysym.Meta-{}: {}".format(key, seq))
+EOF
+
+xrdb -merge <(python3 <<<"$PyURxvtMeta8")
 
 if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
@@ -68,4 +85,5 @@ get_session(){
 }
 
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+setxkbmap -option caps:escape
 exec $(get_session)

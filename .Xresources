@@ -18,43 +18,43 @@ XTerm*disallowedWindowOps: 20,21,SetXprop
 *background:                      #222D31
 *foreground:                      #d8d8d8
 *fading:                          7
-*fadeColor:                       black
-*cursorColor:                     #101010
+*fadeColor:                       #dddddd
+*cursorColor:                     #313131
 *pointerColorBackground:          #2B2C2B
 *pointerColorForeground:          #16A085
 
 !! black dark/light
-*color0:                          #222D31
-*color8:                          #585858
+*color0:                          #111111
+*color8:                          #000000
 
 !! red dark/light
-*color1:                          #ff0000
-*color9:                          #ff0000
+*color1:                          #ff2f2f
+*color9:                          #ff1616
 
 !! green dark/light
-*color2:                          #00ff00
+*color2:                          #21ff21
 *color10:                         #00ff00
 
 !! yellow dark/light
-*color3:                          #efef00
-*color11:                         #ffff00
+*color3:                          #ffff00
+*color11:                         #efef00
 
 !! blue dark/light
-*color4:                         #2a34ff
-*color12:                          #0091ff
+*color4:                          #0091ff
+*color12:                         #2a34ff
 
 
 !! magenta dark/light
-*color5:                          #c313ff
-*color13:                         #c313ff
+*color5:                          #b5131f
+*color13:                         #a5030f
 
 !! cyan dark/light
 *color6:                          #1abbfb
 *color14:                         #1aabff
 
 !! white dark/light
-*color7:                          #d8d8d8
-*color15:                         #f8f8f8
+*color7:                          #eeeeee
+*color15:                         #d8d8d8
 
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
@@ -69,8 +69,8 @@ URxvt.background:                 #111D21
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       true
 URxvt*cursorBlink:                true
-URxvt*foreground:                 grey
-URxvt*saveLines:                  50000
+URxvt*foreground:                 #eeeeee
+URxvt*saveLines:                  1
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:            true
@@ -80,7 +80,7 @@ URxvt*saveLines:                  50000
 ! Normal copy-paste keybindings without perls
 URxvt.iso14755:                   true
 URxvt.keysym.Shift-Control-V:     eval:paste_clipboard
-URxvt.keysym.Control-Y:           perl:clipboard:paste_escaped
+URxvt.keysym.Control-Y:           eval:paste_clipboard
 URxvt.keysym.Shift-Control-C:     eval:selection_to_clipboard
 !Xterm escape codes, word by word movement
 URxvt.keysym.Control-Left:        \033[1;5D
@@ -91,12 +91,13 @@ URxvt.keysym.Control-Up:          \033[1;5A
 URxvt.keysym.Shift-Control-Up:    \033[1;6A
 URxvt.keysym.Control-Down:        \033[1;5B
 URxvt.keysym.Shift-Control-Down:  \033[1;6B
-! URxvt.keysym.M-C-c:               perl:clipboard:copy
-! URxvt.keysym.M-v:                 perl:clipboard:paste
-! URxvt.keysym.M-C-v:               perl:clipboard:paste_escaped
+URxvt.keysym.M-C-c:               perl:clipboard:copy
+URxvt.keysym.M-u:                 perl:url-select:select_next
+URxvt.keysym.M-C-v:               perl:clipboard:paste_escaped
 ! URxvt*termName:                   string
 ! URxvt*geometry:                   geometry
 ! URxvt*chdir:                      string
+URxvt.clipboard.autocopy:   true
 ! URxvt*loginShell:                 boolean
 ! URxvt*multiClickTime:             number
 ! URxvt*jumpScroll:                 boolean
@@ -116,9 +117,9 @@ URxvt.keysym.Shift-Control-Down:  \033[1;6B
 ! URxvt*fadeColor:                  color
 ! URxvt*utmpInhibit:                boolean
 URxvt*urgentOnBell:               true
-! URxvt*visualBell:                 boolean
+URxvt*visualBell:                 true
 ! URxvt*mapAlert:                   boolean
-! URxvt*meta8:                      boolean
+URxvt*meta8:                      true
 ! URxvt*tripleclickwords:           boolean
 ! URxvt*insecure:                   boolean
 ! URxvt*cursorUnderline:            boolean
@@ -139,7 +140,6 @@ URxvt*intensityStyles:            true
 ! URxvt*title:                      string
 ! URxvt*iconName:                   string
 ! URxvt*buffered:                   boolean
-! URxvt*depth:                      number
 ! URxvt*visual:                     number
 ! URxvt*transient-for:              windowid
 ! URxvt*override-redirect:          boolean
@@ -149,7 +149,7 @@ URxvt*intensityStyles:            true
 ! URxvt*borderLess:                 true
 ! URxvt*lineSpace:                  number
 ! URxvt*letterSpace:                number
-URxvt*skipBuiltinGlyphs:          false
+URxvt*skipBuiltinGlyphs:          true
 ! URxvt*pointerBlankDelay:          number
 ! URxvt*backspacekey:               string
 ! URxvt*deletekey:                  string
@@ -161,8 +161,8 @@ URxvt*skipBuiltinGlyphs:          false
 ! URxvt*secondaryScroll:            boolean
 ! URxvt*perl-lib:                   string
 ! URxvt*perl-eval:                  perl-eval
-URxvt*perl-ext-common:            default,matcher,url-select,clipboard,osc-xterm-clipboard,osc-cursor-shape
-URxvt*perl-ext:                   default,matcher,url-select,clipboard,osc-xterm-clipboard,osc-cursor-shape
+URxvt*perl-ext-common:            default,url-select,clipboard,bell-command,resize-font,osc-xterm-clipboard,osc-cursor-shape
+URxvt*perl-ext:                   default,url-select,clipboard,bell-command,resize-font,osc-xterm-clipboard,osc-cursor-shape
 ! URxvt*perl-ext:                   string
 URxvt*iso14755:                   true
 URxvt*iso14755_52:                true
@@ -171,13 +171,12 @@ URxvt*iso14755_52:                true
 ! URxvt*background.border:          boolean
 ! URxvt*background.expr:            string
 ! URxvt*background.interval:        seconds
-! URxvt*bell-command:               string
+URxvt*bell-command:               canberra-gtk-play -i bell
 ! URxvt*kuake.hotkey:               string
 URxvt*matcher.button:             1
 URxvt*matcher.launcher:           /usr/bin/xdg-open
-! URxvt*matcher.launcher.*:         string
 ! URxvt*matcher.pattern.*:          string
-! URxvt*matcher.rend.*:             string
+URxvt*matcher.rend.*:             ULine Bold fg4
 ! URxvt*remote-clipboard.fetch:     string
 ! URxvt*remote-clipboard.store:     string
 ! URxvt*searchable-scrollback:      string

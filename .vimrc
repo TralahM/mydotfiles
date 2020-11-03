@@ -237,8 +237,6 @@ set wildignore+=*_build/*
 set wildignore+=*.pyc,*.so,*.swp,*.zip,*.un~,.*.*~,*.o,*.obj
 set wildignore+=*/coverage/*
 set viminfo='20,<1000
-set lazyredraw
-set redrawtime=5000
 set history=2000
 " set breakindent  " preserve horizontal whitespace when wrapping
 " set showbreak=..
