@@ -52,3 +52,5 @@ alias xclipb="xclip -sel clipboard"
 
 alias swagger_codegen_cli="java -jar ~/javajars/swagger-codegen-cli-2xx.jar"
 alias swagger_codegen_cli3="java -jar ~/javajars/swagger-codegen-cli-3xx.jar"
+
+alias tree="tree -C"

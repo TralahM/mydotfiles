@@ -222,6 +222,7 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 " Basic Internal Configurations
 set undofile
 set hidden
+set lazyredraw
 set mouse-=a
 set writebackup
 set cmdheight=2
