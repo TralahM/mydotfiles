@@ -114,6 +114,9 @@ alias heroku='~/node_modules/heroku/bin/run'
 HEROKU_AC_ZSH_SETUP_PATH=/data/data/com.termux/files/home/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/aliasrc ] && source ~/aliasrc
+[ -f ~/.profile ] && source ~/.profile
+[ -f ~/.localrc ] && source ~/.localrc
 
 ### Added by Zplugin's installer
 source "$HOME/.zplugin/bin/zplugin.zsh"
@@ -133,7 +136,7 @@ zplugin light dbkaplun/smart-cd
 zplugin light oldratlee/hacker-quotes
 zplugin light "chrissicool/zsh-256color"
 zplugin light "olets/zsh-abbr"
-zplugin light marlonrichert/zsh-autocomplete
+# zplugin light marlonrichert/zsh-autocomplete
 zplugin light Tarrasch/zsh-bd
 zplugin light "arzzen/calc.plugin.zsh"
 zplugin light "momo-lab/zsh-abbrev-alias"
