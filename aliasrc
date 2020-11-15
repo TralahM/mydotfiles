@@ -54,3 +54,14 @@ alias swagger_codegen_cli="java -jar ~/javajars/swagger-codegen-cli-2xx.jar"
 alias swagger_codegen_cli3="java -jar ~/javajars/swagger-codegen-cli-3xx.jar"
 
 alias tree="tree -C"
+
+alias chx="chmod +x"
+alias ch_x="chmod -x"
+alias chax="chmod a+x"
+alias cha_x="chmod a-x"
+
+# tmux aliases
+alias ta='tmux attach'
+alias tls='tmux ls'
+alias tat='tmux attach -t'
+alias tns='tmux new-session -s'
