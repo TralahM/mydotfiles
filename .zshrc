@@ -76,6 +76,13 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+# make terminal command navigation sane again
+bindkey '^[^[[D' backward-word
+bindkey '^[^[[C' forward-word
+bindkey '^[[5D' beginning-of-line
+bindkey '^[[5C' end-of-line
+bindkey '^[[3~' delete-char
+bindkey '^?' backward-delete-char
 # Apply different settigns for different terminals
 case $(basename "$(cat "/proc/$PPID/comm")") in
   login)
@@ -160,6 +167,7 @@ export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
 # move to next word with ctrl-F
 bindkey -M viins "^F" vi-forward-word
+bindkey -M viins "^]" vi-forward-word
 bindkey -M viins "^[" vi-backward-word
 # Move to end of line with ctrl-E
 bindkey -M viins "^E" vi-add-eol
