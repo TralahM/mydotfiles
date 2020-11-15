@@ -30,12 +30,12 @@ markup=pango
 # Battery
 #
 
-[battery]
-instance=BAT0
-interval=5
-command=battery BAT0
-markup=none
-separator=true
+# [battery]
+# instance=BAT0
+# interval=5
+# command=battery BAT0
+# markup=none
+# separator=true
 
 # Weather stats
 #
@@ -66,6 +66,7 @@ separator=true
 color="#ff0fff"
 command=~/bin/mpd_song
 interval=30
+short_text=
 # label=♪
 separator=true
 
@@ -146,10 +147,10 @@ separator=true
 
 [wifi]
 INTERFACE=wlp2s0
-color=#0ee0ee
+color=#0fffff
 label= _
-interval=10
-command=curl icanhazip.com
+interval=3
+command=~/bin/netspeed
 separator=true
 
 

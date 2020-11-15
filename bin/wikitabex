@@ -109,14 +109,19 @@ def obtain_table_data_by_number(N, tables):
     return get_table_data(tables[N - 1])
 
 
+def save_to_json(df, filename):
+    """Save the pd.DataFrame to a CSV file with the given filename."""
+    return df.to_json(filename, index=False,orient="records")
+
+
 def save_to_csv(df, filename):
     """Save the pd.DataFrame to a CSV file with the given filename."""
     return df.to_csv(filename, index=False)
 
 
-def get_filename_from_wikipedia_url(url):
+def get_filename_from_wikipedia_url(url,ext=".csv"):
     """Get filename from wikipedia_url."""
-    return url.split("/")[-1] + ".csv"
+    return url.split("/")[-1] + ext
 
 
 if __name__ == "__main__":
@@ -125,7 +130,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
         prog="wikitable",
-        usage=f"""{sys.argv[0]} wikipedia_url [[-c --save-to-csv] [-N --table-number Int] [-o --output-file <filename>]]""",
+        usage=f"""{sys.argv[0]} wikipedia_url [[-a -all2csv] [-c --save-to-csv] [-N --table-number Int] [-o --output-file <filename>]]""",
     )
     parser.add_argument(
         "wikipedia_url", help="Full url of the wikipedia page.")
@@ -135,6 +140,27 @@ if __name__ == "__main__":
         action="store_true",
         dest="save_to_csv",
         help="Whether to save file to a csv file.",
+    )
+    parser.add_argument(
+        "-a",
+        "--all2csv",
+        action="store_true",
+        dest="save_all",
+        help="Whether to save file to a csv file.",
+    )
+    parser.add_argument(
+        "-j",
+        "--save-to-json",
+        action="store_true",
+        dest="save_to_json",
+        help="Whether to save file to a json file.",
+    )
+    parser.add_argument(
+        "-J",
+        "--all2json",
+        action="store_true",
+        dest="save_all_json",
+        help="Whether to save file to a json file.",
     )
     parser.add_argument(
         "-N",
@@ -157,6 +183,24 @@ if __name__ == "__main__":
     if not len(tables):
         print("0 Tables Found!\tExiting...")
         sys.exit(0)
+    if args.save_all:
+        if not args.outf:
+            filename = get_filename_from_wikipedia_url(args.wikipedia_url)
+        else:
+            filename = args.outf
+        for i in range(len(tables)):
+            table = obtain_table_data_by_number(i+1, tables)
+            save_to_csv(to_pandas_dataframe(table),
+                        filename[:-4]+str(i)+".csv")
+    if args.save_all_json:
+        if not args.outf:
+            filename = get_filename_from_wikipedia_url(args.wikipedia_url,ext=".json")
+        else:
+            filename = args.outf
+        for i in range(len(tables)):
+            table = obtain_table_data_by_number(i+1, tables)
+            save_to_json(to_pandas_dataframe(table),
+                        filename[:-4]+str(i)+".json")
     if args.save_to_csv:
         N = int(args.N)
         table = obtain_table_data_by_number(N, tables)
