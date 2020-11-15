@@ -41,12 +41,12 @@ XTerm*disallowedWindowOps: 20,21,SetXprop
 
 !! blue dark/light
 *color4:                          #0091ff
-*color12:                         #2a34ff
+*color12:                         #00a1ff
 
 
 !! magenta dark/light
-*color5:                          #b5131f
-*color13:                         #a5030f
+*color5:                          #005eff
+*color13:                         #005eff
 
 !! cyan dark/light
 *color6:                          #1abbfb
@@ -116,9 +116,9 @@ URxvt.clipboard.autocopy:   true
 ! URxvt*fading:                     number
 ! URxvt*fadeColor:                  color
 ! URxvt*utmpInhibit:                boolean
-URxvt*urgentOnBell:               true
-URxvt*visualBell:                 true
-! URxvt*mapAlert:                   boolean
+! URxvt*urgentOnBell:               false
+URxvt*visualBell:                 false
+! URxvt*mapAlert:                   true
 URxvt*meta8:                      true
 ! URxvt*tripleclickwords:           boolean
 ! URxvt*insecure:                   boolean
