@@ -214,6 +214,7 @@ bindsym Mod1+r mode "resize"
 # finds out, if available)
 bar {
         status_command SCRIPT_DIR=~/bin i3blocks
+        font pango:Hack Nerd Font 9
         position top
 }
 

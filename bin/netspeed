@@ -66,9 +66,9 @@ if [[ "${time_diff}" -gt 0 ]]; then
   # outgoing
   tx_kib=$(( $tx_rate >> 10 ))
   if [[ "$tx_rate" -gt 1048576 ]]; then
-    printf  "${tx_kib:0:-3}.${tx_kib: -3:-2} Mﲓ\n"
+    printf  "${tx_kib:0:-3}.${tx_kib: -3:-2} Mﲓ \n"
   else
-    printf  "${tx_kib} Kﲓ\n"
+    printf  "${tx_kib} Kﲓ \n"
   fi
 else
   printf " ? \n"

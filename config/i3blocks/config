@@ -30,12 +30,12 @@ markup=pango
 # Battery
 #
 
-# [battery]
-# instance=BAT0
-# interval=5
-# command=battery BAT0
-# markup=none
-# separator=true
+[battery]
+instance=BAT0
+interval=5
+color="#1122ff"
+command=~/bin/battery BAT0
+separator=true
 
 # Weather stats
 #
@@ -53,7 +53,8 @@ separator=false
 #
 
 [moonphase]
-color="#1fffff"
+color="#000000"
+background="#ffffff"
 interval=14400
 command=~/bin/moonphase
 separator=true
@@ -66,7 +67,7 @@ separator=true
 color="#ff0fff"
 command=~/bin/mpd_song
 interval=30
-short_text=
+short_text=.
 # label=♪
 separator=true
 
@@ -74,7 +75,7 @@ separator=true
 # Currency Exchange Rates
 #
 [currency_exchange]
-color="#11cc11"
+color="#11ff11"
 command=~/bin/currency_exchange
 interval=5
 separator=false
@@ -84,7 +85,7 @@ separator=false
 #
 
 [cryptobtc]
-color="#3060ef"
+color="#ef5c10"
 command=~/bin/crypto
 interval=30
 separator=true
@@ -147,7 +148,7 @@ separator=true
 
 [wifi]
 INTERFACE=wlp2s0
-color=#0fffff
+color=#0daeff
 label= _
 interval=3
 command=~/bin/netspeed
