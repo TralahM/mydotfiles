@@ -12,12 +12,12 @@ set mbox_type = Maildir
 set crypt_autosign = no
 set crypt_opportunistic_encrypt = no
 set pgp_self_encrypt = yes
-set crypt_use_gpgme = yes
+set crypt_use_gpgme = no
 set crypt_verify_sig = yes
 set crypt_replysign = yes
 set crypt_replyencrypt = yes
 set crypt_replysignencrypted = yes
-set pgp_default_key  =
+set pgp_default_key  = 6D9798E6CE04D7A9BDC00E13C7D5C3C91E5D7089
 set pgp_use_gpg_agent = yes
 
 bind index,pager gg noop
