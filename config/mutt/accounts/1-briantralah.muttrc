@@ -10,9 +10,15 @@ set message_cachedir = /home/african/.cache/mutt-wizard/briantralah/bodies
 set mbox_type = Maildir
 
 set crypt_autosign = yes
+set crypt_use_gpgme = yes
+set crypt_verify_sig = yes
+set crypt_replysign = yes
+set crypt_replyencrypt = yes
+set crypt_replysignencrypted = yes
 set crypt_opportunistic_encrypt = yes
 set pgp_self_encrypt = yes
-set pgp_default_key  = 
+set pgp_default_key  = "D3B4F65131A3E57E5EB967796B970F4B1D0E8BB1"
+set pgp_use_gpg_agent = yes
 
 bind index,pager gg noop
 bind index,pager g noop
