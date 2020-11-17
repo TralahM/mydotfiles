@@ -53,8 +53,8 @@ separator=false
 #
 
 [moonphase]
-color="#000000"
-background="#ffffff"
+background="#000000"
+color="#ffffff"
 interval=14400
 command=~/bin/moonphase
 separator=true

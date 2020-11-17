@@ -56,6 +56,7 @@ XTerm*disallowedWindowOps: 20,21,SetXprop
 *color7:                          #eeeeee
 *color15:                         #d8d8d8
 
+*font:                       xft:Hack\ Nerd\ Font\ Mono:style=Regular:size=10
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
