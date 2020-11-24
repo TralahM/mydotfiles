@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 CONKY_DIR=~/.config/conky
+kill -9 $(pgrep conky)
 
-conky -c $CONK_DIR/conky.conf >/dev/null
-conky -c $CONK_DIR/conky_weather.conf >/dev/null
-conky -c $CONK_DIR/conky_TT.conf >/dev/null
-conky -c $CONK_DIR/conky_system.conf >/dev/null
+conky -c $CONKY_DIR/conky.conf &2>/dev/null
+conky -c $CONKY_DIR/conky_weather.conf &2>/dev/null
+conky -c $CONKY_DIR/conky_TT.conf &2>/dev/null
+conky -c $CONKY_DIR/conky_system.conf &2>/dev/null

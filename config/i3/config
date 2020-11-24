@@ -54,7 +54,7 @@ bindsym Mod4+l exec /usr/bin/i3lock-fancy -p
 
 
 # start dmenu (a program launcher)
-# bindsym Mod4+d exec dmenu_run
+bindsym Mod1+d exec dmenu_run
 # bindsym Mod4+d exec --no-startup-id "rofi -show-icons -modi windowcd,window,drun -show drun"
 bindsym Mod4+d exec --no-startup-id "~/bin/launcher.sh"
 bindsym Mod4+Return exec --no-startup-id "~/bin/launcher.sh"
@@ -114,7 +114,7 @@ bindsym Mod1+space focus mode_toggle
 bindsym Mod1+a focus parent
 
 # focus the child container
-bindsym Mod1+d focus child
+# bindsym Mod1+d focus child
 
 # move the currently focused window to the scratchpad
 bindsym Mod4+minus move scratchpad
