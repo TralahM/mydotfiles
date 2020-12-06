@@ -48,8 +48,6 @@ autoload -U compinit colors zcalc
 compinit -d
 colors
 
-# enable substitution for prompt
-setopt prompt_subst
 
 
 # Modify the colors and symbols in these variables as desired.
@@ -66,15 +64,8 @@ GIT_PROMPT_STAGED="%{$fg_bold[green]%}●%{$reset_color%}"        # green circle
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
 source $PREFIX/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# Use history substring search
-source $PREFIX/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-# bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 zmodload zsh/complist
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
 
 # Apply different settigns for different terminals
 case $(basename "$(cat "/proc/$PPID/comm")") in
@@ -85,7 +76,7 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
   *)
         RPROMPT='$(git_prompt_string)'
 		# Use autosuggestion
-		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+		source $PREFIX/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=300
   		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     ;;
@@ -245,56 +236,8 @@ HEROKU_AC_ZSH_SETUP_PATH=/data/data/com.termux/files/home/.cache/heroku/autocomp
 [ -f ~/.profile ] && source ~/.profile
 [ -f ~/.localrc ] && source ~/.localrc
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$HOME/.zplugin/plugins
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -315,15 +258,6 @@ fi
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
 source ~/.profile
 source ~/aliasrc
 ### Added by Zplugin's installer
