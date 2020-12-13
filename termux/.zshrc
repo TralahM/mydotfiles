@@ -97,3 +97,18 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export POWERLEVEL9K_MODE='nerdfont-complete'
+export POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
+export POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
+export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+typeset -g POWERLEVEL9K_VCS_GIT_ICON=$'\uF113 '
+export POWERLEVEL9K_VCS_GIT_ICON='  '
+export DEFAULT_USER=$(whoami)
+
+if [[ -e ~/.profile ]]; then
+    source ~/.profile;
+fi
+if [[ -e ~/aliasrc ]]; then
+    source ~/aliasrc;
+fi
