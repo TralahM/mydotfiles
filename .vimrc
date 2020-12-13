@@ -17,7 +17,6 @@ let uname = substitute(system('uname'), '\n', '', '')
 syntax on
 filetype on
 filetype indent plugin on    " required
-syn on
 
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
@@ -42,26 +41,21 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-" Leader tt toggles checkbox
+"
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
-Plug 'jupyter-vim/jupyter-vim'
-Plug 'pboettch/vim-cmake-syntax'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
+Plug 'tweekmonster/django-plus.vim', {'for': 'python'}
+Plug 'pboettch/vim-cmake-syntax', {'for': 'cmake'}
+Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 Plug 'RRethy/vim-illuminate'
 Plug 'vlime/vlime', {'rtp': 'vim/'}
-Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja Filetype syntax hl
 Plug 'HansPinckaers/ncm2-jedi'
 Plug 'kovisoft/paredit'
-Plug 'KabbAmine/zeavim.vim' " Zea Documentation Tool
 Plug 'Konfekt/FastFold' "Required by vim-coiled-snake
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'Raku/vim-raku' " For raku perl 6 support
 Plug 'Shougo/context_filetype.vim'
-Plug 'Shougo/neosnippet-snippets' " Snippets
-Plug 'Shougo/neosnippet.vim' " Snippets
 Plug 'SirVer/ultisnips' " Snippets
 Plug 'airblade/vim-gitgutter' "Git Status
 Plug 'alvan/vim-closetag' "autoclose html,xml,j2 files
@@ -82,46 +76,36 @@ Plug 'glts/vim-magnum' "required by radical
 Plug 'glts/vim-radical' "crx,crd,cro,crb gA covert w under cursor to hex,dec,oct,bin
 Plug 'godlygeek/tabular' "Tabularize /,  /,/r0c1l1
 Plug 'honza/vim-snippets' "snippets
-Plug 'jceb/vim-orgmode',{'for':'org'} "orgmode files
 Plug 'jiangmiao/auto-pairs' "autopair []''(){}
-Plug 'jkramer/vim-checkbox',{'for':'markdown'} "insert checkbox or toggle tt
 Plug 'jmcantrell/vim-virtualenv',{'for':'python'} "virtualenv py
 Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'} "Fzf
 Plug 'junegunn/fzf.vim' "Fzf
-Plug 'junegunn/vim-emoji' "emojis
 Plug 'justinmk/vim-sneak' "The missing motion for vim
-Plug 'kalekundert/vim-coiled-snake' "Python Folding
 Plug 'kana/vim-arpeggio' "Key mapping for simultaneously pressed keys
 Plug 'kana/vim-textobj-entire' "text objects for entire buffer
 Plug 'kana/vim-textobj-user' "text objects for entire buffer
-Plug 'lervag/vimtex',{'for':['tex', 'markdown','pandoc']}
 Plug 'luochen1990/rainbow' "Per Depth html,xml hl colors
 Plug 'machakann/vim-highlightedyank' " Temporary highlight yanked txt
 Plug 'majutsushi/tagbar' "TagBar
 Plug 'mattn/emmet-vim', {'for':['html','xhtml','jinja','htmldjango','xml','php']} "abbreviation expanding html similar to emmet
 Plug 'mattn/vim-lsp-settings' "lsp settings
-Plug 'mattn/webapi-vim' , {'for':['html','xhtml','jinja','htmldjango','xml','php']} "emmet plugin for web apis
 Plug 'maxbrunsfeld/vim-yankstack' "cycle between prev yanks
 Plug 'mboughaba/i3config.vim'
 Plug 'michaeljsmith/vim-indent-object' "indent text objects"
 Plug 'mileszs/ack.vim'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ncm2/float-preview.nvim'
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-cssomni'
-Plug 'ncm2/ncm2-github'
 Plug 'ncm2/ncm2-go'
 Plug 'ncm2/ncm2-html-subscope'
 Plug 'ncm2/ncm2-markdown-subscope'
 Plug 'ncm2/ncm2-match-highlight'
 Plug 'ncm2/ncm2-neoinclude' | Plug 'Shougo/neoinclude.vim'
-Plug 'ncm2/ncm2-neosnippet'
 Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-pyclang'
-Plug 'ncm2/ncm2-racer'
+Plug 'ncm2/ncm2-pyclang', {'for':'python'}
+Plug 'ncm2/ncm2-racer', {'for':'rust'}
 Plug 'ncm2/ncm2-rst-subscope'
-Plug 'ncm2/ncm2-snipmate'
 Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
 Plug 'ncm2/ncm2-tmux'
 Plug 'ncm2/ncm2-ultisnips'
@@ -132,7 +116,6 @@ Plug 'fgrsnau/ncm-otherbuf'
 Plug 'fgrsnau/ncm2-aspell'
 Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
 Plug 'neomake/neomake'
-Plug 'dkarter/bullets.vim' " Markdown  Bullets list
 Plug 'sheerun/vim-polyglot'                             " many languages support
 Plug 'tpope/vim-liquid'                                 " liquid language support
 Plug 'pbrisbin/vim-mkdir'
@@ -168,7 +151,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tweekmonster/braceless.vim', {'for': ['python']}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-latex/vim-latex'
 Plug 'vim-pandoc/vim-pandoc',{'for':['pandoc', 'markdown']}
 Plug 'vim-pandoc/vim-pandoc-syntax',{'for':['pandoc', 'markdown']}
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
@@ -177,9 +159,7 @@ Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
 Plug 'wellle/tmux-complete.vim'
-Plug 'wlemuel/vim-tldr'
 Plug 'xavierd/clang_complete'
-Plug 'xuhdev/vim-latex-live-preview'
 Plug 'yegappan/mru' "most recently used
 
 
@@ -244,7 +224,7 @@ set history=2000
 set lbr  " wrap words
 set nowrap  " i turn on wrap manually when needed
 
-set pumheight=5
+set pumheight=6
 set emoji
 
 set scrolloff=3 " keep three lines between the cursor and the edge of the screen
@@ -297,7 +277,7 @@ set ignorecase
 set smartcase
 au FocusLost,WinLeave * :silent! wa
 au FocusGained,BufEnter * :silent! !
-set title
+" set title
 
 set showmatch
 set hlsearch
@@ -306,7 +286,7 @@ set t_Co=256
 set sidescroll=5
 set ttyfast
 set wildmode=list:longest,full
-set ttimeoutlen=50
+set ttimeoutlen=80
 set noswapfile
 " Set identation to 4 spaces
 set noai ts=4 sw=4 expandtab
@@ -343,16 +323,11 @@ let g:gitgutter_map_keys = 0
 
 " let g:python3_host_prog='/usr/bin/python'
 
-if emoji#available()
-    let g:gitgutter_sign_added = "車"
-    let g:gitgutter_sign_modified = "契"
-    let g:gitgutter_sign_removed = "襤"
-    let g:gitgutter_sign_modified_removed = "雷"
-endif
+let g:gitgutter_sign_added = "+"
+let g:gitgutter_sign_modified = "~"
+let g:gitgutter_sign_removed = "襤"
+let g:gitgutter_sign_modified_removed = "雷"
 
-let g:UltiSnipsSnippetsDir="~/.vim/snippets"
-let g:UltiSnipsSnippetDirectories=['~/.vim/snippets', '~/.vim/plugged/vim-snippets/UltiSnips', 'UltiSnips' ]
-let g:UltiSnipsEditSplit="vertical"
 colorscheme delek
 let g:solarized_contrast="high"
 highlight clear SpellBad
@@ -363,7 +338,6 @@ autocmd! BufWritePre * :%s/\s\+$//e
 " Git commits
 autocmd! Filetype gitcommit setlocal spell textwidth=80
 set pastetoggle=<M-v>
-" Disable folding. It's really annoying and I never remeber the commands.
 set laststatus=2
 set smartindent
 
@@ -422,22 +396,22 @@ autocmd BufWritePost Makefile* silent! execute "!make >/dev/null 2>&1" | redraw!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " vim-indent-guides conf
-let g:indent_guides_enable_on_vim_startup=1
+" let g:indent_guides_enable_on_vim_startup=1
 
 
 " jedi options
 let g:jedi#force_py_version=3
 let g:jedi#auto_initialization = 1
-let g:jedi#completions_enabled = 0
+let g:jedi#completions_enabled = 1
 let g:jedi#auto_vim_configuration = 1
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_command = ""
 let g:jedi#show_call_signatures = "1"
-let g:jedi#show_call_signatures_delay = 0
+let g:jedi#show_call_signatures_delay = 1
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#show_call_signatures_modes = 'i'  " ni = also in normal mode
-let g:jedi#enable_speed_debugging=0
+let g:jedi#enable_speed_debugging=1
 
 " Vim-SCala Conf
 let g:scala_scaladoc_indent = 1
@@ -470,7 +444,7 @@ let g:yankstack_yank_keys = ['y', 'd']
 "
 " vim-Markdown customizations
 " use python folding style for markdown.
-let g:vim_markdown_folding_style_pythonic=1
+let g:vim_markdown_folding_style_pythonic=0
 let g:vim_markdown_follow_anchor=1
 " Turn on latex math syntax
 let g:vim_markdown_math=1
@@ -478,10 +452,10 @@ let g:vim_markdown_frontmatter=1
 let g:vim_markdown_toml_frontmatter=1
 let g:vim_markdown_json_frontmatter=1
 let g:vim_markdown_strikethrough=1
-let g:vim_markdown_no_extensions_in_markdown=0
+let g:vim_markdown_no_extensions_in_markdown=1
 let g:vim_markdown_autowrite=1
-let g:vim_markdown_edit_url_in="hsplit"
-let g:vim_markdown_new_list_item_indent=1
+let g:vim_markdown_edit_url_in="current"
+let g:vim_markdown_new_list_item_indent=0
 
 
 " Nerdcommenter
@@ -493,13 +467,13 @@ let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 let g:NERDTreeIgnore = [
-\ '\.vim$',
-\ '\~$',
-\ '.git',
-\ '.cache',
-\ '.local',
-\ '_site',
-\]
+  \ '\.vim$',
+  \ '\~$',
+  \ '.git',
+  \ '.cache',
+  \ '.local',
+  \ '_site',
+  \]
 autocmd! Filetype nerdtree setlocal relativenumber number
 autocmd! WinEnter __Tagbar__* setlocal relativenumber number
 autocmd! WinLeave __Tagbar__* setlocal relativenumber number
@@ -516,8 +490,6 @@ let g:airline_theme='papercolor'
 " let g:airline_statusline_on_top=1
 let g:airline_detect_paste=1
 let g:airline_powerline_fonts=1
-" let g:airline_left_sep = ' '
-" let g:airline_right_sep = '|'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'jsformatter'
@@ -526,18 +498,19 @@ let g:airline#extensions#promptline#enabled = 1
 let g:airline#extensions#default#enabled = 1
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline#extensions#fugitiveline#enabled = 0
 let g:airline#extensions#unicode#enabled = 1
 let g:airline#extensions#fugitive#enabled = 1
 let g:airline#extensions#branch#enabled = 1
-" set statusline+=%{FugitiveStatusline()}
-
+let g:airline#extensions#fzf#enabled = 1
+let g:airline_skip_empty_sections = 1
+let g:airline_highlighting_cache = 1
 
 
 
 " BRACELESS.VIM
-" autocmd filetype python :BracelessEnable +indent +highlight
-" autocmd BufRead,BufNewFile *.py :BracelessEnable +indent +highlight
+autocmd filetype python :BracelessEnable +indent +highlight
+autocmd BufRead,BufNewFile *.py :BracelessEnable +indent +highlight
 
 
 " SYNTASTIC SETTING
@@ -574,19 +547,6 @@ let g:javascript_conceal_underscore_arrow_function = "⇒"
 " set conceallevel =1
 
 
-" VIMTEX CONFIG FOR TEX FILES
-" VIMTEX
-let g:tex_flavor='latex'
-let g:vimtex_view_general_viewer= 'zathura'
-let g:vimtex_view_general_options= '-reuse-instance -forward-search @tex @line @pdf'
-let g:vimtex_view_general_options= '-reuse-instance'
-let g:matchup_matchparens_deferred=1
-let g:matchup_override_vimtex = 1
-let g:vimtex_fold_enabled =0
-let g:vimtex_enabled=1
-let g:vimtex_complete_enabled=1
-let g:vimtex_complete_close_braces=1
-" let g:vimtex_compiler_progname='nvr'
 
 
 " FILENAMES LIKE *.XML, *.HTML, *.XHTML, ...
@@ -595,9 +555,9 @@ let g:vimtex_complete_close_braces=1
 " " This will make the list of non-closing tags self-closing in the specified files.
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,.*.xml,*.jsx,*.md,*.markdown'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.xml'
-let g:closetag_filetypes = 'html,xhtml,phtml,jsx,xml,markdown,vimwiki'
+let g:closetag_filetypes = 'html,xhtml,phtml,jsx,xml,markdown,vimwiki,liquid'
 " This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filetypes = 'xhtml,jsx,xml'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,xml,jinja,jinja2'
 let g:closetag_emptyTags_caseSensitive = 1
 " " Shortcut for closing tags, default is '>'
 let g:closetag_shortcut = '>'
@@ -620,40 +580,37 @@ let g:over_command_line_prompt=">"
 
 
 " " Ultisnips Config
-let g:UltiSnipsExpandTrigger		= "<C-space>"
-let g:UltiSnipsJumpForwardTrigger='<C-n>'
-let g:UltiSnipsJumpBackwardTrigger='<C-p>'
+let g:UltiSnipsExpandTrigger='<C-space>'
+let g:UltiSnipsJumpForwardTrigger='<C-space>'
+let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
+let g:UltiSnipsSnippetsDir="~/.vim/snippets"
+let g:UltiSnipsSnippetDirectories=[
+            \'~/.vim/snippets',
+            \'~/.vim/plugged/vim-snippets/UltiSnips',
+            \'UltiSnips',
+            \'~/snippets'
+            \]
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsListSnippets= "<c-k>" "List Possible snippets based on current file
 " let g:UltiSnipsRemoveSelectModeMappings = 0
 
 
-command! MakeTags !ctags -R -a *.*
+command! MakeTags !ctags -R -a %
 command! MakePyScope !find . -type f -name "*.py" |cscope -b -q -i - <CR>
 command! MakeCScope !cscope -b -d <CR>
-" autocmd! bufwritepost *.c *.cpp *.hpp *.h *.rs *.py  MakeTags
+autocmd bufwritepost *.c *.cpp *.hpp *.h *.rs *.py  MakeTags
 
 
 " Markdown Composer options
 " Do not attempt to open the browser automatically i'll do it manually
 let g:markdown_composer_autostart=0
 
-let g:markdown_composer_browser="chromium"
+let g:markdown_composer_browser="mdr"
 
-let g:markdown_composer_external_renderer='pandoc -t html -f markdown '
+" let g:markdown_composer_external_renderer='mdr'
 
 
-" Latex Live Preview conf
-autocmd Filetype tex setl updatetime=5
-let g:livepreview_previewer='zathura'
-let g:livepreview_use_biber = 1
-let g:livepreview_cursorhold_recompile = 1
 
-" Neosnippets
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-imap <c-c> <ESC>
-
-" Do not hijack the Enter key
 
 
 let ncm2#popup_delay=5
@@ -672,8 +629,8 @@ au User Ncm2Plugin call ncm2#register_source({
             \ })
 
 " Clang Stuff
-let g:clang_complete_auto=0
-let g:clang_restore_cr_imap='inoremap <buffer> <CR> <cr>'
+let g:clang_complete_auto=1
+" let g:clang_restore_cr_imap='inoremap <buffer> <CR> <cr>'
 let g:clang_close_preview=1
 let g:clang_snippets_engine="ultisnips"
 let g:clang_complete_macros=0
@@ -683,7 +640,7 @@ let g:clang_user_options='|| exit 0'
 let g:clang_snippets=1
 let g:clang_use_library=1
 let g:clang_auto_select=0
-let g:clang_complete_optional_args_in_snippets=0
+let g:clang_complete_optional_args_in_snippets=1
 
 " Rust Config
 let g:rustfmt_autosave=1
@@ -701,10 +658,12 @@ let g:user_emmet_settings={
             \'php':{'extends':'html','filters':'c'},
             \'xml':{'extends':'html'},
             \'jinja':{'extends':'xml'},
+            \'jinja2':{'extends':'xml'},
             \'jinja.html':{'extends':'xml'},
             \'haml':{'extends':'html'},
             \'htmldjango':{'extends':'html'},
-                \}
+            \'html.django':{'extends':'html'},
+            \}
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType html,xml,xhtml,php,mhtml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
@@ -733,10 +692,10 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 "Zeal Documentation Browser Config
-nmap <leader>z <Plug>Zeavim
-vmap <leader>z <Plug>ZeavimV
-nmap gz <Plug>ZVOperator
-nmap <leader><leader>z <Plug>ZVKeyDocset
+" nmap <leader>z <Plug>Zeavim
+" vmap <leader>z <Plug>ZeavimV
+" nmap gz <Plug>ZVOperator
+" nmap <leader><leader>z <Plug>ZVKeyDocset
 
 nnoremap <leader>] :TagbarToggle<CR>
 nnoremap <leader>[ :NERDTreeToggle<CR>
@@ -744,7 +703,7 @@ nnoremap <leader>[ :NERDTreeToggle<CR>
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=2 concealcursor=vin
+  set conceallevel=0 concealcursor=vn
 endif
 
 let g:multi_cursor_quit_key='<esc>'
@@ -811,16 +770,21 @@ noremap <leader>a: :Tabularize /:<CR>
 noremap <leader>a:: :Tabularize /:\zs<CR>
 noremap <leader>a, :Tabularize /,<CR>
 noremap <leader>a<Bar> :Tabularize /<Bar><CR>
+vnoremap <leader>a= :Tabularize /=<CR>
+vnoremap <leader>a: :Tabularize /:<CR>
+vnoremap <leader>a:: :Tabularize /:\zs<CR>
+vnoremap <leader>a, :Tabularize /,<CR>
+vnoremap <leader>a<Bar> :Tabularize /<Bar><CR>
 " Enforcing Purity
-noremap <Up> <tabcloseNop>
+noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 nmap <leader>1 :!chmod +x % <CR>
-nmap <leader>4 :source ~/.vimrc <CR>
+nmap <leader>4 :!sudo chmod a+rw % <CR>
 nnoremap <leader>1 :!chmod +x % <CR>
-nnoremap <leader>4 :source ~/.vimrc <CR>
+nnoremap <leader>4 :!sudo chmod a+rw % <CR>
 
 " Improve regex handling
 " nmap / /\v
@@ -849,8 +813,10 @@ map S <Plug>Sneak_S
 " Paste Line with Y
 nmap Y y$
 "yankstack config
-map <leader>a <Plug>yankstack_substitute_older_paste
-nmap <leader>c <Plug>yankstack_substitute_newer_paste
+map <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+map <leader>P <Plug>yankstack_substitute_newer_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " easier better ident in visual
 vnoremap < <gv
@@ -880,14 +846,15 @@ nnoremap <leader>cwd :cd %:p:h<CR>:pwd<CR>
 nnoremap ; :
 nnoremap : ;
 
-au Filetype markdown map <leader>[ :HeaderDecrease <cr>
-au Filetype markdown map <leader>] :HeaderIncrease <cr>
-au Filetype markdown map <leader>/ :TableFormat <cr>
-au Filetype markdown set textwidth=80
+au Filetype markdown,vimwiki map <leader>[ :HeaderDecrease <cr>
+au Filetype markdown,vimwiki map <leader>] :HeaderIncrease <cr>
+au Filetype markdown,vimwiki map <leader>/ :TableFormat <cr>
+au Filetype markdown,vimwiki set textwidth=80
+au Filetype markdown,vimwiki set conceallevel=0
 nnoremap <leader>we :tabe ~/Documents/notes/index.md <cr>
 "Escape: exit autocompletion, go to Normal mode
 inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
-au FileType c,cpp inoremap <buffer> <silent> <CR> <CR>
+" au FileType c,cpp inoremap <buffer> <silent> <CR> <CR>
 
 au FileType rust nmap gx <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
@@ -924,6 +891,8 @@ endif
 
 
 autocmd! BufWritePost ~/.Xresources,~/.Xdefaults  !xrdb %
+autocmd! BufWritePost ~/.Xresources,~/.Xdefaults  !xrdb %
+autocmd! BufWritePost ~/.profile,~/aliasrc  !source %
 
 
 command! -nargs=* -complete=shellcmd R tabe | setlocal buftype=nofile bufhidden=hide noswapfile | 0r !<args>
