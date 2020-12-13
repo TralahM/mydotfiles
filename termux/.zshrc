@@ -4,6 +4,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+if [[ -e ~/.profile ]]; then
+    source ~/.profile;
+fi
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -104,11 +107,7 @@ export POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
 export POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 typeset -g POWERLEVEL9K_VCS_GIT_ICON=$'\uF113 '
 export POWERLEVEL9K_VCS_GIT_ICON='  '
-export DEFAULT_USER=$(whoami)
 
-if [[ -e ~/.profile ]]; then
-    source ~/.profile;
-fi
 if [[ -e ~/aliasrc ]]; then
     source ~/aliasrc;
 fi
