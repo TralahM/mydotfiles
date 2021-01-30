@@ -49,6 +49,11 @@ alias free='free -m'                                            # Show sizes in 
 alias gitu='git add . && git commit && git push'
 
 alias xclipb="xclip -sel clipboard"
+alias xcliphtml="xclip -sel clipboard -t text/html -i "
+alias xclipng="xclip -sel clipboard -t image/png -i "
+alias xclipgif="xclip -sel clipboard -t image/gif -i "
+alias xclipjpg="xclip -sel clipboard -t image/jpeg -i "
+alias xclipsvg="xclip -sel clipboard -t image/svg+xml -i "
 
 alias swagger_codegen_cli="java -jar ~/javajars/swagger-codegen-cli-2xx.jar"
 alias swagger_codegen_cli3="java -jar ~/javajars/swagger-codegen-cli-3xx.jar"
@@ -65,3 +70,5 @@ alias ta='tmux attach'
 alias tls='tmux ls'
 alias tat='tmux attach -t'
 alias tns='tmux new-session -s'
+
+alias vimnop='vim --noplugin'

@@ -1,10 +1,18 @@
 #!zsh
+
+if [[ -f /etc/profile ]];then
+    source /etc/profile
+fi
 # Default programs:
 export TERMINAL="urxvt"
 export BROWSER="chromium"
 export READER="zathura"
+export MAILER="mutt"
+export PAGER="less"
 
-if [[ -f /usr/bin/nvim ]] then
+export CHROME_EXECUTABLE=$(which google-chrome-stable)
+
+if [[ -f /usr/bin/nvim ]];then
     export EDITOR="nvim"
     export GIT_EDITOR='nvim'
 else
@@ -31,12 +39,17 @@ export PIPENV_INSTALL_TIMEOUT=90000
 
 # # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
+export PATH="$PATH:$HOME/gems/bin"
 
-export PATH=$PATH:$HOME/.gem/ruby/2.7.0/bin
+if [[ -d $HOME/.gem/ruby/2.7.0/bin/ ]]; then
+    export PATH=$PATH:$HOME/.gem/ruby/2.7.0/bin
+fi
 # add ~/bin/ to $PATH
 if [[ -d $HOME/bin/ ]]; then
     export PATH=$PATH:$HOME/bin
+fi
+if [[ -d $HOME/.roswell/bin ]]; then
+    export PATH=$PATH:$HOME/.roswell/bin
 fi
 
 export PATH=$PATH:$HOME/.local/lib/python3.8/site-packages/bin
@@ -71,9 +84,9 @@ export MOZ_USE_XINPUT2="1"
 export PATH=$PATH:$GOHOME/bin:~/go/bin:$PATH
 # Snap apps to path
 export PATH=$PATH:/snap/bin
-export PATH=$HOME/.local/bin:$PATH
-export PATH=/usr/local/go/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/go/lib:$LD_LIBRARY_PATH
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:/usr/local/go/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/go/lib
 
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
@@ -143,6 +156,11 @@ paginate() {
   [ -z "$cursor" ] || paginate "$@" -f after="$cursor"
 }
 
+gitrepos(){
+  local user="${1?}"
+  repos $user | awk '/\.nameWithOwner\t/ { print $2 }'
+}
+
 # repos "tralahm" | awk '/\.nameWithOwner\t/ { print $2 }'
 
 if [[ -f $HOME/aliasrc ]]; then
@@ -199,4 +217,14 @@ alias yt="youtube-dl"
 
 
 alias vi=vim
-export PATH=$PATH:/data/data/com.termux/files/usr/bin/texlive
+export REQUESTS_CA_BUNDLE=""
+export PATH="$PATH:$HOME/.cabal/bin:$HOME/.ghcup/bin"
+
+for name in /usr/share/java/*.jar ; do
+    CP=$CP:$name
+done
+for name in /usr/share/java/*/*.jar ; do
+    SCP=$SCP:$name
+done
+export CLASSPATH=$CLASSPATH:$CP:$SCP
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dsun.java2d.opengl=true'

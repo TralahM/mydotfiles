@@ -42,12 +42,14 @@ endif
 call plug#begin('~/.vim/plugged')
 
 "
+
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 Plug 'tweekmonster/django-plus.vim', {'for': 'python'}
 Plug 'pboettch/vim-cmake-syntax', {'for': 'cmake'}
 Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
-Plug 'RRethy/vim-illuminate'
 Plug 'vlime/vlime', {'rtp': 'vim/'}
 Plug 'Glench/Vim-Jinja2-Syntax' " Jinja Filetype syntax hl
 Plug 'HansPinckaers/ncm2-jedi'
@@ -57,7 +59,6 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'Shougo/context_filetype.vim'
 Plug 'SirVer/ultisnips' " Snippets
-Plug 'airblade/vim-gitgutter' "Git Status
 Plug 'alvan/vim-closetag' "autoclose html,xml,j2 files
 Plug 'ap/vim-css-color' "show colors of hex,name colors
 Plug 'bfrg/vim-jq',{'for':'json'} "json query parser
@@ -67,10 +68,7 @@ Plug 'cloudhead/neovim-fuzzy'
 Plug 'derekwyatt/vim-scala',{'for': ['scala','sbt']} "scala syntax
 Plug 'dhruvasagar/vim-table-mode' "easy markdown tables
 Plug 'ehamberg/vim-cute-python',{'for':'python','branch':'master'} "pretty math symbols
-Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
 Plug 'enricobacis/vim-airline-clock'
-Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' } "Scala ide features for vim
-Plug 'garbas/vim-snipmate' "snipmate snippets
 Plug 'gcorne/vim-sass-lint',{'for':['css', 'sass', 'scss', 'less']}
 Plug 'glts/vim-magnum' "required by radical
 Plug 'glts/vim-radical' "crx,crd,cro,crb gA covert w under cursor to hex,dec,oct,bin
@@ -81,7 +79,6 @@ Plug 'jmcantrell/vim-virtualenv',{'for':'python'} "virtualenv py
 Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'} "Fzf
 Plug 'junegunn/fzf.vim' "Fzf
 Plug 'justinmk/vim-sneak' "The missing motion for vim
-Plug 'kana/vim-arpeggio' "Key mapping for simultaneously pressed keys
 Plug 'kana/vim-textobj-entire' "text objects for entire buffer
 Plug 'kana/vim-textobj-user' "text objects for entire buffer
 Plug 'luochen1990/rainbow' "Per Depth html,xml hl colors
@@ -91,8 +88,7 @@ Plug 'mattn/emmet-vim', {'for':['html','xhtml','jinja','htmldjango','xml','php']
 Plug 'mattn/vim-lsp-settings' "lsp settings
 Plug 'maxbrunsfeld/vim-yankstack' "cycle between prev yanks
 Plug 'mboughaba/i3config.vim'
-Plug 'michaeljsmith/vim-indent-object' "indent text objects"
-Plug 'mileszs/ack.vim'
+Plug 'michaeljsmith/vim-indent-object' "indent text objects
 Plug 'ncm2/float-preview.nvim'
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-bufword'
@@ -115,9 +111,7 @@ Plug 'filipekiss/ncm2-look.vim'
 Plug 'fgrsnau/ncm-otherbuf'
 Plug 'fgrsnau/ncm2-aspell'
 Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
-Plug 'neomake/neomake'
 Plug 'sheerun/vim-polyglot'                             " many languages support
-Plug 'tpope/vim-liquid'                                 " liquid language support
 Plug 'pbrisbin/vim-mkdir'
 Plug 'pearofducks/ansible-vim'
 Plug 'prabirshrestha/async.vim'
@@ -129,13 +123,10 @@ Plug 'rust-lang/rust.vim', {'for':'rust'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'slashmili/alchemist.vim',{'for':'elixir'}
 Plug 'tell-k/vim-autopep8',{'for':'python'}
 Plug 'terryma/vim-multiple-cursors'
-Plug 'terryma/vim-smooth-scroll'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'  "to highlight files in nerdtree
 Plug 'tomtom/tlib_vim'
-Plug 'tounaishouta/coq.vim', {'for':'coq'}
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-afterimage'
 Plug 'tpope/vim-commentary'
@@ -151,13 +142,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tweekmonster/braceless.vim', {'for': ['python']}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-pandoc/vim-pandoc',{'for':['pandoc', 'markdown']}
-Plug 'vim-pandoc/vim-pandoc-syntax',{'for':['pandoc', 'markdown']}
-Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
-Plug 'vim-ruby/vim-ruby',{'for':'ruby'}
 Plug 'vim-scripts/IndexedSearch'
 Plug 'vim-syntastic/syntastic'
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', {'for':['markdown','vimwiki']}
 Plug 'wellle/tmux-complete.vim'
 Plug 'xavierd/clang_complete'
 Plug 'yegappan/mru' "most recently used
@@ -313,20 +300,20 @@ autocmd! BufNewFile,BufRead,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd se
 autocmd! BufNewFile,BufRead,BufWritePre *.tex set conceallevel=0
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal foldmethod=syntax
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
-autocmd! BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2
+autocmd! BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2 ft=yaml
 " Color scheme
 syntax enable
 let g:solarized_termcolors=256
-let g:gitgutter_max_signs=4000
-let g:gitgutter_override_sign_column_highlight = 1
-let g:gitgutter_map_keys = 0
+" let g:gitgutter_max_signs=4000
+" let g:gitgutter_override_sign_column_highlight = 1
+" let g:gitgutter_map_keys = 0
 
-" let g:python3_host_prog='/usr/bin/python'
+" " let g:python3_host_prog='/usr/bin/python'
 
-let g:gitgutter_sign_added = "+"
-let g:gitgutter_sign_modified = "~"
-let g:gitgutter_sign_removed = "襤"
-let g:gitgutter_sign_modified_removed = "雷"
+" let g:gitgutter_sign_added = "+"
+" let g:gitgutter_sign_modified = "~"
+" let g:gitgutter_sign_removed = "襤"
+" let g:gitgutter_sign_modified_removed = "雷"
 
 colorscheme delek
 let g:solarized_contrast="high"
@@ -398,6 +385,10 @@ autocmd BufWritePost Makefile* silent! execute "!make >/dev/null 2>&1" | redraw!
 " vim-indent-guides conf
 " let g:indent_guides_enable_on_vim_startup=1
 
+" Vsnip Conf
+imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 
 " jedi options
 let g:jedi#force_py_version=3
@@ -415,24 +406,6 @@ let g:jedi#enable_speed_debugging=1
 
 " Vim-SCala Conf
 let g:scala_scaladoc_indent = 1
-"Linting with neomake
-let g:neomake_sbt_maker = {
-      \ 'exe': 'sbt',
-      \ 'args': ['-Dsbt.log.noformat=true', 'compile'],
-      \ 'append_file': 0,
-      \ 'auto_enabled': 1,
-      \ 'output_stream': 'stdout',
-      \ 'errorformat':
-          \ '%E[%trror]\ %f:%l:\ %m,' .
-            \ '%-Z[error]\ %p^,' .
-            \ '%-C%.%#,' .
-            \ '%-G%.%#'
-     \ }
-
-let g:neomake_enabled_makers = ['sbt', 'make', 'cmake', 'qmake', 'python']
-let g:neomake_verbose=3
-" Neomake on text change
-autocmd! BufWritePost *.scala update | Neomake! sbt
 
 "yankstack config
 call yankstack#setup()
@@ -515,11 +488,11 @@ autocmd BufRead,BufNewFile *.py :BracelessEnable +indent +highlight
 
 " SYNTASTIC SETTING
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_loc_list_height = 3
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 4
 let g:syntastic_aggregate_errors = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
 let g:syntastic_rst_checkers = ['text/language_check']
 let g:syntastic_tex_checkers = ["lacheck"]
 let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pydocstyle']
@@ -578,6 +551,8 @@ let g:over_enable_cmd_window=1
 let g:over_command_line_prompt=">"
 
 
+" vim-dart-plugin
+let g:dart_format_on_save=1
 
 " " Ultisnips Config
 let g:UltiSnipsExpandTrigger='<C-space>'
@@ -595,17 +570,12 @@ let g:UltiSnipsListSnippets= "<c-k>" "List Possible snippets based on current fi
 " let g:UltiSnipsRemoveSelectModeMappings = 0
 
 
-command! MakeTags !ctags -R -a %
-command! MakePyScope !find . -type f -name "*.py" |cscope -b -q -i - <CR>
-command! MakeCScope !cscope -b -d <CR>
-autocmd bufwritepost *.c *.cpp *.hpp *.h *.rs *.py  MakeTags
-
 
 " Markdown Composer options
 " Do not attempt to open the browser automatically i'll do it manually
 let g:markdown_composer_autostart=0
 
-let g:markdown_composer_browser="mdr"
+" let g:markdown_composer_browser="mdr"
 
 " let g:markdown_composer_external_renderer='mdr'
 
@@ -613,7 +583,7 @@ let g:markdown_composer_browser="mdr"
 
 
 
-let ncm2#popup_delay=5
+" let ncm2#popup_delay=5
 let ncm2#complete_length=[[1, 1]]
 let g:ncm2#matcher='substrfuzzy'
 
@@ -684,18 +654,6 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 " [Tags] Command to generate tags file
 let g:fzf_tags_command = 'ctags -R %'
 
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-"Zeal Documentation Browser Config
-" nmap <leader>z <Plug>Zeavim
-" vmap <leader>z <Plug>ZeavimV
-" nmap gz <Plug>ZVOperator
-" nmap <leader><leader>z <Plug>ZVKeyDocset
 
 nnoremap <leader>] :TagbarToggle<CR>
 nnoremap <leader>[ :NERDTreeToggle<CR>
