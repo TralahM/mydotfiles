@@ -44,6 +44,7 @@ call plug#begin('~/.vim/plugged')
 "
 
 Plug 'hrsh7th/vim-vsnip'
+Plug 'bpstahlman/txtfmt'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
 Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
@@ -453,7 +454,8 @@ autocmd! WinLeave __Tagbar__* setlocal relativenumber number
 autocmd! WinNew __Tagbar__* setlocal relativenumber number
 autocmd! StdinReadPre * let s:std_in=1
 autocmd! VimEnter * if argc()==0 && !exists("s:std_in") | NERDTree | endif
-let g:tagbar_width=27
+let g:tagbar_width=36
+let g:tagbar_type_dart = { 'ctagsbin': '~/.pub-cache/bin/dart_ctags' }
 
 
 "
@@ -952,6 +954,7 @@ au BufRead *.asd,.emacs,.spacemacs,*.lisp,.sbclrc,.clisprc  set ft=lisp
 au FileType html,xml,xhtml,php,jinja silent! let b:AutoPairs=AutoPairsDefine({"<!--":"--!>",'{%':'%}','{%#':'#%}','<?':'?>','<?php':'?>'},["<"])
 let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 au! FileType  lisp silent! let b:AutoPairs=AutoPairsDefine({';':' '},["'","`"]) " remove ' for lisp files
+let g:AutoPairsCR=1
 
 
 let g:vlime_window_settings = {

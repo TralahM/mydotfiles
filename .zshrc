@@ -264,3 +264,4 @@ zplugin light "hlissner/zsh-autopair"
 
 ### End of Zinit's installer chunk
 # Put this in .zshrc, after this plugin is loaded
+export PATH=$PATH:$HOME/.pub-cache/bin

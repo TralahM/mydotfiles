@@ -72,3 +72,4 @@ alias tat='tmux attach -t'
 alias tns='tmux new-session -s'
 
 alias vimnop='vim --noplugin'
+export PATH=$PATH:$HOME/.cargo/bin
