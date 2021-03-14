@@ -294,6 +294,7 @@ syntax on
 autocmd! BufNewFile,BufRead *.ipy set filetype=python
 autocmd! BufNewFile,BufRead *.pyx set filetype=python
 autocmd! BufWritePre *.py execute ':Black'
+autocmd! BufWritePost *.py silent! execute ':!isort %'
 autocmd! BufNewFile,BufRead SConstruct set filetype=python
 autocmd! BufNewFile,BufRead *.py,*.pyx,SConstruct UltiSnipsAddFiletypes python
 autocmd! BufNewFile,BufReadPost,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=vimwiki
