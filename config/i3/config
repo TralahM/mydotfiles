@@ -45,7 +45,7 @@ set $right semicolon
 set $floating_modifier Mod1
 
 # start a terminal
-bindsym Mod1+Return exec i3-sensible-terminal
+bindsym Mod1+Return exec alacritty
 
 # kill focused window
 bindsym Mod1+Shift+q kill
@@ -214,32 +214,20 @@ bindsym Mod1+r mode "resize"
 # finds out, if available)
 bar {
         status_command SCRIPT_DIR=~/bin i3blocks
-        font pango:Hack Nerd Font 9
+        font pango:Hack Nerd Font 8
         position top
 }
-
-#######################################################################
-# automatically start i3-config-wizard to offer the user to create a
-# keysym-based config which used their favorite modifier (alt or windows)
-#
-# i3-config-wizard will not launch if there already is a config file
-# in ~/.config/i3/config (or $XDG_CONFIG_HOME/i3/config if set) or
-# ~/.i3/config.
-#
-# Please remove the following exec line:
-#######################################################################
-# exec i3-config-wizard
 exec --no-startup-id volumeicon
 exec --no-startup-id kdeconnect-indicator
 exec --no-startup-id i3-msg 'workspace 2; exec chromium && sleep 15;'
 exec --no-startup-id i3-msg 'workspace 3; exec pcmanfm && workspace 1'
 exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-exec --no-startup-id urxvt
 
 exec --no-startup-id picom -bc
+exec --no-startup-id alacritty
 exec --no-startup-id wpchanger.sh
 
-exec_always --no-startup-id "xcfe4-power-manager"
+# exec_always --no-startup-id "xcfe4-power-manager"
 exec --no-startup-id startconky.sh
 
 bindsym Mod4+Shift+l mode "$mode_system"
@@ -262,5 +250,23 @@ for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
 for_window [window_role="GtkFileChooserDialog"] resize set 800 600
 for_window [window_role="GtkFileChooserDialog"] move position center
+for_window [class="Alacritty"] floating enable
+assign [class="firefox"] 6
+title_align center
+for_window [class=".*"] title_format "[<i>%class</i>]::::<b>%title</b>"
+#  print window titles of firefox windows red
+for_window [class="(?i)firefox"] title_format "<span foreground='red'>%title</span>"
+# for_window [class="Chromium"] title_format "<span foreground='white'>%title</span>"
+# read 1 character and mark the current window with this character
+bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+
+# read 1 character and go to the window with the character
+bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+# Toggle between hide state and show state
+bindsym $mod_next+m bar hidden_state toggle
+
+# Toggle between dock mode and hide mode
+bindsym $mod+n bar mode toggle
+
 
 # vim:filetype=i3config

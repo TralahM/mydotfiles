@@ -1,0 +1,1154 @@
+snippet html5-boilerplate "html5-boilerplate"
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>$1</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="$2">
+	</head>
+	<body>
+		<!--[if lt IE 7]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+		$3
+		<script src="$4" async defer></script>
+	</body>
+</html>
+
+endsnippet
+
+snippet b-alert-header "b-alert-header"
+<div class="alert alert-${1|primary,secondary,success,danger,warning,info,light,dark|}" role="alert">
+	<h4 class="alert-heading">${2:Header}</h4>
+	${3:Content}
+</div>
+
+endsnippet
+
+snippet b-alert "b-alert"
+<div class="alert alert-${1|primary,secondary,success,danger,warning,info,light,dark|}" role="alert">
+	${2:Content}
+</div>
+
+endsnippet
+
+snippet b-badge-pill "b-badge-pill"
+<span class="badge badge-pill badge-${1|primary,secondary,success,danger,warning,info,light,dark|}">${2:Text}</span>
+
+endsnippet
+
+snippet b-badge "b-badge"
+<span class="badge badge-${1|primary,secondary,success,danger,warning,info,light,dark|}">${2:Text}</span>
+
+endsnippet
+
+snippet b-breadcrumb "b-breadcrumb"
+<nav aria-label="${1:Page breadcrumb}">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item active" aria-current="page">${2:Item 1}</li>
+		<li class="breadcrumb-item">${3:Item 2}</li>$0
+	</ol>
+</nav>
+
+endsnippet
+
+snippet b-btn-group-vertical "b-btn-group-vertical"
+<div class="btn-group-vertical" role="group" aria-label="${1:Vertical button group}">
+	$0
+</div>
+
+endsnippet
+
+snippet b-btn-group "b-btn-group"
+<div class="btn-group" role="group" aria-label="${1:Button group}">
+	$0
+</div>
+
+endsnippet
+
+snippet b-btn-checkbox "b-btn-checkbox"
+<div class="btn-group-toggle" data-toggle="buttons">
+	<label class="btn btn-${1|primary,secondary,success,danger,warning,info,light,dark,link|}">
+		<input type="checkbox"> ${2:Text}
+	</label>$0
+</div>
+
+endsnippet
+
+snippet b-btn-radio "b-btn-radio"
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+	<label class="btn btn-${1|primary,secondary,success,danger,warning,info,light,dark,link|}">
+		<input type="radio"> ${2:Text}
+	</label>$0
+</div>
+
+endsnippet
+
+snippet b-btn "b-btn"
+<button class="btn btn-${1|primary,secondary,success,danger,warning,info,light,dark,link|}" type="${2|button,submit,reset|}">${3:Text}</button>
+
+endsnippet
+
+snippet b-card-columns "b-card-columns"
+<div class="card-columns">
+	$0
+</div>
+
+endsnippet
+
+snippet b-card-deck "b-card-deck"
+<div class="card-deck">
+	$0
+</div>
+
+endsnippet
+
+snippet b-card-footer "b-card-footer"
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">${1:Title}</h5>
+		<p class="card-text">${2:Content}</p>$0
+	</div>
+	<div class="card-footer">
+		${3:Footer}
+	</div>
+</div>
+
+endsnippet
+
+snippet b-card-full "b-card-full"
+<div class="card">
+	<div class="card-header">
+		${1:Header}
+	</div>
+	<div class="card-body">
+		<h5 class="card-title">${2:Title}</h5>
+		<p class="card-text">${3:Content}</p>$0
+	</div>
+	<div class="card-footer">
+		${4:Footer}
+	</div>
+</div>
+
+endsnippet
+
+snippet b-card-group "b-card-group"
+<div class="card-group">
+	$0
+</div>
+
+endsnippet
+
+snippet b-card-header "b-card-header"
+<div class="card">
+	<div class="card-header">
+		${1:Header}
+	</div>
+	<div class="card-body">
+		<h5 class="card-title">${2:Title}</h5>
+		<p class="card-text">${3:Content}</p>$0
+	</div>
+</div>
+
+endsnippet
+
+snippet b-card-img-bottom "b-card-img-bottom"
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">${1:Title}</h5>
+		<p class="card-text">${2:Content}</p>$0
+	</div>
+	<img class="card-img-bottom" src="$3" alt="$4">
+</div>
+
+endsnippet
+
+snippet b-card-img-full "b-card-img-full"
+<div class="card">
+	<img class="card-img-top" src="$1" alt="$2">
+	<div class="card-body">
+		<h5 class="card-title">${3:Title}</h5>
+		<p class="card-text">${4:Content}</p>$0
+	</div>
+	<img class="card-img-bottom" src="$5" alt="$6">
+</div>
+
+endsnippet
+
+snippet b-card-img-overlay "b-card-img-overlay"
+<div class="card">
+	<img class="card-img" src="$1" alt="$2">
+	<div class="card-img-overlay">
+		<h5 class="card-title">${3:Title}</h5>
+		<p class="card-text">${4:Content}</p>$0
+	</div>
+</div>
+
+endsnippet
+
+snippet b-card-img-top "b-card-img-top"
+<div class="card">
+	<img class="card-img-top" src="$1" alt="$2">
+	<div class="card-body">
+		<h5 class="card-title">${3:Title}</h5>
+		<p class="card-text">${4:Content}</p>$0
+	</div>
+</div>
+
+endsnippet
+
+snippet b-card "b-card"
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">${1:Title}</h5>
+		<p class="card-text">${2:Content}</p>$0
+	</div>
+</div>
+
+endsnippet
+
+snippet b-carousel-controls "b-carousel-controls"
+<div id="${1:my-carousel}" class="carousel slide" data-ride="carousel">
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img class="d-block w-100" src="$2" alt="$3">
+			<div class="carousel-caption d-none d-md-block">
+				<h5>${4:Title}</h5>
+				<p>${5:Text}</p>
+			</div>
+		</div>$0
+	</div>
+	<a class="carousel-control-prev" href="#$1" data-slide="prev" role="button">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">${6:Previous}</span>
+	</a>
+	<a class="carousel-control-next" href="#$1" data-slide="next" role="button">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">${7:Next}</span>
+	</a>
+</div>
+
+endsnippet
+
+snippet b-carousel-full "b-carousel-full"
+<div id="${1:my-carousel}" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<li class="active" data-target="#$1" data-slide-to="0" aria-current="location"></li>
+		<li data-target="#$1" data-slide-to="1"></li>
+	</ol>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img class="d-block w-100" src="$2" alt="$3">
+			<div class="carousel-caption d-none d-md-block">
+				<h5>${4:Title}</h5>
+				<p>${5:Text}</p>
+			</div>
+		</div>
+		<div class="carousel-item">
+			<img class="d-block w-100" src="$6" alt="$7">
+			<div class="carousel-caption d-none d-md-block">
+				<h5>${8:Title}</h5>
+				<p>${9:Text}</p>
+			</div>
+		</div>$0
+	</div>
+	<a class="carousel-control-prev" href="#$1" data-slide="prev" role="button">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">${10:Previous}</span>
+	</a>
+	<a class="carousel-control-next" href="#$1" data-slide="next" role="button">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">${11:Next}</span>
+	</a>
+</div>
+
+endsnippet
+
+snippet b-carousel-indicators "b-carousel-indicators"
+<div id="${1:my-carousel}" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<li class="active" data-target="#$1" data-slide-to="0" aria-current="location"></li>
+		<li data-target="#$1" data-slide-to="1"></li>
+	</ol>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img class="d-block w-100" src="$2" alt="$3">
+			<div class="carousel-caption d-none d-md-block">
+				<h5>${4:Title}</h5>
+				<p>${5:Text}</p>
+			</div>
+		</div>
+		<div class="carousel-item">
+			<img class="d-block w-100" src="$6" alt="$7">
+			<div class="carousel-caption d-none d-md-block">
+				<h5>${8:Title}</h5>
+				<p>${9:Text}</p>
+			</div>
+		</div>$0
+	</div>
+</div>
+
+endsnippet
+
+snippet b-carousel "b-carousel"
+<div id="${1:my-carousel}" class="carousel slide" data-ride="carousel">
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img class="d-block w-100" src="$2" alt="$3">
+			<div class="carousel-caption d-none d-md-block">
+				<h5>${4:Title}</h5>
+				<p>${5:Text}</p>
+			</div>
+		</div>$0
+	</div>
+</div>
+
+endsnippet
+
+snippet b-collapse "b-collapse"
+<button class="btn btn-${2|primary,secondary,success,danger,warning,info,light,dark,link|}" data-target="#${1:my-collapse}" data-toggle="collapse" aria-expanded="false" aria-controls="$1">${3:Text}</button>
+<div id="$1" class="collapse">
+	$0
+</div>
+
+endsnippet
+
+snippet b-dropdown-menu "b-dropdown-menu"
+<div class="dropdown-menu">
+	<a class="dropdown-item active" href="#">${1:Text}</a>$0
+</div>
+
+endsnippet
+
+snippet b-dropdown-split "b-dropdown-split"
+<div class="btn-group ${2|dropdown,dropup,dropright,dropleft|}">
+	<button class="btn btn-${3|primary,secondary,success,danger,warning,info,light,dark,link|}">${4:Text}</button>
+	<button id="${1:my-dropdown}" class="btn btn-$3 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<span class="sr-only">Toggle dropdown</span>
+	</button>
+	<div class="dropdown-menu" aria-labelledby="$1">
+		<a class="dropdown-item active" href="#">${5:Text}</a>$0
+	</div>
+</div>
+
+endsnippet
+
+snippet b-dropdown "b-dropdown"
+<div class="${2|dropdown,dropup,dropright,dropleft|}">
+	<button id="${1:my-dropdown}" class="btn btn-${3|primary,secondary,success,danger,warning,info,light,dark,link|} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${4:Text}</button>
+	<div class="dropdown-menu" aria-labelledby="$1">
+		<a class="dropdown-item active" href="#">${5:Text}</a>$0
+	</div>
+</div>
+
+endsnippet
+
+snippet b-form-check-inline "b-form-check-inline"
+<div class="form-check form-check-inline">
+	<input id="${1:my-input}" class="form-check-input" type="${2|checkbox,radio|}" name="$3" value="${4:true}">
+	<label for="$1" class="form-check-label">${5:Text}</label>
+</div>
+
+endsnippet
+
+snippet b-form-check "b-form-check"
+<div class="form-check">
+	<input id="${1:my-input}" class="form-check-input" type="${2|checkbox,radio|}" name="$3" value="${4:true}">
+	<label for="$1" class="form-check-label">${5:Text}</label>
+</div>
+
+endsnippet
+
+snippet b-form-custom-check-inline "b-form-custom-check-inline"
+<div class="custom-control custom-${2|checkbox,radio|} custom-control-inline">
+	<input id="${1:my-input}" class="custom-control-input" type="${2|checkbox,radio|}" name="$3" value="${4:true}">
+	<label for="$1" class="custom-control-label">${5:Text}</label>
+</div>
+
+endsnippet
+
+snippet b-form-custom-check "b-form-custom-check"
+<div class="custom-control custom-${2|checkbox,radio|}">
+	<input id="${1:my-input}" class="custom-control-input" type="${2|checkbox,radio|}" name="$3" value="${4:true}">
+	<label for="$1" class="custom-control-label">${5:Text}</label>
+</div>
+
+endsnippet
+
+snippet b-form-custom-file "b-form-custom-file"
+<div class="custom-file">
+	<input id="${1:my-input}" class="custom-file-input" type="file" name="$2">
+	<label for="$1" class="custom-file-label">${3:Text}</label>
+</div>
+
+endsnippet
+
+snippet b-form-custom-range "b-form-custom-range"
+<div class="form-group">
+	<label for="${1:my-input}">${5:Text}</label>
+	<input id="$1" class="custom-range" type="range" name="$2" min="${3:0}" max="${4:100}">
+</div>
+
+endsnippet
+
+snippet b-form-custom-select-multiple "b-form-custom-select-multiple"
+<div class="form-group">
+	<label for="${1:my-select}">${3:Text}</label>
+	<select id="$1" class="custom-select" name="$2" multiple>
+		<option>${4:Text}</option>$0
+	</select>
+</div>
+
+endsnippet
+
+snippet b-form-custom-select "b-form-custom-select"
+<div class="form-group">
+	<label for="${1:my-select}">${3:Text}</label>
+	<select id="$1" class="custom-select" name="$2">
+		<option>${4:Text}</option>$0
+	</select>
+</div>
+
+endsnippet
+
+snippet b-form-custom-switch "b-form-custom-switch"
+<div class="custom-control custom-switch">
+	<input id="${1:my-input}" class="custom-control-input" type="checkbox" name="$2" value="${3:true}">
+	<label for="$1" class="custom-control-label">${4:Text}</label>
+</div>
+
+endsnippet
+
+snippet b-form-enctype-inline "b-form-enctype-inline"
+<form class="form-inline" method="${1|get,post|}" action="$2" enctype="${3|multipart/form-data,application/x-www-form-urlencoded,text/plain|}">
+	$0
+</form>
+
+endsnippet
+
+snippet b-form-enctype "b-form-enctype"
+<form method="${1|get,post|}" action="$2" enctype="${3|multipart/form-data,application/x-www-form-urlencoded,text/plain|}">
+	$0
+</form>
+
+endsnippet
+
+snippet b-form-file "b-form-file"
+<div class="form-group">
+	<label for="${1:my-input}">${3:Text}</label>
+	<input id="$1" class="form-control-file" type="file" name="$2">
+</div>
+
+endsnippet
+
+snippet b-form-group "b-form-group"
+<div class="form-group">
+	<label for="${1:my-input}">${4:Text}</label>
+	<input id="$1" class="form-control" type="${2|text,number,email,password|}" name="$3">
+</div>
+
+endsnippet
+
+snippet b-form-help "b-form-help"
+<small class="form-text text-muted">${1:Content}</small>
+
+endsnippet
+
+snippet b-form-inline "b-form-inline"
+<form class="form-inline" method="${1|get,post|}" action="$2">
+	$0
+</form>
+
+endsnippet
+
+snippet b-form-invalid "b-form-invalid"
+<div class="invalid-${1|feedback,tooltip|}">${2:Content}</div>
+
+endsnippet
+
+snippet b-form-range "b-form-range"
+<div class="form-group">
+	<label for="${1:my-input}">${5:Text}</label>
+	<input id="$1" class="form-control-range" type="range" name="$2" min="${3:0}" max="${4:100}">
+</div>
+
+endsnippet
+
+snippet b-form-select-multiple "b-form-select-multiple"
+<div class="form-group">
+	<label for="${1:my-select}">${3:Text}</label>
+	<select id="$1" class="form-control" name="$2" multiple>
+		<option>${4:Text}</option>$0
+	</select>
+</div>
+
+endsnippet
+
+snippet b-form-select "b-form-select"
+<div class="form-group">
+	<label for="${1:my-select}">${3:Text}</label>
+	<select id="$1" class="form-control" name="$2">
+		<option>${4:Text}</option>$0
+	</select>
+</div>
+
+endsnippet
+
+snippet b-form-textarea "b-form-textarea"
+<div class="form-group">
+	<label for="${1:my-textarea}">${4:Text}</label>
+	<textarea id="$1" class="form-control" name="$2" rows="${3:3}"></textarea>
+</div>
+
+endsnippet
+
+snippet b-form-valid "b-form-valid"
+<div class="valid-${1|feedback,tooltip|}">${2:Content}</div>
+
+endsnippet
+
+snippet b-form "b-form"
+<form method="${1|get,post|}" action="$2">
+	$0
+</form>
+
+endsnippet
+
+snippet b-input-hidden-id "b-input-hidden-id"
+<input id="${1:my-input}" type="hidden" name="$2" value="$3">
+
+endsnippet
+
+snippet b-input-hidden "b-input-hidden"
+<input type="hidden" name="$1" value="$2">
+
+endsnippet
+
+snippet b-input-id "b-input-id"
+<input id="${1:my-input}" class="form-control" type="${2|text,number,email,password|}" name="$3">
+
+endsnippet
+
+snippet b-input "b-input"
+<input class="form-control" type="${1|text,number,email,password|}" name="$2">
+
+endsnippet
+
+snippet b-input-group-append "b-input-group-append"
+<div class="input-group">
+	<input class="form-control" type="${2|text,number,email,password|}" name="$3" placeholder="${4:Recipient's $2}" aria-label="$4" aria-describedby="${1:my-addon}">
+	<div class="input-group-append">
+		<span class="input-group-text" id="$1">${5:Text}</span>
+	</div>
+</div>
+
+endsnippet
+
+snippet b-input-group-full "b-input-group-full"
+<div class="input-group">
+	<div class="input-group-prepend">
+		<span class="input-group-text">${4:Text}</span>
+	</div>
+	<input class="form-control" type="${1|text,number,email,password|}" name="$2" placeholder="${3:Recipient's $1}" aria-label="$3">
+	<div class="input-group-append">
+		<span class="input-group-text">${5:Text}</span>
+	</div>
+</div>
+
+endsnippet
+
+snippet b-input-group-prepend "b-input-group-prepend"
+<div class="input-group">
+	<div class="input-group-prepend">
+		<span class="input-group-text" id="${1:my-addon}">${5:Text}</span>
+	</div>
+	<input class="form-control" type="${2|text,number,email,password|}" name="$3" placeholder="${4:Recipient's $2}" aria-label="$4" aria-describedby="$1">
+</div>
+
+endsnippet
+
+snippet b-jumbotron-fluid "b-jumbotron-fluid"
+<div class="jumbotron jumbotron-fluid">
+	<h1 class="display-4">${1:Title}</h1>
+	<p class="lead">${2:Subtitle}</p>
+	<hr class="my-4">
+	<p>${3:Content}</p>
+</div>
+
+endsnippet
+
+snippet b-jumbotron "b-jumbotron"
+<div class="jumbotron">
+	<h1 class="display-4">${1:Title}</h1>
+	<p class="lead">${2:Subtitle}</p>
+	<hr class="my-4">
+	<p>${3:Content}</p>
+</div>
+
+endsnippet
+
+snippet b-list-group-action-flush "b-list-group-action-flush"
+<ul class="list-group list-group-flush">
+	<a class="list-group-item list-group-item-action active" href="#">${1:Text}</a>
+	<a class="list-group-item list-group-item-action disabled" href="#" tabindex="-1" aria-disabled="true">${2:Disabled item}</a>$0
+</ul>
+
+endsnippet
+
+snippet b-list-group-action-horizontal "b-list-group-action-horizontal"
+<ul class="list-group list-group-horizontal">
+	<a class="list-group-item list-group-item-action active" href="#">${1:Text}</a>
+	<a class="list-group-item list-group-item-action disabled" href="#" tabindex="-1" aria-disabled="true">${2:Disabled item}</a>$0
+</ul>
+
+endsnippet
+
+snippet b-list-group-action "b-list-group-action"
+<ul class="list-group">
+	<a class="list-group-item list-group-item-action active" href="#">${1:Text}</a>
+	<a class="list-group-item list-group-item-action disabled" href="#" tabindex="-1" aria-disabled="true">${2:Disabled item}</a>$0
+</ul>
+
+endsnippet
+
+snippet b-list-group-flush "b-list-group-flush"
+<ul class="list-group list-group-flush">
+	<li class="list-group-item active">${1:Text}</li>
+	<li class="list-group-item disabled" aria-disabled="true">${2:Disabled item}</li>$0
+</ul>
+
+endsnippet
+
+snippet b-list-group-horizontal "b-list-group-horizontal"
+<ul class="list-group list-group-horizontal">
+	<li class="list-group-item active">${1:Text}</li>
+	<li class="list-group-item disabled" aria-disabled="true">${2:Disabled item}</li>$0
+</ul>
+
+endsnippet
+
+snippet b-list-group "b-list-group"
+<ul class="list-group">
+	<li class="list-group-item active">${1:Text}</li>
+	<li class="list-group-item disabled" aria-disabled="true">${2:Disabled item}</li>$0
+</ul>
+
+endsnippet
+
+snippet b-media-left "b-media-left"
+<div class="media">
+	<img class="align-self-${1|start,center,end|}" src="$2" alt="$3">
+	<div class="media-body">
+		<h5 class="mb-0">${4:Header}</h5>
+		${5:Content}
+	</div>
+</div>
+
+endsnippet
+
+snippet b-media-right "b-media-right"
+<div class="media">
+	<div class="media-body">
+		<h5 class="mb-0">${2:Header}</h5>
+		${3:Content}
+	</div>
+	<img class="align-self-${1|start,center,end|}" src="$4" alt="$5">
+</div>
+
+endsnippet
+
+snippet b-modal-center "b-modal-center"
+<div id="${1:my-modal}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>${2:Content}</p>$0
+			</div>
+		</div>
+	</div>
+</div>
+
+endsnippet
+
+snippet b-modal-footer-center "b-modal-footer-center"
+<div id="${1:my-modal}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>${2:Content}</p>$0
+			</div>
+			<div class="modal-footer">
+				${3:Footer}
+			</div>
+		</div>
+	</div>
+</div>
+
+endsnippet
+
+snippet b-modal-footer "b-modal-footer"
+<div id="${1:my-modal}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>${2:Content}</p>$0
+			</div>
+			<div class="modal-footer">
+				${3:Footer}
+			</div>
+		</div>
+	</div>
+</div>
+
+endsnippet
+
+snippet b-modal-full-center "b-modal-full-center"
+<div id="${1:my-modal}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="${2:my-modal-title}" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="$2">${3:Title}</h5>
+				<button class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>${4:Content}</p>$0
+			</div>
+			<div class="modal-footer">
+				${5:Footer}
+			</div>
+		</div>
+	</div>
+</div>
+
+endsnippet
+
+snippet b-modal-full "b-modal-full"
+<div id="${1:my-modal}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="${2:my-modal-title}" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="$2">${3:Title}</h5>
+				<button class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>${4:Content}</p>$0
+			</div>
+			<div class="modal-footer">
+				${5:Footer}
+			</div>
+		</div>
+	</div>
+</div>
+
+endsnippet
+
+snippet b-modal-header-center "b-modal-header-center"
+<div id="${1:my-modal}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="${2:my-modal-title}" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="$2">${3:Title}</h5>
+				<button class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>${4:Content}</p>$0
+			</div>
+		</div>
+	</div>
+</div>
+
+endsnippet
+
+snippet b-modal-header "b-modal-header"
+<div id="${1:my-modal}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="${2:my-modal-title}" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="$2">${3:Title}</h5>
+				<button class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>${4:Content}</p>$0
+			</div>
+		</div>
+	</div>
+</div>
+
+endsnippet
+
+snippet b-modal-toggle "b-modal-toggle"
+<button class="btn btn-${1|primary,secondary,success,danger,warning,info,light,dark,link|}" type="button" data-toggle="modal" data-target="#${2:my-modal}">${3:Content}</button>
+
+endsnippet
+
+snippet b-modal "b-modal"
+<div id="${1:my-modal}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p>${2:Content}</p>$0
+			</div>
+		</div>
+	</div>
+</div>
+
+endsnippet
+
+snippet b-navbar "b-navbar"
+<nav class="navbar navbar-expand-lg navbar-${1|light,dark|} bg-$1 ${2|fixed-top,fixed-bottom,sticky-top|}">
+	<a class="navbar-brand">${5:Brand}</a>
+	<button class="navbar-toggler" data-target="#${3:my-nav}" data-toggle="collapse" aria-controls="$3" aria-expanded="false" aria-label="${4:Toggle navigation}">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div id="$3" class="collapse navbar-collapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="#">${6:Item 1} <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">${7:Item 2}</a>
+			</li>$0
+		</ul>
+	</div>
+</nav>
+
+endsnippet
+
+snippet b-nav-fill "b-nav-fill"
+<nav class="nav nav-fill">
+	<li class="nav-item">
+		<a class="nav-link active" href="#">${1:Item 1}</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">${2:Item 2}</a>
+	</li>$0
+</nav>
+
+endsnippet
+
+snippet b-nav-vertical "b-nav-vertical"
+<nav class="nav flex-column">
+	<li class="nav-item">
+		<a class="nav-link active" href="#">${1:Item 1}</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">${2:Item 2}</a>
+	</li>$0
+</nav>
+
+endsnippet
+
+snippet b-nav "b-nav"
+<nav class="nav">
+	<li class="nav-item">
+		<a class="nav-link active" href="#">${1:Item 1}</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">${2:Item 2}</a>
+	</li>$0
+</nav>
+
+endsnippet
+
+snippet b-pagination "b-pagination"
+<nav aria-label="${1:Page navigation}">
+	<ul class="pagination">
+		<li class="page-item active" aria-current="page">
+			<a class="page-link" href="#">${2:Page 1} <span class="sr-only">(current)</span></a>
+		</li>
+		<li class="page-item disabled">
+			<a class="page-link" href="#" tabindex="-1" aria-disabled="true">${3:Page 2}</a>
+		</li>
+		<li class="page-item">
+			<a class="page-link" href="#">${4:Page 3}</a>
+		</li>$0
+	</ul>
+</nav>
+
+endsnippet
+
+snippet b-popover-title "b-popover-title"
+<button class="btn btn-${1|primary,secondary,success,danger,warning,info,light,dark,link|}" type="${2|button,submit,reset|}" data-toggle="popover" data-placement="${3|top,bottom,right,left|}" data-trigger="focus" title="${4:Title}" data-content="${5:Content}">${6:Text}</button>
+
+endsnippet
+
+snippet b-popover "b-popover"
+<button class="btn btn-${1|primary,secondary,success,danger,warning,info,light,dark,link|}" type="${2|button,submit,reset|}" data-toggle="popover" data-placement="${3|top,bottom,right,left|}" data-trigger="focus" data-content="${4:Content}">${5:Text}</button>
+
+endsnippet
+
+snippet b-progress-striped "b-progress-striped"
+<div class="progress">
+	<div class="progress-bar progress-bar-striped bg-primary" style="width: ${1:25}%" role="progressbar" aria-valuenow="$1" aria-valuemin="0" aria-valuemax="100">${2:Text}</div>
+</div>
+
+endsnippet
+
+snippet b-progress "b-progress"
+<div class="progress">
+	<div class="progress-bar bg-primary" style="width: ${1:25}%" role="progressbar" aria-valuenow="$1" aria-valuemin="0" aria-valuemax="100">${2:Text}</div>
+</div>
+
+endsnippet
+
+snippet b-spinner-growing "b-spinner-growing"
+<div class="spinner-grow text-${1|primary,secondary,success,danger,warning,info,light,dark|}" role="status">
+	<span class="sr-only">${2:Loading...}</span>
+</div>
+
+endsnippet
+
+snippet b-spinner "b-spinner"
+<div class="spinner-border text-${1|primary,secondary,success,danger,warning,info,light,dark|}" role="status">
+	<span class="sr-only">${2:Loading...}</span>
+</div>
+
+endsnippet
+
+snippet b-toast "b-toast"
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+	<div class="toast-header">
+		<img class="rounded mr-2" src="$1" alt="${2:Toast icon alternate text}">
+		<strong class="mr-auto">${3:Title}</strong>
+		<small>${4:Note}</small>
+		<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="toast-body">
+		$0
+	</div>
+</div>
+
+endsnippet
+
+snippet b-figure "b-figure"
+<figure class="figure">
+	<img class="figure-img img-fluid" src="$2" alt="$3">
+	<figcaption class="figure-caption">${1:Content}</figcaption>
+</figure>
+
+endsnippet
+
+snippet b-img-fluid "b-img-fluid"
+<img class="img-fluid" src="$1" alt="$2">
+
+endsnippet
+
+snippet b-img-thumbnail "b-img-thumbnail"
+<img class="img-thumbnail" src="$1" alt="$2">
+
+endsnippet
+
+snippet b-col "b-col"
+<div class="col">
+	$0
+</div>
+
+endsnippet
+
+snippet b-row "b-row"
+<div class="row">
+	$0
+</div>
+
+endsnippet
+
+snippet b-container-fluid "b-container-fluid"
+<div class="container-fluid">
+	$0
+</div>
+
+endsnippet
+
+snippet b-container "b-container"
+<div class="container">
+	$0
+</div>
+
+endsnippet
+
+snippet b-table-footer "b-table-footer"
+<table class="table table-${1|light,dark|}">
+	<tbody>
+		<tr>
+			<td>$2</td>
+		</tr>$0
+	</tbody>
+	<tfoot>
+		<tr>
+			<th>#</th>
+		</tr>
+	</tfoot>
+</table>
+
+endsnippet
+
+snippet b-table-full "b-table-full"
+<table class="table table-${1|light,dark|}">
+	<thead class="thead-${2|light,dark|}">
+		<tr>
+			<th>#</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>$3</td>
+		</tr>$0
+	</tbody>
+	<tfoot>
+		<tr>
+			<th>#</th>
+		</tr>
+	</tfoot>
+</table>
+
+endsnippet
+
+snippet b-table-header "b-table-header"
+<table class="table table-${1|light,dark|}">
+	<thead class="thead-${2|light,dark|}">
+		<tr>
+			<th>#</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>$3</td>
+		</tr>$0
+	</tbody>
+</table>
+
+endsnippet
+
+snippet b-table "b-table"
+<table class="table table-${1|light,dark|}">
+	<tbody>
+		<tr>
+			<td>$2</td>
+		</tr>$0
+	</tbody>
+</table>
+
+endsnippet
+
+snippet b-abbr-initialism "b-abbr-initialism"
+<abbr class="initialism" title="${1:Title}">${2:Text}</abbr>
+
+endsnippet
+
+snippet b-abbr "b-abbr"
+<abbr title="${1:Title}">${2:Text}</abbr>
+
+endsnippet
+
+snippet b-blockquote-footer "b-blockquote-footer"
+<blockquote class="blockquote">
+	<p class="mb-0">${1:Text}</p>
+	<footer class="blockquote-footer">${2:Footer}</footer>
+</blockquote>
+
+endsnippet
+
+snippet b-blockquote "b-blockquote"
+<blockquote class="blockquote">
+	<p class="mb-0">${1:Text}</p>
+</blockquote>
+
+endsnippet
+
+snippet b-display "b-display"
+<h1 class="display-${1|1,2,3,4|}">${2:Text}</h1>
+
+endsnippet
+
+snippet b-list-inline "b-list-inline"
+<ul class="list-inline">
+	<li class="list-inline-item">${1:Text}</li>$0
+</ul>
+
+endsnippet
+
+snippet b-list-unstyled "b-list-unstyled"
+<ul class="list-unstyled">
+	<li>${1:Text}</li>$0
+</ul>
+
+endsnippet
+
+snippet b-clearfix "b-clearfix"
+<div class="clearfix">
+	<div class="float-left">
+		$0
+	</div>
+	<div class="float-right">
+		
+	</div>
+</div>
+
+endsnippet
+
+snippet b-embed-responsive "b-embed-responsive"
+<div class="embed-responsive embed-responsive-${1|16by9,21by9,4by3,1by1|}">
+	<iframe class="embed-responsive-item" src="$2"></iframe>
+</div>
+
+endsnippet
+
+snippet b-flex-column-reverse "b-flex-column-reverse"
+<div class="d-flex flex-column-reverse">
+	$0
+</div>
+
+endsnippet
+
+snippet b-flex-column "b-flex-column"
+<div class="d-flex flex-column">
+	$0
+</div>
+
+endsnippet
+
+snippet b-flex-row-reverse "b-flex-row-reverse"
+<div class="d-flex flex-row-reverse">
+	$0
+</div>
+
+endsnippet
+
+snippet b-flex-row "b-flex-row"
+<div class="d-flex flex-row">
+	$0
+</div>
+
+endsnippet
+
+snippet b-float-left "b-float-left"
+<div class="float-left">
+	$0
+</div>
+
+endsnippet
+
+snippet b-float-right "b-float-right"
+<div class="float-right">
+	$0
+</div>
+
+endsnippet
+

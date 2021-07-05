@@ -10,7 +10,8 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
-DEFAULT_SESSION='i3 --shmlog-size 0'
+# DEFAULT_SESSION='i3 --shmlog-size 0'
+DEFAULT_SESSION='bspwm'
 
 [ -f /etc/xprofile ] && . /etc/xprofile
 [ -f ~/.xprofile ] && . ~/.xprofile
@@ -29,22 +30,6 @@ if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
 
-read -r -d '' PyURxvtMeta8 <<-'EOF'
-	#!/usr/bin/env python3
-
-	import locale
-
-	locale.setlocale(locale.LC_ALL, "")
-	encoding = locale.getlocale()[1]
-
-	# ASCII range
-	for i in range(32, 128):
-	    seq = "".join("\{:o}".format(j) for j in chr(i + (1<<7)).encode(encoding))
-	    key = "{:#06X}".format(i)
-	    print("urxvt*keysym.Meta-{}: {}".format(key, seq))
-EOF
-
-xrdb -merge <(python3 <<<"$PyURxvtMeta8")
 
 if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
@@ -86,4 +71,8 @@ get_session(){
 
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 setxkbmap -option caps:escape
-exec $(get_session)
+$HOME/.screenlayout/display.sh
+nitrogen --restore &
+xsetroot -cursor_name left_ptr
+picom -f &
+exec ssh-agent $(get_session)

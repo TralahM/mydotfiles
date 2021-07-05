@@ -1,0 +1,1 @@
+/home/african/.vim/plugged/gocode/nvim/autoload/gocomplete.vim

@@ -1,5 +1,7 @@
 set nocompatible
+set exrc
 set encoding=utf-8
+set guicursor=
 set nospell
 let maplocalleader=" "
 if has('nvim')
@@ -41,9 +43,15 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-"
-
+Plug 'nvim-lua/popup.nvim'
+Plug 'chrisbra/unicode.vim'
+Plug 'tralahm/vim-apl'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'dpelle/vim-LanguageTool'
+Plug 'rhysd/vim-grammarous'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.vim/plugged/gocode/nvim/symlink.sh' }
 Plug 'bpstahlman/txtfmt'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'jpalardy/vim-slime', { 'for': 'python' }
@@ -67,15 +75,16 @@ Plug 'bfrg/vim-jqplay',{'for':'json'} "json query parser
 Plug 'chrisbra/csv.vim',{'for':'csv'} "csv pretty display
 Plug 'cloudhead/neovim-fuzzy'
 Plug 'derekwyatt/vim-scala',{'for': ['scala','sbt']} "scala syntax
-Plug 'dhruvasagar/vim-table-mode' "easy markdown tables
+Plug 'dhruvasagar/vim-table-mode',{'for':['markdown','vimwiki','txt']} "easy markdown tables
 Plug 'ehamberg/vim-cute-python',{'for':'python','branch':'master'} "pretty math symbols
-Plug 'enricobacis/vim-airline-clock'
 Plug 'gcorne/vim-sass-lint',{'for':['css', 'sass', 'scss', 'less']}
 Plug 'glts/vim-magnum' "required by radical
 Plug 'glts/vim-radical' "crx,crd,cro,crb gA covert w under cursor to hex,dec,oct,bin
 Plug 'godlygeek/tabular' "Tabularize /,  /,/r0c1l1
 Plug 'honza/vim-snippets' "snippets
 Plug 'jiangmiao/auto-pairs' "autopair []''(){}
+" Plug 'jlc/envim' "autopair []''(){}
+Plug 'ensime/ensime-vim' "autopair []''(){}
 Plug 'jmcantrell/vim-virtualenv',{'for':'python'} "virtualenv py
 Plug 'junegunn/fzf',{'dir':'~/.fzf','do':'./install --all'} "Fzf
 Plug 'junegunn/fzf.vim' "Fzf
@@ -90,7 +99,9 @@ Plug 'mattn/vim-lsp-settings' "lsp settings
 Plug 'maxbrunsfeld/vim-yankstack' "cycle between prev yanks
 Plug 'mboughaba/i3config.vim'
 Plug 'michaeljsmith/vim-indent-object' "indent text objects
-Plug 'ncm2/float-preview.nvim'
+if has('nvim')
+    Plug 'ncm2/float-preview.nvim'
+endif
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-cssomni'
@@ -215,7 +226,7 @@ set nowrap  " i turn on wrap manually when needed
 set pumheight=6
 set emoji
 
-set scrolloff=3 " keep three lines between the cursor and the edge of the screen
+set scrolloff=8 " keep three lines between the cursor and the edge of the screen
 set splitright  " i prefer splitting right and below
 set splitbelow
 
@@ -237,16 +248,14 @@ autocmd! bufread config setl filetype=cfg
 " Configuration for vim-scala
 au BufRead,BufNewFile *.sbt set filetype=scala
 set autoindent
+
 if has('nvim')
     " set clipboard+=unnamed
     set clipboard+=unnamedplus
 else
     set clipboard+=unnamed
 endif
-" set cursorline
 set modelines=2
-" set wrap
-set linebreak
 set showcmd
 set showmode
 set visualbell
@@ -254,6 +263,9 @@ set visualbell
 " easier better ident in visual
 vnoremap < <gv
 vnoremap > >gv
+nnoremap K :m -2<CR>
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '>-2<CR>gv=gv
 " map sort fx to a key
 nmap ` <S-;>
 vnoremap ; :
@@ -274,7 +286,7 @@ set t_Co=256
 set sidescroll=5
 set ttyfast
 set wildmode=list:longest,full
-set ttimeoutlen=80
+set ttimeoutlen=100
 set noswapfile
 " Set identation to 4 spaces
 set noai ts=4 sw=4 expandtab
@@ -294,7 +306,9 @@ syntax on
 autocmd! BufNewFile,BufRead *.ipy set filetype=python
 autocmd! BufNewFile,BufRead *.pyx set filetype=python
 autocmd! BufWritePre *.py execute ':Black'
-autocmd! BufWritePost *.py silent! execute ':!isort %'
+autocmd! BufWritePost *.py silent! execute ':!isort %<CR>'| w
+autocmd! BufWritePost *.go silent! execute ':%!gofmt' | w
+autocmd! BufWritePost *.go silent! execute ':%!goimports' | w
 autocmd! BufNewFile,BufRead SConstruct set filetype=python
 autocmd! BufNewFile,BufRead *.py,*.pyx,SConstruct UltiSnipsAddFiletypes python
 autocmd! BufNewFile,BufReadPost,BufWritePre *.md,*.markdown,*.mkdown,*.mkdn,*.mkd set filetype=vimwiki
@@ -303,19 +317,10 @@ autocmd! BufNewFile,BufRead,BufWritePre *.tex set conceallevel=0
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd setlocal foldmethod=syntax
 autocmd! BufNewFile,BufRead *.md,*.markdown,*.mkdown,*.mkdn,*.mkd UltiSnipsAddFiletypes markdown
 autocmd! BufNewFile,BufRead *.yml,*.yaml setlocal ts=2 sw=2 ft=yaml
+
 " Color scheme
 syntax enable
 let g:solarized_termcolors=256
-" let g:gitgutter_max_signs=4000
-" let g:gitgutter_override_sign_column_highlight = 1
-" let g:gitgutter_map_keys = 0
-
-" " let g:python3_host_prog='/usr/bin/python'
-
-" let g:gitgutter_sign_added = "+"
-" let g:gitgutter_sign_modified = "~"
-" let g:gitgutter_sign_removed = "襤"
-" let g:gitgutter_sign_modified_removed = "雷"
 
 colorscheme delek
 let g:solarized_contrast="high"
@@ -336,7 +341,7 @@ set path+=**
 set wildmenu
 
 "" Better navigation through omnicomplete option list
-set completeopt=menuone,noselect,menu
+set completeopt=menuone,noinsert,noselect,menu
 
 au User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
 au User Ncm2PopupClose set completeopt=menuone,menu
@@ -403,7 +408,7 @@ let g:jedi#completions_command = ""
 let g:jedi#show_call_signatures = "1"
 let g:jedi#show_call_signatures_delay = 1
 let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#show_call_signatures_modes = 'i'  " ni = also in normal mode
+let g:jedi#show_call_signatures_modes = 'ni'  " ni = also in normal mode
 let g:jedi#enable_speed_debugging=1
 
 " Vim-SCala Conf
@@ -440,7 +445,7 @@ let g:NERDTreeShowLineNumbers=1
 let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeMinimalUI=1
-let NERDTreeShowHidden=1
+let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore = [
   \ '\.vim$',
   \ '\~$',
@@ -469,7 +474,7 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'jsformatter'
-let g:airline#extensions#languageclient#enabled = 1
+let g:airline#extensions#languageclient#enabled = 0
 let g:airline#extensions#promptline#enabled = 1
 let g:airline#extensions#default#enabled = 1
 let g:airline#extensions#bufferline#enabled = 1
@@ -1004,3 +1009,4 @@ au FileType cmake silent syntax on
 au FileType vimwiki silent set conceallevel=0
 au FileType markdown silent set conceallevel=0
 au FileType pandoc silent set conceallevel=0
+autocmd BufRead,BufNewFile *.launch setfiletype roslaunch

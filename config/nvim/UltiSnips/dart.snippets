@@ -1,0 +1,460 @@
+snippet stl "Stateless Widget"
+class $1 extends StatelessWidget {
+  const $1({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: $2,
+    );
+  }
+}
+
+endsnippet
+
+snippet stfl "Stateful Widget"
+class $1 extends StatefulWidget {
+  $1({Key key}) : super(key: key);
+
+  @override
+  _$1State createState() => _$1State();
+}
+
+class _$1State extends State<$1> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+       child: $2,
+    );
+  }
+}
+
+endsnippet
+
+snippet statelessW "Stateless Widget"
+class $1 extends StatelessWidget {
+  const $1({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: $2,
+    );
+  }
+}
+
+endsnippet
+
+snippet statefulW "Stateful Widget"
+class $1 extends StatefulWidget {
+  $1({Key key}) : super(key: key);
+
+  @override
+  _$1State createState() => _$1State();
+}
+
+class _$1State extends State<$1> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+       child: $2,
+    );
+  }
+}
+
+endsnippet
+
+snippet build "Build Method"
+@override
+Widget build(BuildContext context) {
+  return $0;
+}
+
+endsnippet
+
+snippet customPainter "Custom Painter "
+class $0Painter extends CustomPainter {
+
+  @override
+  void paint(Canvas canvas, Size size) {
+  }
+
+  @override
+  bool shouldRepaint($0Painter oldDelegate) => false;
+
+  @override
+  bool shouldRebuildSemantics($0Painter oldDelegate) => false;
+}
+
+endsnippet
+
+snippet customClipper "Custom Clipper "
+class $0Clipper extends CustomClipper<Path> {
+
+  @override
+  Path getClip(Size size) {
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
+endsnippet
+
+snippet initS "InitState "
+@override
+void initState() {
+  super.initState();
+  $0
+}
+
+endsnippet
+
+snippet dis "Dispose"
+@override
+void dispose() {
+  $0
+  super.dispose();
+}
+
+endsnippet
+
+snippet reassemble "Reassemble"
+@override
+void reassemble(){
+  super.reassemble();
+  $0
+}
+
+endsnippet
+
+snippet didChangeD "didChangeDependencies"
+@override
+void didChangeDependencies() {
+  super.didChangeDependencies();
+  $0
+}
+
+endsnippet
+
+snippet didUpdateW "didUpdateWidget"
+@override
+void didUpdateWidget ($1 $2) {
+  super.didUpdateWidget($2);
+  $0
+}
+
+endsnippet
+
+snippet listViewB "ListView.Builder"
+ListView.builder(
+  itemCount: $1,
+  itemBuilder: (BuildContext context, int index) {
+  return $2;
+ },
+),
+
+endsnippet
+
+snippet listViewS "ListView.Separated"
+ListView.separated(
+  itemCount: $1,
+  separatorBuilder: (BuildContext context, int index) {
+  return $2;
+ },
+  itemBuilder: (BuildContext context, int index) {
+  return $3;
+ },
+),
+
+endsnippet
+
+snippet customScrollV "Custom Scroll View"
+CustomScrollView(
+  slivers: <Widget>[
+  $0
+  ],
+),
+
+endsnippet
+
+snippet streamBldr "Stream Builder"
+StreamBuilder(
+  stream: $1,
+  initialData: $2,
+  builder: (BuildContext context, AsyncSnapshot snapshot) {
+    return Container(
+      child: $3,
+    );
+  },
+),
+
+endsnippet
+
+snippet animatedBldr "Animated Builder"
+AnimatedBuilder(
+  animation: $1,
+  child: $2,
+  builder: (BuildContext context, Widget child) {
+    return $3;
+  },
+),
+
+endsnippet
+
+snippet statefulBldr "Stateful Builder"
+StatefulBuilder(
+  builder: (BuildContext context, setState) {
+    return $0;
+  },
+),
+
+endsnippet
+
+snippet orientationBldr "Orientation Builder"
+OrientationBuilder(
+  builder: (BuildContext context, Orientation orientation) {
+    return Container(
+      child: $3,
+    );
+  },
+),
+
+endsnippet
+
+snippet layoutBldr "Layout Builder"
+LayoutBuilder(
+  builder: (BuildContext context, BoxConstraints constraints) {
+    return $0;
+  },
+),
+
+endsnippet
+
+snippet singleChildSV "Single Child ScrollView"
+SingleChildScrollView(
+  controller: $1
+  child: Column(
+    $0
+  ),
+),
+
+endsnippet
+
+snippet futureBldr "Future Builder"
+FutureBuilder(
+  future: $1,
+  initialData: $2,
+  builder: (BuildContext context, AsyncSnapshot snapshot) {
+    return $3;
+  },
+),
+
+endsnippet
+
+snippet nosm "No Such Method"
+@override
+dynamic noSuchMethod(Invocation invocation) {
+  $1
+}
+
+endsnippet
+
+snippet inheritedW "Inherited Widget"
+class $1 extends InheritedWidget {
+  $1({Key key, this.child}) : super(key: key, child: child);
+
+  final Widget child;
+
+  static $1 of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<$1>();
+  }
+
+  @override
+  bool updateShouldNotify($1 oldWidget) {
+    return $2;
+  }
+}
+
+endsnippet
+
+snippet mounted "Mounted"
+@override
+bool get mounted {
+  $0
+}
+
+endsnippet
+
+snippet snk "Sink"
+Sink<$1> get $2 => _$2Controller.sink;
+final _$2Controller = StreamController<$1>();
+
+endsnippet
+
+snippet strm "Stream"
+Stream<$1> get $2 => _$2Controller.stream;
+final _$2Controller = StreamController<$1>();
+
+endsnippet
+
+snippet subj "Subject"
+Stream<$1> get $2 => _$2Subject.stream;
+final _$2Subject = BehaviorSubject<$1>();
+
+endsnippet
+
+snippet toStr "toString"
+@override
+String toString() {
+return $1;
+ }
+
+endsnippet
+
+snippet debugP "debugPrint"
+debugPrint($1);
+
+endsnippet
+
+snippet importM "Material Package"
+import 'package:flutter/material.dart';
+
+endsnippet
+
+snippet importC "Cupertino Package"
+import 'package:flutter/cupertino.dart';
+
+endsnippet
+
+snippet importFT "flutter_test Package"
+import 'package:flutter_test/flutter_test.dart';
+
+endsnippet
+
+snippet mateapp "Material App"
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Material App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Material App Bar'),
+        ),
+        body: Center(
+          child: Container(
+            child: Text('Hello World'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+endsnippet
+
+snippet cupeapp "Cupertino App"
+import 'package:flutter/cupertino.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoApp(
+      title: 'Cupertino App',
+      home: CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          middle: Text('Cupertino App Bar'),
+        ),
+        child: Center(
+          child: Container(
+            child: Text('Hello World'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+endsnippet
+
+snippet tweenAnimationBuilder "Tween Animation Builder"
+TweenAnimationBuilder(
+    duration: $1
+    tween: $2
+    builder: (BuildContext context, $3 value, Widget child) {
+       return $4
+     },
+ ),
+
+endsnippet
+
+snippet valueListenableBuilder "Value Listenable Builder"
+ValueListenableBuilder(
+    valueListenable: $1,
+    builder: (BuildContext context, $2 value, Widget child) {
+       return $3
+    },
+ ),
+
+endsnippet
+
+snippet f-test "Test"
+test(
+   "$1",
+   () {},
+);
+
+endsnippet
+
+snippet widgetTest "Test Widgets"
+testWidgets(
+   "$1",
+   (WidgetTester tester) async {},
+);
+
+endsnippet
+
+snippet wrap "Wrap with new widget"
+$1(
+	child: $0
+),
+
+endsnippet
+
+snippet wColumn "Wrap with new Column"
+Column(
+	children: <Widget>[
+		$0
+	],
+),
+endsnippet
+
+snippet wRow "Wrap with new Row"
+Row(
+	children: <Widget>[
+		$0
+	],
+),
+endsnippet
+
+snippet wPad "Add Padding"
+Padding(
+	padding: const EdgeInsets.only,
+	child: $0
+),
+endsnippet
+
+snippet wCent "Center widget"
+Center(
+	child: $0
+),
+
+endsnippet
+

@@ -1,0 +1,390 @@
+snippet show "Show"
+{{ $1 }}
+
+endsnippet
+
+snippet execute "Execute"
+{%- $1 -%}
+
+endsnippet
+
+snippet assign "Tag assign"
+{%- assign ${variable} = ${value} -%}
+
+endsnippet
+
+snippet break "Tag break"
+{%- break -%}
+
+endsnippet
+
+snippet capture "Tag capture"
+{%- capture ${variable} -%}${code:}{%- endcapture -%}
+
+endsnippet
+
+snippet case "Tag case"
+{%- case ${variable} -%}
+	{%- when ${condition} -%}
+		${code1:}
+	{%- else -%}
+		${code2:}
+{%- endcase -%}
+
+endsnippet
+
+snippet comment "Tag comment"
+{%- comment -%}${description:}{%- endcomment -%}
+
+endsnippet
+
+snippet convar "Tag context variable"
+{{ ${variable:} }}
+
+endsnippet
+
+snippet continue "Tag continue"
+{%- continue -%}
+
+endsnippet
+
+snippet cycle "Tag cycle"
+{%- cycle '${0:odd}', '${1:even}' -%}
+
+endsnippet
+
+snippet cdirp "Tag collection directory"
+{{ site.${my_collection}.directory }}
+
+endsnippet
+
+snippet crelp "Tag collection relative path"
+{{ site.collections.${my_collection}.relative_path }}
+
+endsnippet
+
+snippet decrement "Tag decrement"
+{%- decrement ${variable} -%}
+
+endsnippet
+
+snippet for "Tag for"
+{%- for ${item} in ${collection} -%}
+	${code:}
+{%- endfor -%}
+
+endsnippet
+
+snippet increment "Tag increment"
+{%- increment ${variable} -%}
+
+endsnippet
+
+snippet if "Tag if"
+{%- if ${condition} -%}
+	${code:}
+{%- endif -%}
+
+endsnippet
+
+snippet else "Tag else"
+{%- else -%}
+
+endsnippet
+
+snippet elsif "Tag elsif"
+{%- elsif ${condition} -%}
+
+endsnippet
+
+snippet ifelse "Tag if else"
+{%- if ${condition} -%}
+	${code1:}
+{%- else -%}
+	${code2:}
+{%- endif -%}
+
+endsnippet
+
+snippet gist "Tag gist"
+{%- gist ${gist:user/gist-id} -%}
+
+endsnippet
+
+snippet highlight "Tag highlight"
+{%- highlight ${lang:javascript} -%}
+		${code:}
+{%- endhighlight -%}
+
+endsnippet
+
+snippet include "Tag include"
+{%- include ${snippet} -%}
+
+endsnippet
+
+snippet date "Site Vairable Date"
+{{ site.date | date: '${format: %b %d, %Y}' }}
+
+endsnippet
+
+snippet increl "Tag include relative"
+{%- include_relative '${file:}' -%}
+
+endsnippet
+
+snippet posturl "Tag Post URL"
+{%- post_url ${url:} -%}
+
+endsnippet
+
+snippet unless "Tag unless"
+{%- unless ${condition} -%}
+	${code:}
+{%- endunless -%}
+
+endsnippet
+
+snippet when "Tag when"
+{%- when ${condition} -%}
+${code:}
+
+endsnippet
+
+snippet limit "Tag Option limit"
+limit: ${limit:5}
+
+endsnippet
+
+snippet offset "Tag Option offset"
+offset: ${offset:0}
+
+endsnippet
+
+snippet reversed "Tag Option reversed"
+reversed
+
+endsnippet
+
+snippet raw "Tag raw"
+{%- raw -%}${code:}{%- endraw -%}
+
+endsnippet
+
+snippet paginate "Tag paginate next or previous page"
+{{ paginator.${next:previous}_page }}
+
+endsnippet
+
+snippet json "Filter jsonify"
+| jsonify }}'
+
+endsnippet
+
+snippet join "Filter join"
+| join: '${seperator:, }}'
+
+endsnippet
+
+snippet first "Filter first"
+| first
+
+endsnippet
+
+snippet last "Filter last"
+| last
+
+endsnippet
+
+snippet map "Filter map"
+| map: '${key}'
+
+endsnippet
+
+snippet size "Filter size"
+| size
+
+endsnippet
+
+snippet sort "Filter sort"
+| sort
+
+endsnippet
+
+snippet uniq "Filter uniq"
+| uniq
+
+endsnippet
+
+snippet ceil "Filter ceil"
+| ceil
+
+endsnippet
+
+snippet divided_by "Filter divided by"
+| divided_by: ${divided_by:2}
+
+endsnippet
+
+snippet floor "Filter floor"
+| floor
+
+endsnippet
+
+snippet minus "Filter minus"
+| minus: ${minus:1}
+
+endsnippet
+
+snippet modulo "Filter modulo"
+| modulo: ${modulo:2}
+
+endsnippet
+
+snippet plus "Filter plus"
+| plus: ${plus:1}
+
+endsnippet
+
+snippet round "Filter round"
+| round: ${round:0}
+
+endsnippet
+
+snippet times "Filter times"
+| times: ${times:1}
+
+endsnippet
+
+snippet append "Filter append"
+| append: '${string}' }}
+
+endsnippet
+
+snippet capitalize "Filter capitalize"
+| capitalize }}
+
+endsnippet
+
+snippet downcase "Filter downcase"
+| downcase }}
+
+endsnippet
+
+snippet escape "Filter escape"
+| escape }}
+
+endsnippet
+
+snippet markdown "Filter markdownify"
+| markdownify }}
+
+endsnippet
+
+snippet prepend "Filter prepend"
+| prepend: '${string}' }}
+
+endsnippet
+
+snippet remove "Filter remove"
+| remove: '${string}' }}
+
+endsnippet
+
+snippet remove_first "Filter remove first"
+| remove_first: '${string}' }}
+
+endsnippet
+
+snippet replace "Filter replace"
+| replace: '${target}', '${replace}' }}
+
+endsnippet
+
+snippet replace_first "Filter replace first"
+| replace_first: '${target}', '${replace}' }}
+
+endsnippet
+
+snippet slice "Filter slice"
+| slice: ${from:0}, ${to:5} }}
+
+endsnippet
+
+snippet slice_single "Filter slice single character"
+| slice: ${at} }}
+
+endsnippet
+
+snippet split "Filter split"
+| split: '${splitter:,}' }}
+
+endsnippet
+
+snippet strip "Filter strip"
+| strip }}
+
+endsnippet
+
+snippet lstrip "Filter lstrip"
+| lstrip }}
+
+endsnippet
+
+snippet rstrip "Filter rstrip"
+| rstrip }}
+
+endsnippet
+
+snippet strip_html "Filter strip html"
+| strip_html }}
+
+endsnippet
+
+snippet strip_newlines "Filter strip newlines"
+| strip_newlines }}
+
+endsnippet
+
+snippet truncate "Filter truncate"
+| truncate: ${length:20}, '${ellipsis:...}' }}
+
+endsnippet
+
+snippet truncatewords "Filter truncatewords"
+| truncatewords: ${length:5}, '${ellipsis:...}' }}
+
+endsnippet
+
+snippet upcase "Filter upcase"
+| upcase }}
+
+endsnippet
+
+snippet url_encode "Filter url encode"
+| url_encode }}
+
+endsnippet
+
+snippet uri_escape "Filter uri escape"
+| uri_escape }}
+
+endsnippet
+
+snippet xml_escape "Filter xml escape"
+| xml_escape }}
+
+endsnippet
+
+snippet fm "Front Matter"
+---
+layout: ${layout:default}
+title: ${title}
+categories: ${category}
+permalink: ${path}
+tags: ${tag}
+excerpt: ${description}
+---
+
+endsnippet
+

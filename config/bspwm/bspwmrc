@@ -1,0 +1,110 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Alacritty state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+
+
+## workspace 4 (text-editors)
+bspc rule -a Geany desktop='^4' follow=on focus=on
+bspc rule -a libreoffice-startcenter desktop='^4' follow=on focus=on
+bspc rule -a libreoffice desktop='^4' follow=on focus=on
+bspc rule -a Soffice desktop='^4' follow=on focus=on
+bspc rule -a libreoffice-base desktop='^4' follow=on focus=on
+bspc rule -a libreoffice-calc desktop='^4' follow=on focus=on
+bspc rule -a libreoffice-draw desktop='^4' follow=on focus=on
+bspc rule -a libreoffice-impress desktop='^4' follow=on focus=on
+bspc rule -a libreoffice-math desktop='^4' follow=on focus=on
+bspc rule -a libreoffice-writer desktop='^4' follow=on focus=on
+bspc rule -a Wps desktop='^4' follow=on focus=on
+bspc rule -a Et desktop='^4' follow=on focus=on
+bspc rule -a Wpp desktop='^4' follow=on focus=on
+
+
+## workspace 6 (multimedia)
+bspc rule -a Audacity desktop='^6' follow=on focus=on
+bspc rule -a Vlc desktop='^6' follow=on focus=on
+bspc rule -a mpv desktop='^6' follow=on focus=on
+bspc rule -a Ghb desktop='^6' follow=on focus=on
+bspc rule -a Xfburn desktop='^6' follow=on focus=on
+
+## workspace 8 (graphics-editors)
+bspc rule -a Gimp desktop='^8' state=floating follow=on focus=on
+bspc rule -a Gimp-2.8 desktop='^8' follow=on focus=on
+bspc rule -a Inkscape desktop='^8' follow=on focus=on
+bspc rule -a Oomox desktop='^8' follow=on focus=on
+
+## workspace 7 (system-settings)
+bspc rule -a Lxappearance desktop='^7' state=floating follow=on
+bspc rule -a Xfce4-settings-manager desktop='^7' state=floating follow=on
+bspc rule -a Lightdm-gtk-greeter-settings desktop='^7' state=floating follow=on
+bspc rule -a System-config-printer.py desktop='^7' state=floating follow=on
+bspc rule -a Lxtask desktop='^7' state=floating follow=on
+bspc rule -a GParted desktop='^7' follow=on focus=on
+bspc rule -a Pavucontrol desktop='^7' state=floating follow=on
+bspc rule -a Exo-helper-1 desktop='^7' state=floating follow=on
+bspc rule -a Lxrandr desktop='^7' state=floating follow=on
+bspc rule -a Arandr desktop='^7' state=floating follow=on
+
+## need to be floating
+bspc rule -a Audacious state=floating follow=on
+bspc rule -a Viewnior state=floating follow=on
+bspc rule -a feh state=floating follow=on
+bspc rule -a Gpicview state=floating follow=on
+
+## don't manage my conky & systemtray :/
+bspc rule -a Conky state=floating manage=off
+bspc rule -a stalonetray state=floating manage=off
+
+###############
+## autostart ##
+###############
+# network applet
+nm-applet &
+
+# clipboard manager
+pkill clipit
+clipit &
+
+# volume icon
+pkill volumeicon
+volumeicon &
+
+## music is my only friend :(
+mpd &
+
+## reload the xsettingsd, a minimal x settings daemon
+pkill xsettingsd
+xsettingsd &
+
+## load dunst
+pkill dunst
+dunst &
+
+## reload the cursor theme
+xsetroot -cursor_name left_ptr
+
+# ## load panel script
+# pkill panel-bspwm
+# panel-bspwm &
+
+## or polybar?
+pkill polybar
+polybar bar &
+
+pkill conky
+startconky.sh &

@@ -1,0 +1,229 @@
+snippet bash "bash"
+${1|#!/bin/bash,#!/usr/bin/env bash|}
+
+
+endsnippet
+
+snippet echo "echo"
+echo "${0:message}"
+
+endsnippet
+
+snippet read "read"
+read -r ${0:VAR}
+
+endsnippet
+
+snippet if "if"
+if [[ ${0:condition} ]]; then
+	${1}
+fi
+
+endsnippet
+
+snippet elseif "elseif"
+elif [[ ${0:condition} ]]; then
+	${1}
+
+endsnippet
+
+snippet else "else"
+else
+	${0:command}
+
+endsnippet
+
+snippet for_in "for_in"
+for ${0:VAR} in $${1:LIST}
+do
+	echo "$${0:VAR}"
+done
+
+
+endsnippet
+
+snippet for_i "for_i"
+for ((${0:i} = 0; ${0:i} < ${1:10}; ${0:i}++)); do
+	echo "$${0:i}"
+done
+
+
+endsnippet
+
+snippet while "while"
+while [[ ${1:condition} ]]; do
+	${0}
+done
+
+
+endsnippet
+
+snippet until "until"
+until [[ ${1:condition} ]]; do
+	${0}
+done
+
+
+endsnippet
+
+snippet function "function"
+${1:name} ()
+{
+	${0}
+}
+
+endsnippet
+
+snippet case "case"
+case "$${0:VAR}" in
+	${1:1}) echo 1
+	;;
+	${2:2|3}) echo 2 or 3
+	;;
+	*) echo default
+	;;
+esac
+
+
+endsnippet
+
+snippet break "break"
+break ${0}
+
+endsnippet
+
+snippet expr "expr"
+expr ${0:1 + 1}
+
+endsnippet
+
+snippet test_string_empty "test_string_empty"
+test -z "$${0:VAR}"
+
+endsnippet
+
+snippet test_string_equal "test_string_equal"
+test "$${0:VAR1}" = "$${1:VAR2}"
+
+endsnippet
+
+snippet test_string_not_empty "test_string_not_empty"
+test -n "$${0:VAR}"
+
+endsnippet
+
+snippet test_string_not_equal "test_string_not_equal"
+test "$${0:VAR1}" != "$${1:VAR2}"
+
+endsnippet
+
+snippet test_int_equal "test_int_equal"
+test "$${0:VAR1}" -eq "$${1:VAR2}"
+
+endsnippet
+
+snippet test_int_great_equal "test_int_great_equal"
+test "$${0:VAR1}" -ge "$${1:VAR2}"
+
+endsnippet
+
+snippet test_int_great_than "test_int_great_than"
+test "$${0:VAR1}" -gt "$${1:VAR2}"
+
+endsnippet
+
+snippet test_int_less_equal "test_int_less_equal"
+test "$${0:VAR1}" -le "$${1:VAR2}"
+
+endsnippet
+
+snippet test_int_less_than "test_int_less_than"
+test "$${0:VAR1}" -lt "$${1:VAR2}"
+
+endsnippet
+
+snippet test_int_not_equal "test_int_not_equal"
+test "$${0:VAR1}" -ne "$${1:VAR2}
+
+endsnippet
+
+snippet test_exist_file "test_exist"
+test -e "$${0:VAR}"
+
+endsnippet
+
+snippet test_exist_regular_file "test_exist_file"
+test -f "$${0:VAR}"
+
+endsnippet
+
+snippet test_exist_directory "test_exist_directory"
+test -d "$${0:VAR}"
+
+endsnippet
+
+snippet test_exist_readable "test_exist_readable"
+test -r "$${0:VAR}"
+
+endsnippet
+
+snippet test_exist_writeable "test_exist_writeable"
+test -w "$${0:VAR}"
+
+endsnippet
+
+snippet test_exist_executable "test_exist_executable"
+test -x "$${0:VAR}"
+
+endsnippet
+
+snippet test_exist_link "test_exist_link"
+test -h "$${0:VAR}"
+
+endsnippet
+
+snippet test_file_equal "test_file_equal"
+test "$${0:VAR}" -ef "$${1:VAR}"
+
+endsnippet
+
+snippet test_file_new_than "test_file_new_than"
+test "$${0:VAR}" -nt "$${1:VAR}"
+
+endsnippet
+
+snippet test_file_old_than "test_file_old_than"
+test "$${0:VAR}" -ot "$${1:VAR}"
+
+endsnippet
+
+snippet file_read_by_line "file_read_by_line"
+{
+while IFS= read -r "lineNum"
+do
+	echo "\${lineNum}"
+done
+} < "${0:FILE_NAME}"
+
+endsnippet
+
+snippet file_batch_rename "file_batch_rename"
+ls | xargs -i mv {} {}.${1:old}
+
+endsnippet
+
+snippet awk_substr "awk_substr"
+echo "${1:VAR_OR_STRING}" | awk '{print substr(\$0,0,length(\$0)-${2|AMOUNT_TO_CUT_BY,1,2,3|}'
+
+endsnippet
+
+snippet awk_printf "awk_printf"
+awk  -F ':'  '{printf("filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,\$0)\}' /etc/passwd
+
+endsnippet
+
+snippet awk_for_loop "awk_for_loop"
+awk -F ':' 'BEGIN {count=0;} {name[count] = \$1;count++;\}; END{for (i = 0; i < NR; i++) print i, name[i]\}' /etc/passwd
+
+endsnippet
+

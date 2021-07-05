@@ -1,0 +1,419 @@
+snippet case "case"
+case $1 do
+  $2 ->
+    $0
+end
+
+endsnippet
+
+snippet cond "cond"
+cond do
+  $1 ->
+    $0
+end
+
+endsnippet
+
+snippet def "def"
+def $1 do
+	$0
+end
+
+endsnippet
+
+snippet df "df"
+def $1, do: $0
+
+endsnippet
+
+snippet defc "defc"
+defcallback $1 :: $0
+
+endsnippet
+
+snippet defd "defd"
+defdelegate $1 to: $0
+
+endsnippet
+
+snippet defe "defe"
+defexception [${1::message}]
+
+endsnippet
+
+snippet defi "defi"
+defimpl $1, for: $2 do
+  $0
+end
+
+endsnippet
+
+snippet dmac "dmac"
+defmacro $1 do
+	$0
+end
+
+endsnippet
+
+snippet defmc "defmc"
+defmacrocallback $1 :: $0
+
+endsnippet
+
+snippet defmp "defmp"
+defmacrop $1 do
+	$0
+end
+
+endsnippet
+
+snippet describe "describe"
+describe $1 do
+	$0
+end
+
+endsnippet
+
+snippet dmod "dmod"
+defmodule ${1:${TM_FILENAME_BASE/(.+)/${1:/pascalcase}/}} do
+	$0
+end
+
+endsnippet
+
+snippet defp "defp"
+defp $1 do
+	$0
+end
+
+endsnippet
+
+snippet defpro "defpro"
+defprotocol $1 do
+  $0
+end
+
+endsnippet
+
+snippet defs "defs"
+defstruct $1: $2
+
+endsnippet
+
+snippet do "do"
+do
+	$0
+end
+
+endsnippet
+
+snippet doc "doc"
+@doc """
+$0
+"""
+
+endsnippet
+
+snippet ee "ee"
+<% $0 %>
+
+endsnippet
+
+snippet fn "fn"
+fn ${1:args} -> $2 end$0
+
+endsnippet
+
+snippet for "for"
+for ${1:item} <- ${2:items} do
+  $0
+end
+
+endsnippet
+
+snippet fori "fori"
+for ${1:item} <- ${2:items}, into: ${3:[]} do;
+  $0
+end
+
+endsnippet
+
+snippet if "if"
+if $1 do
+  $0
+end
+
+endsnippet
+
+snippet ife "ife"
+if $1 do
+  $2
+else
+  $0
+end
+
+endsnippet
+
+snippet ife: "ife:"
+if $1, do: $2, else: $0
+
+endsnippet
+
+snippet if: "if:"
+if $1, do: $0
+
+endsnippet
+
+snippet imp "imp"
+import $0
+
+endsnippet
+
+snippet i "i"
+inspect($0)
+
+endsnippet
+
+snippet ii "ii"
+IO.inspect($0)
+
+endsnippet
+
+snippet iib "iib"
+IO.inspect(binding(), label: "binding() #{__MODULE__}:#{__ENV__.line} #{DateTime.utc_now}", limit: :infinity)
+
+endsnippet
+
+snippet iil "iil"
+IO.inspect(label: "$0")
+
+endsnippet
+
+snippet iill "iill"
+IO.inspect(label: "${0:message; }#{String.replace_leading("#{__ENV__.file}", "#{File.cwd!()}","")|> Path.relative()}:#{__ENV__.line()}")
+
+endsnippet
+
+snippet iip "iip"
+|> IO.inspect(label: "#{__MODULE__}:#{__ENV__.line} #{DateTime.utc_now}", limit: :infinity)
+
+endsnippet
+
+snippet iip "ip"
+IO.puts("$0")
+
+endsnippet
+
+snippet :: "::"
+${1:key} => ${2:value}$0
+
+endsnippet
+
+snippet % "%"
+%${1:Struct}{$2}$0
+
+endsnippet
+
+snippet mdoc "mdoc"
+@moduledoc """
+$0
+"""
+
+endsnippet
+
+snippet mfs "mfs"
+Map.from_struct($0)
+
+endsnippet
+
+snippet msan "msan"
+Map.drop(${1:map, }[${2:keys}])
+
+endsnippet
+
+snippet p "p"
+|> $0
+
+endsnippet
+
+snippet pe "pe"
+<%= $0 %>
+
+endsnippet
+
+snippet rec "rec"
+receive do
+	${1:{${2::${3:message_type}}, ${4:value}\}} ->
+    ${0:# code}
+end
+
+
+endsnippet
+
+snippet req "req"
+require $0
+
+endsnippet
+
+snippet unless "unless"
+unless $1 do
+  $0
+end
+
+endsnippet
+
+snippet ok "oke"
+{:ok, $1} = $0
+
+endsnippet
+
+snippet error "erre"
+{:error, $1} = $0
+
+endsnippet
+
+snippet ok "ok"
+{:ok, $1} $0
+
+endsnippet
+
+snippet error "err"
+{:error, $1} $0
+
+endsnippet
+
+snippet test "test"
+test $1 do
+	$0
+end
+
+endsnippet
+
+snippet trc "trc"
+try do
+  $0
+catch
+ $1 -> $2
+end
+
+endsnippet
+
+snippet trr "trr"
+try do
+  $0
+rescue
+  _ -> :rescued
+end
+
+endsnippet
+
+snippet unlesse "unlesse"
+unless $1 do
+  $2
+else
+  $0
+end
+
+endsnippet
+
+snippet unlesse: "unlesse:"
+unless $1, do: $2, else: $0
+
+endsnippet
+
+snippet unless: "unless:"
+unless $1, do: $0
+
+endsnippet
+
+snippet supervisor "Supervisor"
+defmodule ${moduleName} do
+	use Supervisor
+
+	def start_link(${args}) do
+		Supervisor.start_link(__MODULE__, [${args}], name: __MODULE__)
+	end
+
+	def init([${args}]) do
+		children = []
+
+		Supervisor.init(children, strategy: :one_for_one)
+	end
+end
+
+endsnippet
+
+snippet dynamic_supervisor "DynamicSupervisor"
+defmodule ${ModuleName} do
+	use DynamicSupervisor
+
+	def start_link(${init_args}) do
+		DynamicSupervisor.start_link(__MODULE__, [${init_args}], name: __MODULE__)
+	end
+
+	def start_child(${child_args}) do
+		child_spec = %{
+			id: ${ChildModule},
+			start: {${ChildModule}, :start_link, [${child_args}]},
+			restart: :transient,
+			shutdown: :brutal_kill,
+			type: :worker,
+			modules: [${ChildModule}],
+		}
+
+		DynamicSupervisor.start_child(__MODULE__, child_spec)
+	end
+
+	def init([${init_args}]) do
+		DynamicSupervisor.init(strategy: :one_for_one)
+	end
+end
+
+endsnippet
+
+snippet gen_server "GenServer"
+defmodule ${ModuleName} do
+	use GenServer
+
+	def start_link(${init_args}) do
+		# you may want to register your server with `name: __MODULE__`
+		# as a third argument to `start_link`
+		GenServer.start_link(__MODULE__, [${init_args}])
+	end
+
+	def init(_args) do
+		{:ok, :initial_state}
+	end
+end
+
+endsnippet
+
+snippet ex_unit "ExUnit"
+defmodule${1:${TM_DIRECTORY/(^.+\/test|\b)\/(\w+)/${1:? :.}${2:/pascalcase}/g}.${TM_FILENAME_BASE/(.+)_test/${1:/pascalcase}/}}Test do
+	use ExUnit.Case
+	doctest$1
+
+	describe "${2:description_of_tests}" do
+		test "${3:definition_of_this_test}" do
+		end
+	end
+end
+
+endsnippet
+
+snippet wt "wt"
+with $1 do
+	$0
+end
+
+endsnippet
+
+snippet wte "wte"
+with $1 do
+	$0
+else
+	$2 -> $3
+end
+
+endsnippet
+

@@ -1,5 +1,5 @@
 [user]
-	email = musyoki.brian@tralahtek.com
+	email = briantralah@gmail.com
 	name = TralahM
 [github]
 	user = TralahM
@@ -12,7 +12,7 @@
     blame = true
     grep = auto
 [core]
-    editor = vim
+    editor = nvim
 	fscache = true
 	excludesfile = ~/.gitignore_global
     pager = less -r
