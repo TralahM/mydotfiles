@@ -10,8 +10,9 @@ super + Return
 super + @space
 	dmenu_run
 
-meta + d
+alt + d
     bash ~/bin/launcher.sh
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -124,11 +125,21 @@ super + {Left,Down,Up,Right}
 
 
 
-meta + Enter
-    rofi -show-icons -modi windowcd,window,drun -show window
+alt + Enter
+    ~/bin/launcher.sh
 
 XF86MonBrightnessUp
     xbacklight -inc 10
 
 XF86MonBrightnessDown
     xbacklight -dec 10
+
+
+XF86AudioPlay
+	$HOME/.config/bspwm/notify_mpd.sh -t
+
+XF86AudioNext
+	$HOME/.config/bspwm/notify_mpd.sh -n
+
+XF86AudioPrev
+	$HOME/.config/bspwm/notify_mpd.sh -p

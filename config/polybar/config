@@ -25,7 +25,7 @@ foreground = ${xrdb:color7:#222}
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
-alert = #bd2c40
+alert = #bd0c00
 
 [bar/bar]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -46,15 +46,17 @@ padding-left = 0
 padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
-font-0 = fixed:pixelsize=9;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=9;1
+; font-0 = fixed:pixelsize=8;1
+font-0 = "Hack Nerd Font:size=8;0"
+font-1 = "Hack Nerd Font:size=8;0"
+font-2 = "Hack Nerd Font:size=8;1"
+; font-2 = siji:pixelsize=8;1
 modules-left = bspwm
-modules-center = mpd
-modules-right = filesystem xbacklight  xkeyboard memory cpu eth date powermenu
+modules-center = mpd forex cryptos
+modules-right = filesystem xbacklight memory cpu eth moonphase date
 tray-position = right
 tray-padding = 2
-tray-background = #0063ff
+tray-background = ${colors.background}
 wm-restack = bspwm
 ; wm-restack = i3
 override-redirect = false
@@ -63,7 +65,7 @@ scroll-down = bspwm-deskprev
 ; scroll-up = i3wm-wsnext
 ; scroll-down = i3wm-wsprev
 cursor-click = pointer
-cursor-scroll = ns-resize
+; cursor-scroll = ns-resize
 
 
 [module/xwindow]
@@ -73,14 +75,11 @@ label = %title:0:30:...%
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
-
-format-prefix = " "
+format-prefix = '🔠'
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-underline = ${colors.secondary}
-
 label-layout = %layout%
 label-layout-underline = ${colors.secondary}
-
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
@@ -106,72 +105,59 @@ label-occupied-padding = 2
 label-urgent = %index%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
-label-empty = %index%
+label-empty =
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
-; Separator in between workspaces
-; label-separator = |
+[module/cryptos]
+type = custom/script
+exec = ~/.config/polybar/cryptocurrencies.sh
+interval = 30
+click-left = ~/.config/polybar/cryptocurrencies.sh printprices &
+jlick-right = ~/.config/polybar/cryptocurrencies.sh getprices &
+label = %output%
+format-prefix = "💰 "
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-underline = #005eff
 
-; [module/i3]
-; type = internal/i3
-; format = <label-state> <label-mode>
-; index-sort = true
-; wrapping-scroll = false
+[module/forex]
+type = custom/script
+exec = ~/.config/polybar/forex.sh
+interval = 30
+click-left = ~/.config/polybar/forex.sh printprices
+click-right = ~/.config/polybar/forex.sh getprices &
+label = %output%
+format-prefix = "🔑 "
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-underline = #12ff21
 
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
-
-; label-mode-padding = 2
-; label-mode-foreground = #000
-; label-mode-background = ${colors.primary}
-
-; ; focused = Active workspace on focused monitor
-; label-focused = %index%
-; label-focused-background = ${colors.background-alt}
-; label-focused-underline= ${colors.primary}
-; label-focused-padding = 2
-
-; ; unfocused = Inactive workspace on any monitor
-; label-unfocused = %index%
-; label-unfocused-padding = 2
-
-; ; visible = Active workspace on unfocused monitor
-; label-visible = %index%
-; label-visible-background = ${self.label-focused-background}
-; label-visible-underline = ${self.label-focused-underline}
-; label-visible-padding = ${self.label-focused-padding}
-
-; ; urgent = Workspace with urgency hint set
-; label-urgent = %index%
-; label-urgent-background = ${colors.alert}
-; label-urgent-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
-
+[module/moonphase]
+type = custom/script
+exec = ~/bin/moonphase
+interval = 300
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-label-song-maxlen = 26
+format-online = <label-song> <icon-prev> <icon-stop> <toggle> <icon-next>
+format-prefix = "🎶 "
+icon-prev = 🔙
+icon-stop = ⏹
+icon-play = |>
+icon-pause = ||
+icon-next = >
+label-song-maxlen = 36
 label-song-ellipsis = true
 
 [module/xbacklight]
 type = internal/xbacklight
 format = <label> <bar>
 label = BL
-bar-width = 10
+bar-width = 8
 bar-indicator = |
 bar-indicator-foreground = #fff
-bar-indicator-font = 2
+bar-indicator-font = 1
 bar-fill = ─
-bar-fill-font = 2
+bar-fill-font = 1
 bar-fill-foreground = #9f78e1
 bar-empty = ─
 bar-empty-font = 2
@@ -215,7 +201,6 @@ format-disconnected = <label-disconnected>
 [module/date]
 type = internal/date
 interval = 5
-; date =
 date = "%a %d %B"
 date-alt = " %Y-%m-%d"
 time = %H:%M
@@ -224,113 +209,6 @@ format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 label = %date% %time%
-
-; [module/pulseaudio]
-; type = internal/pulseaudio
-
-; format-volume = <label-volume> <bar-volume>
-; label-volume = VOL %percentage%%
-; label-volume-foreground = ${root.foreground}
-
-; label-muted = 🔇 muted
-; label-muted-foreground = #666
-
-; bar-volume-width = 10
-; bar-volume-foreground-0 = #55aa55
-; bar-volume-foreground-1 = #55aa55
-; bar-volume-foreground-2 = #55aa55
-; bar-volume-foreground-3 = #55aa55
-; bar-volume-foreground-4 = #55aa55
-; bar-volume-foreground-5 = #f5a70a
-; bar-volume-foreground-6 = #ff5555
-; bar-volume-gradient = false
-; bar-volume-indicator = |
-; bar-volume-indicator-font = 2
-; bar-volume-fill = ─
-; bar-volume-fill-font = 2
-; bar-volume-empty = ─
-; bar-volume-empty-font = 2
-; bar-volume-empty-foreground = ${colors.foreground-alt}
-
-; [module/alsa]
-; type = internal/alsa
-
-; format-volume = <label-volume> <bar-volume>
-; label-volume = VOL
-; label-volume-foreground = ${root.foreground}
-
-; format-muted-prefix = " "
-; format-muted-foreground = ${colors.foreground-alt}
-; label-muted = sound muted
-
-; bar-volume-width = 10
-; bar-volume-foreground-0 = #55aa55
-; bar-volume-foreground-1 = #55aa55
-; bar-volume-foreground-2 = #55aa55
-; bar-volume-foreground-3 = #55aa55
-; bar-volume-foreground-4 = #55aa55
-; bar-volume-foreground-5 = #f5a70a
-; bar-volume-foreground-6 = #ff5555
-; bar-volume-gradient = false
-; bar-volume-indicator = |
-; bar-volume-indicator-font = 2
-; bar-volume-fill = ─
-; bar-volume-fill-font = 2
-; bar-volume-empty = ─
-; bar-volume-empty-font = 2
-; bar-volume-empty-foreground = ${colors.foreground-alt}
-
-; [module/battery]
-; type = internal/battery
-; battery = BAT0
-; adapter = AC0
-; full-at = 100
-
-; format-charging = <animation-charging> <label-charging>
-; format-charging-underline = #ffb52a
-
-; format-discharging = <animation-discharging> <label-discharging>
-; format-discharging-underline = ${self.format-charging-underline}
-
-; format-full-prefix = " "
-; format-full-prefix-foreground = ${colors.foreground-alt}
-; format-full-underline = ${self.format-charging-underline}
-
-; ramp-capacity-0 = 
-; ramp-capacity-1 = 
-; ramp-capacity-2 = 
-; ramp-capacity-foreground = ${colors.foreground-alt}
-
-; animation-charging-0 = 
-; animation-charging-1 = 
-; animation-charging-2 = 
-; animation-charging-foreground = ${colors.foreground-alt}
-; animation-charging-framerate = 750
-
-; animation-discharging-0 = 
-; animation-discharging-1 = 
-; animation-discharging-2 = 
-; animation-discharging-foreground = ${colors.foreground-alt}
-; animation-discharging-framerate = 750
-
-; [module/temperature]
-; type = internal/temperature
-; thermal-zone = 0
-; warn-temperature = 60
-
-; format = <ramp> <label>
-; format-underline = #f50a4d
-; format-warn = <ramp> <label-warn>
-; format-warn-underline = ${self.format-underline}
-
-; label = %temperature-c%
-; label-warn = %temperature-c%
-; label-warn-foreground = ${colors.secondary}
-
-; ramp-0 = 
-; ramp-1 = 
-; ramp-2 = 
-; ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/menu
@@ -367,4 +245,151 @@ pseudo-transparency = true
 margin-top = 5
 margin-bottom = 5
 
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = 🔇 muted
+label-muted-foreground = #666
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 100
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #ffb52a
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+; Separator in between workspaces
+; label-separator = |
+
+; [module/i3]
+; type = internal/i3
+; format = <label-state> <label-mode>
+; index-sort = true
+; wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+; pin-workspaces = true
+
+; label-mode-padding = 2
+; label-mode-foreground = #000
+; label-mode-background = ${colors.primary}
+
+; ; focused = Active workspace on focused monitor
+; label-focused = %index%
+; label-focused-background = ${colors.background-alt}
+; label-focused-underline= ${colors.primary}
+; label-focused-padding = 2
+
+; ; unfocused = Inactive workspace on any monitor
+; label-unfocused = %index%
+; label-unfocused-padding = 2
+
+; ; visible = Active workspace on unfocused monitor
+; label-visible = %index%
+; label-visible-background = ${self.label-focused-background}
+; label-visible-underline = ${self.label-focused-underline}
+; label-visible-padding = ${self.label-focused-padding}
+
+; ; urgent = Workspace with urgency hint set
+; label-urgent = %index%
+; label-urgent-background = ${colors.alert}
+; label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
 ; vim:ft=dosini

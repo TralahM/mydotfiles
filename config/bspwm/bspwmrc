@@ -84,8 +84,9 @@ clipit &
 pkill volumeicon
 volumeicon &
 
-## music is my only friend :(
-mpd &
+# ## music is my only friend :(
+# pkill mpd
+# mpd &
 
 ## reload the xsettingsd, a minimal x settings daemon
 pkill xsettingsd
