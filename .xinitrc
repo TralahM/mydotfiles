@@ -71,7 +71,7 @@ get_session(){
 
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 setxkbmap -option caps:escape
-$HOME/.screenlayout/display.sh
+# $HOME/.screenlayout/display.sh
 nitrogen --restore &
 xsetroot -cursor_name left_ptr
 picom -f &
