@@ -20,9 +20,9 @@
 ;background = ${xrdb:color0:#222}
 background = #222
 background-alt = #444
-foreground = ${xrdb:color7:#222}
-; foreground = #dfdfdf
-foreground-alt = #ff5
+; foreground = ${xrdb:color7:#2f2}
+foreground = #dfdfdf
+foreground-alt = #ff0
 primary = #ffb52a
 secondary = #e60053
 alert = #bd0c00
@@ -46,14 +46,18 @@ padding-left = 0
 padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
-; font-0 = fixed:pixelsize=8;1
-font-0 = "Hack Nerd Font:size=7;0"
-font-1 = "Hack Nerd Font:size=7;0"
-font-2 = "Hack Nerd Font:size=7;1"
+; font-0 = "Iosevka,Iosevka Nerd Font:style=Bold Oblique,Regular:size=7;0"
+; font-1 = "Iosevka,Iosevka Nerd Font:style=Thin Oblique,Regular:size=7;1"
+; font-2 = "Iosevka,Iosevka Nerd Font:style=Thin Italic,Italic:size=7;-1"
+; font-0 = "Anonymice Nerd Font:style=Regular,Book:size=8"
+font-0 = "Hasklug Nerd Font,Hasklig Medium:style=Medium:size=7"
+font-1 = "Anonymice Nerd Font Mono:style=Regular,Book:size=7"
+font-2 = "Anonymice Nerd Font:style=Regular,Book:size=7"
+
 ; font-2 = siji:pixelsize=8;1
-modules-left = bspwm
+modules-left = bspwm github
 modules-center = mpd forex cryptos
-modules-right = filesystem xbacklight memory cpu eth moonphase date
+modules-right = filesystem xbacklight memory cpu eth alsa date
 tray-position = right
 tray-padding = 2
 tray-background = ${colors.background}
@@ -114,39 +118,41 @@ type = custom/script
 exec = ~/.config/polybar/cryptocurrencies.sh
 interval = 30
 click-left = ~/.config/polybar/cryptocurrencies.sh printprices &
-jlick-right = ~/.config/polybar/cryptocurrencies.sh getprices &
+click-right = ~/.config/polybar/cryptocurrencies.sh getprices &
 label = %output%
 format-prefix = "💰 "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = #005eff
+format-underline = #005eff
 
 [module/forex]
 type = custom/script
 exec = ~/.config/polybar/forex.sh
 interval = 30
-click-left = ~/.config/polybar/forex.sh printprices
-click-right = ~/.config/polybar/forex.sh getprices &
+click-left = bash ~/.config/polybar/forex.sh printprices &
+click-right = bash ~/.config/polybar/forex.sh getprices &
 label = %output%
 format-prefix = "🔑 "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = #12ff21
+format-underline = #12ff21
 
 [module/moonphase]
 type = custom/script
-exec = ~/bin/moonphase
+exec = moonphase
 interval = 30
 
 [module/mpd]
 type = internal/mpd
 format-online = <icon-prev> <label-song> <icon-stop> <toggle> <icon-next>
-format-prefix = "🎶 "
-icon-prev = 🔙
-icon-stop = ⏹
+format-prefix = 🎶
+format-background = #e0f
+icon-prev = <
+icon-stop = S
 icon-play = |>
 icon-pause = ||
 icon-next = >
 label-song-maxlen = 36
 label-song-ellipsis = true
+format-underline = #005eff
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -192,8 +198,7 @@ format-connected-underline = #15fa15
 format-connected-prefix = "L "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
-; format-disconnected =
-format-disconnected = <label-disconnected>
+format-disconnected =
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
@@ -248,14 +253,25 @@ margin-bottom = 5
 
 [module/pulseaudio]
 type = internal/pulseaudio
-
 format-volume = <label-volume> <bar-volume>
+; format-volume = <ramp-volume> <label-volume>
 label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
+use-ui-max = true
 
-label-muted = 🔇
-label-muted-foreground = #666
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = "🔈"
+ramp-volume-1 = "🔉"
+ramp-volume-2 = "🔊"
 
+; Right and Middle click
+click-right = pavucontrol &
+; click-middle =
+label-muted = "🔇"
+label-muted-foreground = #0ff
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
@@ -277,12 +293,15 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 type = internal/alsa
 
 format-volume = <label-volume> <bar-volume>
+; label-volume = VOL
 label-volume = VOL
-label-volume-foreground = ${root.foreground}
+label-muted = M
+label-muted-foreground = #0ff
+label-volume-foreground = #ff0
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
+; label-muted = sound muted
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -353,8 +372,58 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
+
+[module/github]
+type = internal/github
+
+; Accessing an access token stored in file
+token = ${file:~/.gitaccess}
+
+; Accessing an access token stored in an environment variable
+; token = ${env:GITHUB_ACCESS_TOKEN}
+
+; The github user for the token
+; If not specified, this module uses the deprecated method of accessing your
+; notifications, which may stop working at some point.
+user = TralahM
+
+; Whether empty notifications should be displayed or not
+empty-notifications = false
+
+; Number of seconds in between requests
+interval = 10
+; Available tags:
+;   <label> (default)
+format = <label>
+
+; Available tokens:
+;   %notifications% (default)
+; Default: Notifications: %notifications%
+label = %notifications%
+
+; Used when GitHub can't be reached
+; Available tags:
+;   <label-offline> (default)
+format-offline = <label-offline>
+
+; Available tokens:
+;   None
+; Default: Offline
+label-offline = Offline
+; Github API URL
+; Default: https://api.github.com/
+; api-url = https://hub.example.org/api/v3/
+;
+;
 ; Separator in between workspaces
 ; label-separator = |
+
+[module/crypto]
+type = custom/script
+interval = 300
+exec = /home/african/.config/polybar/crypto.py
+format-underline = #005eff
+format-prefix-foreground = ${colors.foreground-alt}
 
 ; [module/i3]
 ; type = internal/i3
